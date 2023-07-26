@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -87,7 +88,7 @@ function visit(node, checker) {
     const details = checker.getTypeAtLocation(node);
     const classInfo = {
         name: symbol.getName(),
-        extends: details.getBaseTypes().map(t => { var _a; return ((_a = t.symbol) === null || _a === void 0 ? void 0 : _a.getName()) || ''; })[0],
+        extends: [],
         implements: getImplementedInterfaces(details, checker),
         properties: {
             public: [],
@@ -113,6 +114,14 @@ function visit(node, checker) {
         },
         jsDoc: getJsDoc(node)
     };
+    let baseType = details.getBaseTypes()[0];
+    while (baseType) {
+        const baseSymbol = baseType.getSymbol();
+        if (baseSymbol) {
+            classInfo.extends.push(baseSymbol.getName());
+        }
+        baseType = baseType.getBaseTypes() && baseType.getBaseTypes().length > 0 ? baseType.getBaseTypes()[0] : undefined;
+    }
     for (const member of node.members) {
         const memberSymbol = checker.getSymbolAtLocation(member.name);
         if (!memberSymbol) {
@@ -166,7 +175,7 @@ function visit(node, checker) {
     return classInfo;
 }
 // Définissez le répertoire racine
-const rootDir = "../xgpu/src/xGPU/";
+const rootDir = process.argv[2] || "./src/";
 // Lisez tous les fichiers TypeScript dans le répertoire et ses sous-répertoires
 const fileNames = ts.sys.readDirectory(rootDir, ["ts"]);
 // Créez des options de compilation. Vous pouvez spécifier toutes les options que vous utiliseriez normalement dans un fichier tsconfig.json.

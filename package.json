@@ -1,21 +1,30 @@
 {
-  "name": "documentationgenerator",
+  "name": "tsjsondoc",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "main": "build/index.js",
+  "bin": "build/index.js",
   "scripts": {
     "dev": "nodemon -e ts --exec \"tsc && node ./build/index.js\""
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "documentation",
+    "typescript",
+    "tsdoc",
+    "typedoc"
+  ],
+  "description": "TsJsonDoc is a light solution to generate a json that reproduce the file structure of your project. Each file is represented by an object that contains all the information concerning the data structure of the typescript files.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tlecoz/TsJsonDoc"
+  },
+  "author": "Thomas Le Coz <fanthomas.lecoz@gmail.com>",
+  "licence": "MIT",
+  "homepage": "https://github.com/tlecoz/TsJsonDoc#readme",
   "devDependencies": {
     "@types/clear": "^0.1.2",
     "@types/node": "^20.4.5",
     "nodemon": "^3.0.1",
     "typescript": "^5.1.6"
   },
-  "dependencies": {
-    "clear": "^0.1.0"
-  }
+  "description": ""
 }

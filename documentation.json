@@ -40,7 +40,9 @@
   },
   "GPURenderer": {
     "name": "GPURenderer",
-    "extends": "HeadlessGPURenderer",
+    "extends": [
+      "HeadlessGPURenderer"
+    ],
     "properties": {
       "public": [
         {
@@ -1006,7 +1008,9 @@
   "pipelines": {
     "ComputePipeline": {
       "name": "ComputePipeline",
-      "extends": "Pipeline",
+      "extends": [
+        "Pipeline"
+      ],
       "properties": {
         "public": [
           {
@@ -1265,7 +1269,10 @@
     },
     "MixedPipeline": {
       "name": "MixedPipeline",
-      "extends": "RenderPipeline",
+      "extends": [
+        "RenderPipeline",
+        "Pipeline"
+      ],
       "properties": {
         "public": [
           {
@@ -1526,7 +1533,9 @@
     },
     "RenderPipeline": {
       "name": "RenderPipeline",
-      "extends": "Pipeline",
+      "extends": [
+        "Pipeline"
+      ],
       "properties": {
         "public": [
           {
@@ -2092,7 +2101,9 @@
       "blendmodes": {
         "AlphaBlendMode": {
           "name": "AlphaBlendMode",
-          "extends": "BlendMode"
+          "extends": [
+            "BlendMode"
+          ]
         },
         "BlendMode": {
           "name": "BlendMode",
@@ -2115,7 +2126,9 @@
       "textures": {
         "DepthStencilTexture": {
           "name": "DepthStencilTexture",
-          "extends": "Texture",
+          "extends": [
+            "Texture"
+          ],
           "properties": {
             "public": [
               {
@@ -2253,7 +2266,10 @@
         },
         "DepthTextureArray": {
           "name": "DepthTextureArray",
-          "extends": "ImageTextureArray",
+          "extends": [
+            "ImageTextureArray",
+            "ImageTexture"
+          ],
           "properties": {
             "public": [
               {
@@ -2340,7 +2356,9 @@
         },
         "MultiSampleTexture": {
           "name": "MultiSampleTexture",
-          "extends": "Texture",
+          "extends": [
+            "Texture"
+          ],
           "properties": {
             "public": [
               {
@@ -2374,7 +2392,9 @@
         },
         "RenderPassTexture": {
           "name": "RenderPassTexture",
-          "extends": "ImageTexture",
+          "extends": [
+            "ImageTexture"
+          ],
           "properties": {
             "public": [
               {
@@ -3105,7 +3125,9 @@
     },
     "ComputeShader": {
       "name": "ComputeShader",
-      "extends": "ShaderStage",
+      "extends": [
+        "ShaderStage"
+      ],
       "methods": {
         "public": [
           {
@@ -3128,7 +3150,9 @@
     },
     "FragmentShader": {
       "name": "FragmentShader",
-      "extends": "ShaderStage",
+      "extends": [
+        "ShaderStage"
+      ],
       "methods": {
         "public": [
           {
@@ -3151,7 +3175,11 @@
     },
     "PrimitiveType": {
       "name": "Matrix4x4Array",
-      "extends": "PrimitiveFloatUniform",
+      "extends": [
+        "PrimitiveFloatUniform",
+        "Float32Array",
+        "RelativeIndexable"
+      ],
       "properties": {
         "public": [
           {
@@ -3242,7 +3270,9 @@
     },
     "VertexShader": {
       "name": "VertexShader",
-      "extends": "ShaderStage",
+      "extends": [
+        "ShaderStage"
+      ],
       "methods": {
         "public": [
           {
@@ -3266,7 +3296,10 @@
     "resources": {
       "CubeMapTexture": {
         "name": "CubeMapTexture",
-        "extends": "ImageTextureArray",
+        "extends": [
+          "ImageTextureArray",
+          "ImageTexture"
+        ],
         "properties": {
           "public": [
             {
@@ -3385,7 +3418,10 @@
       },
       "CubeMapTextureArray": {
         "name": "CubeMapTextureArray",
-        "extends": "ImageTextureArray",
+        "extends": [
+          "ImageTextureArray",
+          "ImageTexture"
+        ],
         "properties": {
           "public": [
             {
@@ -3710,7 +3746,9 @@
       },
       "ImageTextureArray": {
         "name": "ImageTextureArray",
-        "extends": "ImageTexture",
+        "extends": [
+          "ImageTexture"
+        ],
         "properties": {
           "public": [
             {

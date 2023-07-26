@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import * as ts from "typescript";
 import * as path from "path";
 import * as fs from "fs";
@@ -33,7 +34,7 @@ type MethodInfo = {
 
 type ClassInfo = {
     name: string,
-    extends?: string,
+    extends?: string[],
     implements?: string[],
     properties?: {
         public?: PropetyInfo[],
@@ -139,7 +140,7 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
 
     const classInfo: ClassInfo = {
         name: symbol.getName(),
-        extends: details.getBaseTypes().map(t => t.symbol?.getName() || '')[0],
+        extends: [],
         implements: getImplementedInterfaces(details, checker),
         properties: {
             public: [],
@@ -165,6 +166,15 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
         },
         jsDoc: getJsDoc(node)
     };
+
+    let baseType = details.getBaseTypes()[0];
+    while (baseType) {
+        const baseSymbol = baseType.getSymbol();
+        if (baseSymbol) {
+            classInfo.extends.push(baseSymbol.getName());
+        }
+        baseType = baseType.getBaseTypes() && baseType.getBaseTypes().length > 0 ? baseType.getBaseTypes()[0] : undefined;
+    }
 
     for (const member of node.members) {
         const memberSymbol = checker.getSymbolAtLocation(member.name!);
@@ -222,8 +232,9 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
 
     return classInfo;
 }
+
 // Définissez le répertoire racine
-const rootDir = "../xgpu/src/xGPU/";
+const rootDir = process.argv[2] || "./src/";
 
 // Lisez tous les fichiers TypeScript dans le répertoire et ses sous-répertoires
 const fileNames = ts.sys.readDirectory(rootDir, ["ts"]);
@@ -294,8 +305,6 @@ function cleanEmptyArrays(obj: any) {
     }
 }
 cleanEmptyArrays(classInfos)
-
-
 
 const json = JSON.stringify(classInfos, null, 2);
 fs.writeFileSync("documentation.json", json);
