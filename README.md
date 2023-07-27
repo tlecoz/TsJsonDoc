@@ -78,6 +78,8 @@ type PropetyInfo = {
     type: string,
     visibility: "public" | "private" | "protected",
     value?: string,
+    get?: boolean,
+    set?: boolean,
     jsDoc?: string
 }
 
