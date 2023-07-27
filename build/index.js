@@ -140,6 +140,10 @@ function visit(node, checker) {
                 visibility,
                 jsDoc: getJsDoc(member)
             };
+            if (ts.isGetAccessor(member))
+                propertyInfo.get = true;
+            if (ts.isSetAccessor(member))
+                propertyInfo.set = true;
             if (ts.getCombinedModifierFlags(member) & ts.ModifierFlags.Static) {
                 classInfo.statics.properties[visibility].push(propertyInfo);
             }

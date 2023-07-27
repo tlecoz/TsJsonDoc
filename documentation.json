@@ -1,1 +1,6211 @@
-{}
+{
+  "BuiltIns": {
+    "name": "BuiltIns",
+    "statics": {
+      "properties": {
+        "public": [
+          {
+            "name": "vertexInputs",
+            "type": "{ vertexIndex: { builtin: string; type: string; }; instanceIndex: { builtin: string; type: string; }; }",
+            "visibility": "public"
+          },
+          {
+            "name": "vertexOutputs",
+            "type": "{ position: { builtin: string; type: string; }; Float: { type: string; vsOut: boolean; }; Vec2: { type: string; vsOut: boolean; }; Vec3: { type: string; vsOut: boolean; }; Vec4: { type: string; vsOut: boolean; }; }",
+            "visibility": "public"
+          },
+          {
+            "name": "fragmentInputs",
+            "type": "{ frontFacing: { builtin: string; type: string; }; fragDepth: { builtin: string; type: string; }; sampleIndex: { builtin: string; type: string; }; sampleMask: { builtin: string; type: string; }; }",
+            "visibility": "public"
+          },
+          {
+            "name": "fragmentOutputs",
+            "type": "{ color: { builtin: string; type: string; }; }",
+            "visibility": "public"
+          },
+          {
+            "name": "computeInputs",
+            "type": "{ localInvocationId: { builtin: string; type: string; }; localInvocationIndex: { builtin: string; type: string; }; globalInvocationId: { builtin: string; type: string; }; workgroupId: { builtin: string; type: string; }; numWorkgroup: { ...; }; }",
+            "visibility": "public"
+          },
+          {
+            "name": "computeOutputs",
+            "type": "{ result: { builtin: string; type: string; }; }",
+            "visibility": "public"
+          }
+        ]
+      }
+    }
+  },
+  "GPURenderer": {
+    "name": "GPURenderer",
+    "extends": [
+      "HeadlessGPURenderer"
+    ],
+    "properties": {
+      "public": [
+        {
+          "name": "canvas",
+          "type": "{ width: number; height: number; dimensionChanged: boolean; }",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "texture",
+          "type": "GPUTexture",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "width",
+          "type": "number",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "dimensionChanged",
+          "type": "boolean",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "view",
+          "type": "GPUTextureView",
+          "visibility": "public",
+          "get": true
+        }
+      ],
+      "protected": [
+        {
+          "name": "domElement",
+          "type": "HTMLCanvasElement",
+          "visibility": "protected"
+        },
+        {
+          "name": "ctx",
+          "type": "GPUCanvasContext",
+          "visibility": "protected"
+        },
+        {
+          "name": "canvasW",
+          "type": "number",
+          "visibility": "protected"
+        },
+        {
+          "name": "canvasH",
+          "type": "number",
+          "visibility": "protected"
+        },
+        {
+          "name": "gpuCtxConfiguration",
+          "type": "any",
+          "visibility": "protected"
+        }
+      ]
+    },
+    "methods": {
+      "public": [
+        {
+          "name": "initCanvas",
+          "returnType": "Promise<HTMLCanvasElement>",
+          "params": [
+            {
+              "name": "canvas",
+              "type": "HTMLCanvasElement"
+            },
+            {
+              "name": "alphaMode",
+              "type": "\"opaque\" | \"premultiplied\""
+            }
+          ],
+          "visibility": "public"
+        },
+        {
+          "name": "configure",
+          "returnType": "void",
+          "params": [
+            {
+              "name": "textureUsage",
+              "type": "GPUTextureUsageFlags"
+            },
+            {
+              "name": "alphaMode",
+              "type": "\"opaque\" | \"premultiplied\""
+            }
+          ],
+          "visibility": "public"
+        },
+        {
+          "name": "update",
+          "returnType": "void",
+          "visibility": "public"
+        }
+      ]
+    }
+  },
+  "GPUType": {
+    "name": "GPUType",
+    "properties": {
+      "public": [
+        {
+          "name": "isPrimitive",
+          "type": "boolean",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "isVector",
+          "type": "boolean",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "isMatrix",
+          "type": "boolean",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "isArray",
+          "type": "boolean",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "isMatrixOfVectors",
+          "type": "boolean",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "isArrayOfVectors",
+          "type": "boolean",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "isArrayOfMatrixs",
+          "type": "boolean",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "vectorType",
+          "type": "number",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "arrayLength",
+          "type": "number",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "matrixColumns",
+          "type": "number",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "matrixRows",
+          "type": "number",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "primitive",
+          "type": "\"u32\" | \"f32\" | \"i32\" | \"f16\"",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "nbValues",
+          "type": "number",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "byteSize",
+          "type": "number",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "byteAlign",
+          "type": "number",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "byteAlign",
+          "type": "number",
+          "visibility": "public",
+          "set": true
+        },
+        {
+          "name": "dataType",
+          "type": "string",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "rawType",
+          "type": "string",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "byteValue",
+          "type": "number",
+          "visibility": "public",
+          "get": true
+        }
+      ],
+      "private": [
+        {
+          "name": "_isVector",
+          "type": "boolean",
+          "visibility": "private"
+        },
+        {
+          "name": "_isMatrix",
+          "type": "boolean",
+          "visibility": "private"
+        },
+        {
+          "name": "_isArray",
+          "type": "boolean",
+          "visibility": "private"
+        },
+        {
+          "name": "_vecType",
+          "type": "number",
+          "visibility": "private"
+        },
+        {
+          "name": "_arrayLen",
+          "type": "number",
+          "visibility": "private"
+        },
+        {
+          "name": "_primitive",
+          "type": "\"u32\" | \"f32\" | \"i32\" | \"f16\"",
+          "visibility": "private"
+        },
+        {
+          "name": "_matrixColumns",
+          "type": "number",
+          "visibility": "private"
+        },
+        {
+          "name": "_matrixRows",
+          "type": "number",
+          "visibility": "private"
+        },
+        {
+          "name": "_alignOf",
+          "type": "number",
+          "visibility": "private"
+        },
+        {
+          "name": "_sizeOf",
+          "type": "number",
+          "visibility": "private"
+        },
+        {
+          "name": "_dataType",
+          "type": "string",
+          "visibility": "private"
+        },
+        {
+          "name": "_rawType",
+          "type": "string",
+          "visibility": "private"
+        },
+        {
+          "name": "getPrimitiveDataType",
+          "type": "(dataType: string, start: number) => void",
+          "visibility": "private"
+        }
+      ]
+    },
+    "methods": {
+      "private": [
+        {
+          "name": "renameDataType",
+          "returnType": "string",
+          "params": [
+            {
+              "name": "type",
+              "type": "string"
+            }
+          ],
+          "visibility": "private"
+        },
+        {
+          "name": "getMatrixBytesStructure",
+          "returnType": "void",
+          "params": [
+            {
+              "name": "col",
+              "type": "number"
+            },
+            {
+              "name": "row",
+              "type": "number"
+            },
+            {
+              "name": "primitive",
+              "type": "string"
+            }
+          ],
+          "visibility": "private"
+        }
+      ]
+    }
+  },
+  "HeadlessGPURenderer": {
+    "name": "HeadlessGPURenderer",
+    "properties": {
+      "public": [
+        {
+          "name": "firstPipeline",
+          "type": "RenderPipeline",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "nbPipeline",
+          "type": "number",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "useSinglePipeline",
+          "type": "boolean",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "dimensionChanged",
+          "type": "boolean",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "canvas",
+          "type": "{ width: number; height: number; dimensionChanged: boolean; }",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "width",
+          "type": "number",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "texture",
+          "type": "GPUTexture",
+          "visibility": "public",
+          "get": true
+        },
+        {
+          "name": "view",
+          "type": "GPUTextureView",
+          "visibility": "public",
+          "get": true
+        }
+      ],
+      "protected": [
+        {
+          "name": "textureObj",
+          "type": "Texture",
+          "visibility": "protected"
+        },
+        {
+          "name": "dimension",
+          "type": "{ width: number; height: number; dimensionChanged: boolean; }",
+          "visibility": "protected"
+        },
+        {
+          "name": "renderPipelines",
+          "type": "RenderPipeline[]",
+          "visibility": "protected"
+        },
+        {
+          "name": "useTextureInComputeShader",
+          "type": "any",
+          "visibility": "protected"
+        },
+        {
+          "name": "deviceId",
+          "type": "number",
+          "visibility": "protected"
+        },
+        {
+          "name": "nbColorAttachment",
+          "type": "number",
+          "visibility": "protected"
+        }
+      ]
+    },
+    "methods": {
+      "public": [
+        {
+          "name": "init",
+          "returnType": "Promise<any>",
+          "params": [
+            {
+              "name": "w",
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "type": "number"
+            },
+            {
+              "name": "usage",
+              "type": "number"
+            },
+            {
+              "name": "sampleCount",
+              "type": "number"
+            }
+          ],
+          "visibility": "public"
+        },
+        {
+          "name": "addPipeline",
+          "returnType": "void",
+          "params": [
+            {
+              "name": "pipeline",
+              "type": "RenderPipeline"
+            },
+            {
+              "name": "offset",
+              "type": "number"
+            }
+          ],
+          "visibility": "public"
+        },
+        {
+          "name": "resize",
+          "returnType": "void",
+          "params": [
+            {
+              "name": "w",
+              "type": "number"
+            },
+            {
+              "name": "h",
+              "type": "number"
+            }
+          ],
+          "visibility": "public"
+        },
+        {
+          "name": "destroy",
+          "returnType": "void",
+          "visibility": "public"
+        },
+        {
+          "name": "update",
+          "returnType": "void",
+          "visibility": "public"
+        }
+      ]
+    }
+  },
+  "HighLevelParser": {
+    "name": "HighLevelParser",
+    "properties": {
+      "protected": [
+        {
+          "name": "targetIsBindgroup",
+          "type": "boolean",
+          "visibility": "protected"
+        }
+      ]
+    },
+    "methods": {
+      "public": [
+        {
+          "name": "parse",
+          "returnType": "any",
+          "params": [
+            {
+              "name": "descriptor",
+              "type": "any"
+            },
+            {
+              "name": "target",
+              "type": "\"render\" | \"compute\" | \"bindgroup\""
+            },
+            {
+              "name": "drawConfig",
+              "type": "DrawConfig"
+            }
+          ],
+          "visibility": "public"
+        }
+      ],
+      "protected": [
+        {
+          "name": "parseShaderBuiltins",
+          "returnType": "any",
+          "params": [
+            {
+              "name": "descriptor",
+              "type": "any"
+            }
+          ],
+          "visibility": "protected"
+        },
+        {
+          "name": "parseVertexBufferIOs",
+          "returnType": "any",
+          "params": [
+            {
+              "name": "descriptor",
+              "type": "any"
+            }
+          ],
+          "visibility": "protected"
+        },
+        {
+          "name": "parseImageTextureIOs",
+          "returnType": "any",
+          "params": [
+            {
+              "name": "descriptor",
+              "type": "any"
+            }
+          ],
+          "visibility": "protected"
+        },
+        {
+          "name": "parseVertexBuffers",
+          "returnType": "any",
+          "params": [
+            {
+              "name": "descriptor",
+              "type": "any"
+            }
+          ],
+          "visibility": "protected"
+        },
+        {
+          "name": "parseVertexAttributes",
+          "returnType": "any",
+          "params": [
+            {
+              "name": "descriptor",
+              "type": "any"
+            }
+          ],
+          "visibility": "protected"
+        },
+        {
+          "name": "parseUniformBuffers",
+          "returnType": "any",
+          "params": [
+            {
+              "name": "descriptor",
+              "type": "any"
+            }
+          ],
+          "visibility": "protected"
+        },
+        {
+          "name": "parseUniform",
+          "returnType": "any",
+          "params": [
+            {
+              "name": "descriptor",
+              "type": "any"
+            }
+          ],
+          "visibility": "protected"
+        },
+        {
+          "name": "parseImageTextureArray",
+          "returnType": "any",
+          "params": [
+            {
+              "name": "descriptor",
+              "type": "any"
+            }
+          ],
+          "visibility": "protected"
+        },
+        {
+          "name": "parseImageTexture",
+          "returnType": "any",
+          "params": [
+            {
+              "name": "descriptor",
+              "type": "any"
+            }
+          ],
+          "visibility": "protected"
+        },
+        {
+          "name": "parseTextureSampler",
+          "returnType": "any",
+          "params": [
+            {
+              "name": "descriptor",
+              "type": "any"
+            }
+          ],
+          "visibility": "protected"
+        },
+        {
+          "name": "parseVideoTexture",
+          "returnType": "any",
+          "params": [
+            {
+              "name": "descriptor",
+              "type": "any"
+            }
+          ],
+          "visibility": "protected"
+        },
+        {
+          "name": "parseCubeMapTexture",
+          "returnType": "any",
+          "params": [
+            {
+              "name": "descriptor",
+              "type": "any"
+            }
+          ],
+          "visibility": "protected"
+        },
+        {
+          "name": "parseDrawConfig",
+          "returnType": "any",
+          "params": [
+            {
+              "name": "descriptor",
+              "type": "any"
+            },
+            {
+              "name": "drawConfig",
+              "type": "DrawConfig"
+            }
+          ],
+          "visibility": "protected"
+        },
+        {
+          "name": "parseBindgroup",
+          "returnType": "any",
+          "params": [
+            {
+              "name": "descriptor",
+              "type": "any"
+            }
+          ],
+          "visibility": "protected"
+        },
+        {
+          "name": "firstPass",
+          "returnType": "any",
+          "params": [
+            {
+              "name": "descriptor",
+              "type": "any"
+            },
+            {
+              "name": "target",
+              "type": "\"render\" | \"compute\" | \"bindgroup\""
+            },
+            {
+              "name": "drawConfig",
+              "type": "DrawConfig"
+            }
+          ],
+          "visibility": "protected"
+        },
+        {
+          "name": "parseHighLevelObj",
+          "returnType": "any",
+          "params": [
+            {
+              "name": "descriptor",
+              "type": "any"
+            }
+          ],
+          "visibility": "protected"
+        },
+        {
+          "name": "findAndFixRepetitionInDataStructure",
+          "returnType": "any",
+          "params": [
+            {
+              "name": "o",
+              "type": "any"
+            }
+          ],
+          "visibility": "protected"
+        },
+        {
+          "name": "parseBindgroupEntries",
+          "returnType": "any",
+          "params": [
+            {
+              "name": "descriptor",
+              "type": "any"
+            }
+          ],
+          "visibility": "protected"
+        }
+      ]
+    },
+    "statics": {
+      "properties": {
+        "private": [
+          {
+            "name": "instance",
+            "type": "HighLevelParser",
+            "visibility": "private"
+          }
+        ]
+      },
+      "methods": {
+        "public": [
+          {
+            "name": "parse",
+            "returnType": "any",
+            "params": [
+              {
+                "name": "descriptor",
+                "type": "any"
+              },
+              {
+                "name": "target",
+                "type": "\"render\" | \"compute\" | \"bindgroup\""
+              },
+              {
+                "name": "drawConfig",
+                "type": "DrawConfig"
+              }
+            ],
+            "visibility": "public"
+          }
+        ]
+      }
+    }
+  },
+  "WgslUtils": {
+    "name": "WgslUtils",
+    "statics": {
+      "properties": {
+        "public": [
+          {
+            "name": "rotationX",
+            "type": "string",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "rotationY",
+            "type": "string",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "rotationZ",
+            "type": "string",
+            "visibility": "public",
+            "get": true
+          }
+        ]
+      }
+    }
+  },
+  "XGPU": {
+    "name": "XGPU",
+    "statics": {
+      "properties": {
+        "public": [
+          {
+            "name": "ready",
+            "type": "boolean",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "deviceLost",
+            "type": "boolean",
+            "visibility": "public"
+          },
+          {
+            "name": "deviceId",
+            "type": "number",
+            "visibility": "public"
+          },
+          {
+            "name": "loseDeviceRecently",
+            "type": "boolean",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "device",
+            "type": "GPUDevice",
+            "visibility": "public",
+            "get": true
+          }
+        ],
+        "private": [
+          {
+            "name": "_ready",
+            "type": "boolean",
+            "visibility": "private"
+          },
+          {
+            "name": "requestAdapterOptions",
+            "type": "GPURequestAdapterOptions",
+            "visibility": "private"
+          },
+          {
+            "name": "losingDevice",
+            "type": "boolean",
+            "visibility": "private"
+          },
+          {
+            "name": "deviceLostTime",
+            "type": "number",
+            "visibility": "private"
+          },
+          {
+            "name": "_preferedCanvasFormat",
+            "type": "GPUTextureFormat",
+            "visibility": "private"
+          }
+        ],
+        "protected": [
+          {
+            "name": "gpuDevice",
+            "type": "GPUDevice",
+            "visibility": "protected"
+          }
+        ]
+      },
+      "methods": {
+        "public": [
+          {
+            "name": "debugUsage",
+            "returnType": "\"GPUBufferUsage.STORAGE\" | \"GPUBufferUsage.COPY_DST\" | \"GPUBufferUsage.VERTEX\" | \"GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST\" | \"GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST | GPUBufferUsage.VERTEX\" | ... 5 more ... | \"\"",
+            "params": [
+              {
+                "name": "usage",
+                "type": "number"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "debugShaderStage",
+            "returnType": "\"\" | \"GPUShaderStage.COMPUTE\" | \"GPUShaderStage.VERTEX\" | \"GPUShaderStage.FRAGMENT\"",
+            "params": [
+              {
+                "name": "n",
+                "type": "number"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "loseDevice",
+            "returnType": "void",
+            "visibility": "public"
+          },
+          {
+            "name": "clear",
+            "returnType": "void",
+            "visibility": "public"
+          },
+          {
+            "name": "init",
+            "returnType": "Promise<void>",
+            "params": [
+              {
+                "name": "options",
+                "type": "{ powerPreference?: \"low-power\" | \"high-performance\"; forceFallbackAdaoter?: boolean; }"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "getPreferredCanvasFormat",
+            "returnType": "GPUTextureFormat",
+            "visibility": "public"
+          },
+          {
+            "name": "setPreferredCanvasFormat",
+            "returnType": "void",
+            "params": [
+              {
+                "name": "format",
+                "type": "GPUTextureFormat"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "destroy",
+            "returnType": "void",
+            "visibility": "public"
+          },
+          {
+            "name": "createBindgroup",
+            "returnType": "GPUBindGroup",
+            "params": [
+              {
+                "name": "o",
+                "type": "any"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "createBindgroupLayout",
+            "returnType": "GPUBindGroupLayout",
+            "params": [
+              {
+                "name": "o",
+                "type": "any"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "createPipelineLayout",
+            "returnType": "GPUPipelineLayout",
+            "params": [
+              {
+                "name": "o",
+                "type": "any"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "createRenderPipeline",
+            "returnType": "GPURenderPipeline",
+            "params": [
+              {
+                "name": "o",
+                "type": "any"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "createComputePipeline",
+            "returnType": "GPUComputePipeline",
+            "params": [
+              {
+                "name": "o",
+                "type": "any"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "createStagingBuffer",
+            "returnType": "GPUBuffer",
+            "params": [
+              {
+                "name": "size",
+                "type": "number"
+              }
+            ],
+            "visibility": "public"
+          }
+        ]
+      }
+    }
+  },
+  "pipelines": {
+    "ComputePipeline": {
+      "name": "ComputePipeline",
+      "extends": [
+        "Pipeline"
+      ],
+      "properties": {
+        "public": [
+          {
+            "name": "computeShader",
+            "type": "ComputeShader",
+            "visibility": "public"
+          },
+          {
+            "name": "onReceiveData",
+            "type": "(datas: Float32Array) => void",
+            "visibility": "public"
+          },
+          {
+            "name": "workgroups",
+            "type": "number[]",
+            "visibility": "public"
+          },
+          {
+            "name": "useRenderPipeline",
+            "type": "boolean",
+            "visibility": "public",
+            "set": true
+          }
+        ],
+        "protected": [
+          {
+            "name": "gpuComputePipeline",
+            "type": "GPUComputePipeline",
+            "visibility": "protected"
+          },
+          {
+            "name": "dispatchWorkgroup",
+            "type": "number[]",
+            "visibility": "protected"
+          },
+          {
+            "name": "bufferSize",
+            "type": "number",
+            "visibility": "protected"
+          },
+          {
+            "name": "textureSize",
+            "type": "number[]",
+            "visibility": "protected"
+          },
+          {
+            "name": "stagingBuffer",
+            "type": "GPUBuffer",
+            "visibility": "protected"
+          },
+          {
+            "name": "bufferIOs",
+            "type": "VertexBuffer[]",
+            "visibility": "protected"
+          },
+          {
+            "name": "textureIOs",
+            "type": "ImageTexture[]",
+            "visibility": "protected"
+          },
+          {
+            "name": "vertexBufferIOs",
+            "type": "VertexBufferIO[]",
+            "visibility": "protected"
+          },
+          {
+            "name": "imageTextureIOs",
+            "type": "ImageTextureIO[]",
+            "visibility": "protected"
+          },
+          {
+            "name": "resourceIOs",
+            "type": "(VertexBufferIO | ImageTextureIO)[]",
+            "visibility": "protected"
+          },
+          {
+            "name": "nbVertexMax",
+            "type": "number",
+            "visibility": "protected"
+          },
+          {
+            "name": "widthMax",
+            "type": "number",
+            "visibility": "protected"
+          },
+          {
+            "name": "heightMax",
+            "type": "number",
+            "visibility": "protected"
+          },
+          {
+            "name": "deviceId",
+            "type": "number",
+            "visibility": "protected"
+          },
+          {
+            "name": "lastFrameTime",
+            "type": "number",
+            "visibility": "protected"
+          },
+          {
+            "name": "rebuildingAfterDeviceLost",
+            "type": "boolean",
+            "visibility": "protected"
+          }
+        ]
+      },
+      "methods": {
+        "public": [
+          {
+            "name": "initFromObject",
+            "returnType": "{ [key: string]: unknown; bindgroups?: any; computeShader: string | { outputs?: any; main: string; inputs?: any; constants?: string; }; }",
+            "params": [
+              {
+                "name": "descriptor",
+                "type": "{ [key: string]: unknown; bindgroups?: any; computeShader: string | { outputs?: any; main: string; inputs?: any; constants?: string; }; }"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "setWorkgroups",
+            "returnType": "void",
+            "params": [
+              {
+                "name": "x",
+                "type": "number"
+              },
+              {
+                "name": "y",
+                "type": "number"
+              },
+              {
+                "name": "z",
+                "type": "number"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "setDispatchWorkgroup",
+            "returnType": "void",
+            "params": [
+              {
+                "name": "x",
+                "type": "number"
+              },
+              {
+                "name": "y",
+                "type": "number"
+              },
+              {
+                "name": "z",
+                "type": "number"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "update",
+            "returnType": "void",
+            "visibility": "public"
+          },
+          {
+            "name": "clearAfterDeviceLostAndRebuild",
+            "returnType": "void",
+            "visibility": "public"
+          },
+          {
+            "name": "buildGpuPipeline",
+            "returnType": "GPUComputePipeline",
+            "visibility": "public"
+          },
+          {
+            "name": "nextFrame",
+            "returnType": "Promise<void>",
+            "visibility": "public"
+          }
+        ],
+        "protected": [
+          {
+            "name": "initResourceIOs",
+            "returnType": "void",
+            "visibility": "protected"
+          },
+          {
+            "name": "setupDefaultWorkgroups",
+            "returnType": "void",
+            "visibility": "protected"
+          }
+        ]
+      }
+    },
+    "DrawConfig": {
+      "name": "DrawConfig",
+      "properties": {
+        "public": [
+          {
+            "name": "vertexCount",
+            "type": "number",
+            "visibility": "public"
+          },
+          {
+            "name": "instanceCount",
+            "type": "number",
+            "visibility": "public"
+          },
+          {
+            "name": "firstVertexId",
+            "type": "number",
+            "visibility": "public"
+          },
+          {
+            "name": "firstInstanceId",
+            "type": "number",
+            "visibility": "public"
+          },
+          {
+            "name": "baseVertex",
+            "type": "number",
+            "visibility": "public"
+          },
+          {
+            "name": "indexBuffer",
+            "type": "IndexBuffer",
+            "visibility": "public"
+          }
+        ],
+        "protected": [
+          {
+            "name": "pipeline",
+            "type": "RenderPipeline",
+            "visibility": "protected"
+          },
+          {
+            "name": "setupDrawCompleted",
+            "type": "boolean",
+            "visibility": "protected"
+          }
+        ]
+      },
+      "methods": {
+        "public": [
+          {
+            "name": "draw",
+            "returnType": "void",
+            "params": [
+              {
+                "name": "renderPass",
+                "type": "GPURenderPassEncoder"
+              }
+            ],
+            "visibility": "public"
+          }
+        ]
+      }
+    },
+    "MixedPipeline": {
+      "name": "MixedPipeline",
+      "extends": [
+        "RenderPipeline",
+        "Pipeline"
+      ],
+      "properties": {
+        "public": [
+          {
+            "name": "computePipeline",
+            "type": "ComputePipeline",
+            "visibility": "public",
+            "get": true
+          }
+        ],
+        "protected": [
+          {
+            "name": "_computePipeline",
+            "type": "ComputePipeline",
+            "visibility": "protected"
+          }
+        ]
+      },
+      "methods": {
+        "public": [
+          {
+            "name": "buildPipelines",
+            "returnType": "void",
+            "visibility": "public"
+          }
+        ]
+      }
+    },
+    "Pipeline": {
+      "name": "Pipeline",
+      "properties": {
+        "public": [
+          {
+            "name": "description",
+            "type": "any",
+            "visibility": "public"
+          },
+          {
+            "name": "nbVertex",
+            "type": "number",
+            "visibility": "public"
+          },
+          {
+            "name": "bindGroups",
+            "type": "Bindgroups",
+            "visibility": "public"
+          },
+          {
+            "name": "vertexBuffers",
+            "type": "VertexBuffer[]",
+            "visibility": "public"
+          },
+          {
+            "name": "vertexShader",
+            "type": "VertexShader",
+            "visibility": "public"
+          },
+          {
+            "name": "fragmentShader",
+            "type": "FragmentShader",
+            "visibility": "public"
+          },
+          {
+            "name": "type",
+            "type": "\"render\" | \"compute\" | \"compute_mixed\"",
+            "visibility": "public"
+          },
+          {
+            "name": "isComputePipeline",
+            "type": "boolean",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "isRenderPipeline",
+            "type": "boolean",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "isMixedPipeline",
+            "type": "boolean",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "resources",
+            "type": "any",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "debug",
+            "type": "string",
+            "visibility": "public"
+          },
+          {
+            "name": "pipelineCount",
+            "type": "number",
+            "visibility": "public"
+          }
+        ],
+        "protected": [
+          {
+            "name": "vertexBufferLayouts",
+            "type": "Iterable<GPUVertexBufferLayout>",
+            "visibility": "protected"
+          },
+          {
+            "name": "gpuBindgroups",
+            "type": "GPUBindGroup[]",
+            "visibility": "protected"
+          },
+          {
+            "name": "gpuBindGroupLayouts",
+            "type": "GPUBindGroupLayout[]",
+            "visibility": "protected"
+          },
+          {
+            "name": "gpuPipelineLayout",
+            "type": "GPUPipelineLayout",
+            "visibility": "protected"
+          },
+          {
+            "name": "_resources",
+            "type": "any",
+            "visibility": "protected"
+          }
+        ]
+      },
+      "methods": {
+        "public": [
+          {
+            "name": "clearAfterDeviceLostAndRebuild",
+            "returnType": "void",
+            "visibility": "public"
+          },
+          {
+            "name": "initFromObject",
+            "returnType": "void",
+            "params": [
+              {
+                "name": "obj",
+                "type": "any"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "addBindgroup",
+            "returnType": "void",
+            "params": [
+              {
+                "name": "group",
+                "type": "Bindgroup"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "update",
+            "returnType": "void",
+            "params": [
+              {
+                "name": "o",
+                "type": "any"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "getResourceName",
+            "returnType": "string",
+            "params": [
+              {
+                "name": "resource",
+                "type": "any"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "createPipelineInstanceArray",
+            "returnType": "any[]",
+            "params": [
+              {
+                "name": "resources",
+                "type": "(IShaderResource | PrimitiveFloatUniform | PrimitiveIntUniform | PrimitiveUintUniform)[]"
+              },
+              {
+                "name": "nbInstance",
+                "type": "number"
+              }
+            ],
+            "visibility": "public"
+          }
+        ],
+        "protected": [
+          {
+            "name": "createVertexBufferLayout",
+            "returnType": "any",
+            "visibility": "protected"
+          },
+          {
+            "name": "createShaderInput",
+            "returnType": "ShaderStruct",
+            "params": [
+              {
+                "name": "shader",
+                "type": "VertexShader"
+              },
+              {
+                "name": "buffers",
+                "type": "VertexBuffer[]"
+              }
+            ],
+            "visibility": "protected"
+          },
+          {
+            "name": "mergeBindgroupShaders",
+            "returnType": "void",
+            "visibility": "protected"
+          },
+          {
+            "name": "createLayouts",
+            "returnType": "void",
+            "visibility": "protected"
+          },
+          {
+            "name": "initPipelineResources",
+            "returnType": "void",
+            "params": [
+              {
+                "name": "pipeline",
+                "type": "Pipeline"
+              }
+            ],
+            "visibility": "protected"
+          },
+          {
+            "name": "build",
+            "returnType": "void",
+            "visibility": "protected"
+          }
+        ]
+      },
+      "statics": {
+        "methods": {
+          "public": [
+            {
+              "name": "getResourceDefinition",
+              "returnType": "any",
+              "params": [
+                {
+                  "name": "resources",
+                  "type": "any"
+                }
+              ],
+              "visibility": "public"
+            }
+          ]
+        }
+      }
+    },
+    "RenderPipeline": {
+      "name": "RenderPipeline",
+      "extends": [
+        "Pipeline"
+      ],
+      "properties": {
+        "public": [
+          {
+            "name": "renderer",
+            "type": "IRenderer",
+            "visibility": "public"
+          },
+          {
+            "name": "drawConfig",
+            "type": "DrawConfig",
+            "visibility": "public"
+          },
+          {
+            "name": "outputColor",
+            "type": "any",
+            "visibility": "public"
+          },
+          {
+            "name": "renderPassDescriptor",
+            "type": "any",
+            "visibility": "public"
+          },
+          {
+            "name": "debug",
+            "type": "string",
+            "visibility": "public"
+          },
+          {
+            "name": "onDrawBegin",
+            "type": "() => void",
+            "visibility": "public"
+          },
+          {
+            "name": "onDrawEnd",
+            "type": "() => void",
+            "visibility": "public"
+          },
+          {
+            "name": "onDraw",
+            "type": "(drawCallId: number) => void",
+            "visibility": "public"
+          },
+          {
+            "name": "canvas",
+            "type": "any",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "depthStencilTexture",
+            "type": "DepthStencilTexture",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "clearValue",
+            "type": "{ r: number; g: number; b: number; a: number; }",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "vertexCount",
+            "type": "number",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "vertexCount",
+            "type": "number",
+            "visibility": "public",
+            "set": true
+          },
+          {
+            "name": "instanceCount",
+            "type": "number",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "instanceCount",
+            "type": "number",
+            "visibility": "public",
+            "set": true
+          },
+          {
+            "name": "firstVertexId",
+            "type": "number",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "firstVertexId",
+            "type": "number",
+            "visibility": "public",
+            "set": true
+          },
+          {
+            "name": "firstInstanceId",
+            "type": "number",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "firstInstanceId",
+            "type": "number",
+            "visibility": "public",
+            "set": true
+          },
+          {
+            "name": "baseVertex",
+            "type": "number",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "baseVertex",
+            "type": "number",
+            "visibility": "public",
+            "set": true
+          },
+          {
+            "name": "renderPassView",
+            "type": "GPUTextureView",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "renderPass",
+            "type": "RenderPassTexture",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "blendMode",
+            "type": "BlendMode",
+            "visibility": "public"
+          },
+          {
+            "name": "onRebuildStartAfterDeviceLost",
+            "type": "() => void",
+            "visibility": "public"
+          },
+          {
+            "name": "pipeline",
+            "type": "GPURenderPipeline",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "cullMode",
+            "type": "\"front\" | \"back\" | \"none\"",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "cullMode",
+            "type": "\"front\" | \"back\" | \"none\"",
+            "visibility": "public",
+            "set": true
+          },
+          {
+            "name": "topology",
+            "type": "\"point-list\" | \"line-list\" | \"line-strip\" | \"triangle-list\" | \"triangle-strip\"",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "topology",
+            "type": "\"point-list\" | \"line-list\" | \"line-strip\" | \"triangle-list\" | \"triangle-strip\"",
+            "visibility": "public",
+            "set": true
+          },
+          {
+            "name": "frontFace",
+            "type": "\"ccw\" | \"cw\"",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "frontFace",
+            "type": "\"ccw\" | \"cw\"",
+            "visibility": "public",
+            "set": true
+          },
+          {
+            "name": "stripIndexFormat",
+            "type": "\"uint16\" | \"uint32\"",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "stripIndexFormat",
+            "type": "\"uint16\" | \"uint32\"",
+            "visibility": "public",
+            "set": true
+          }
+        ],
+        "private": [
+          {
+            "name": "clearOpReady",
+            "type": "boolean",
+            "visibility": "private"
+          },
+          {
+            "name": "rendererUseSinglePipeline",
+            "type": "boolean",
+            "visibility": "private"
+          },
+          {
+            "name": "resourceDefined",
+            "type": "boolean",
+            "visibility": "private",
+            "get": true
+          }
+        ],
+        "protected": [
+          {
+            "name": "_depthStencilTexture",
+            "type": "DepthStencilTexture",
+            "visibility": "protected"
+          },
+          {
+            "name": "multisampleTexture",
+            "type": "MultiSampleTexture",
+            "visibility": "protected"
+          },
+          {
+            "name": "renderPassTexture",
+            "type": "RenderPassTexture",
+            "visibility": "protected"
+          },
+          {
+            "name": "gpuPipeline",
+            "type": "GPURenderPipeline",
+            "visibility": "protected"
+          },
+          {
+            "name": "rebuildingAfterDeviceLost",
+            "type": "boolean",
+            "visibility": "protected"
+          }
+        ]
+      },
+      "methods": {
+        "public": [
+          {
+            "name": "destroy",
+            "returnType": "void",
+            "visibility": "public"
+          },
+          {
+            "name": "initFromObject",
+            "returnType": "{ [key: string]: unknown; cullMode?: \"front\" | \"back\" | \"none\"; topology?: \"point-list\" | \"line-list\" | \"line-strip\" | \"triangle-list\" | \"triangle-strip\"; frontFace?: \"ccw\" | \"cw\"; stripIndexFormat?: \"uint16\" | \"uint32\"; ... 10 more ...; fragmentShader?: string | { ...; }; }",
+            "params": [
+              {
+                "name": "descriptor",
+                "type": "{ [key: string]: unknown; cullMode?: \"front\" | \"back\" | \"none\"; topology?: \"point-list\" | \"line-list\" | \"line-strip\" | \"triangle-list\" | \"triangle-strip\"; frontFace?: \"ccw\" | \"cw\"; stripIndexFormat?: \"uint16\" | \"uint32\"; ... 10 more ...; fragmentShader?: string | { ...; }; }"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "createColorAttachment",
+            "returnType": "any",
+            "params": [
+              {
+                "name": "rgba",
+                "type": "{ r: number; g: number; b: number; a: number; }"
+              },
+              {
+                "name": "view",
+                "type": "GPUTextureView"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "setupDraw",
+            "returnType": "void",
+            "params": [
+              {
+                "name": "o",
+                "type": "{ vertexCount: number; instanceCount?: number; firstVertexId?: number; firstInstanceId?: number; indexBuffer?: IndexBuffer; baseVertex?: number; }"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "setupMultiSampleView",
+            "returnType": "void",
+            "params": [
+              {
+                "name": "descriptor",
+                "type": "{ size?: GPUExtent3D; format?: GPUTextureFormat; usage?: GPUTextureUsageFlags; sampleCount?: GPUSize32; alphaToCoverageEnabled?: boolean; mask?: number; resolveTarget?: GPUTextureView; }"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "setupDepthStencilView",
+            "returnType": "void",
+            "params": [
+              {
+                "name": "descriptor",
+                "type": "{ size?: GPUExtent3D; format?: \"stencil8\" | \"depth16unorm\" | \"depth24plus\" | \"depth24plus-stencil8\" | \"depth32float\"; usage?: GPUTextureUsageFlags; sampleCount?: number; }"
+              },
+              {
+                "name": "depthStencilDescription",
+                "type": "{ depthWriteEnabled: boolean; depthCompare: \"never\" | \"less\" | \"equal\" | \"less-equal\" | \"greater\" | \"not-equal\" | \"greater-equal\" | \"always\"; }"
+              },
+              {
+                "name": "depthStencilAttachmentOptions",
+                "type": "any"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "clearAfterDeviceLostAndRebuild",
+            "returnType": "void",
+            "visibility": "public"
+          },
+          {
+            "name": "buildGpuPipeline",
+            "returnType": "GPURenderPipeline",
+            "visibility": "public"
+          },
+          {
+            "name": "beginRenderPass",
+            "returnType": "GPURenderPassEncoder",
+            "params": [
+              {
+                "name": "commandEncoder",
+                "type": "GPUCommandEncoder"
+              },
+              {
+                "name": "outputView",
+                "type": "GPUTextureView"
+              },
+              {
+                "name": "drawCallId",
+                "type": "number"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "update",
+            "returnType": "void",
+            "visibility": "public"
+          },
+          {
+            "name": "draw",
+            "returnType": "void",
+            "params": [
+              {
+                "name": "renderPass",
+                "type": "GPURenderPassEncoder"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "end",
+            "returnType": "void",
+            "params": [
+              {
+                "name": "commandEncoder",
+                "type": "any"
+              },
+              {
+                "name": "renderPass",
+                "type": "any"
+              }
+            ],
+            "visibility": "public"
+          }
+        ],
+        "private": [
+          {
+            "name": "getFragmentShaderColorOptions",
+            "returnType": "any",
+            "visibility": "private"
+          },
+          {
+            "name": "handleOutputColor",
+            "returnType": "void",
+            "params": [
+              {
+                "name": "outputView",
+                "type": "GPUTextureView"
+              }
+            ],
+            "visibility": "private"
+          }
+        ],
+        "protected": [
+          {
+            "name": "cleanInputs",
+            "returnType": "any[]",
+            "visibility": "protected"
+          }
+        ]
+      }
+    },
+    "plugins": {
+      "PipelinePlugin": {
+        "name": "PipelinePlugin",
+        "properties": {
+          "public": [
+            {
+              "name": "bindgroupResources",
+              "type": "any",
+              "visibility": "public"
+            },
+            {
+              "name": "vertexShader",
+              "type": "{ outputs?: any; inputs?: any; constants?: string; main?: string | string[]; }",
+              "visibility": "public"
+            },
+            {
+              "name": "fragmentShader",
+              "type": "{ outputs?: any; inputs?: any; constants?: string; main?: string | string[]; }",
+              "visibility": "public"
+            }
+          ],
+          "protected": [
+            {
+              "name": "target",
+              "type": "Pipeline",
+              "visibility": "protected"
+            },
+            {
+              "name": "requiredNames",
+              "type": "any",
+              "visibility": "protected"
+            }
+          ]
+        },
+        "methods": {
+          "public": [
+            {
+              "name": "apply",
+              "returnType": "PipelinePlugin",
+              "params": [
+                {
+                  "name": "vertexShaderNode",
+                  "type": "ShaderNode"
+                },
+                {
+                  "name": "fragmentShaderNode",
+                  "type": "ShaderNode"
+                }
+              ],
+              "visibility": "public"
+            }
+          ]
+        }
+      }
+    },
+    "resources": {
+      "IndexBuffer": {
+        "name": "IndexBuffer",
+        "properties": {
+          "public": [
+            {
+              "name": "gpuResource",
+              "type": "GPUBuffer",
+              "visibility": "public"
+            },
+            {
+              "name": "descriptor",
+              "type": "IndexBufferDescriptor",
+              "visibility": "public"
+            },
+            {
+              "name": "mustUpdateData",
+              "type": "boolean",
+              "visibility": "public"
+            },
+            {
+              "name": "dataType",
+              "type": "GPUIndexFormat",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "nbPoint",
+              "type": "number",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "nbPoint",
+              "type": "number",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "offset",
+              "type": "number",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "offset",
+              "type": "number",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "datas",
+              "type": "Uint32Array | Uint16Array",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "datas",
+              "type": "Uint32Array | Uint16Array",
+              "visibility": "public",
+              "get": true
+            }
+          ],
+          "private": [
+            {
+              "name": "_datas",
+              "type": "Uint32Array | Uint16Array",
+              "visibility": "private"
+            }
+          ]
+        },
+        "methods": {
+          "public": [
+            {
+              "name": "destroyGpuResource",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "createGpuResource",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "getBufferSize",
+              "returnType": "number",
+              "visibility": "public"
+            },
+            {
+              "name": "updateDatas",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "indices",
+                  "type": "Uint32Array | Uint16Array"
+                },
+                {
+                  "name": "offset",
+                  "type": "number"
+                },
+                {
+                  "name": "len",
+                  "type": "number"
+                },
+                {
+                  "name": "extraBufferSize",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "update",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "apply",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "renderPass",
+                  "type": "GPURenderPassEncoder"
+                },
+                {
+                  "name": "drawConfig",
+                  "type": "DrawConfig"
+                }
+              ],
+              "visibility": "public"
+            }
+          ]
+        }
+      },
+      "blendmodes": {
+        "AlphaBlendMode": {
+          "name": "AlphaBlendMode",
+          "extends": [
+            "BlendMode"
+          ]
+        },
+        "BlendMode": {
+          "name": "BlendMode",
+          "properties": {
+            "public": [
+              {
+                "name": "color",
+                "type": "{ operation: \"add\" | \"subtract\" | \"reverse-subtract\" | \"min\" | \"max\"; srcFactor: \"zero\" | \"one\" | \"src\" | \"one-minus-src\" | \"src-alpha\" | \"one-minus-src-alpha\" | \"dst\" | \"one-minus-dst\" | \"one-minus-dst-alpha\" | \"src-alpha-saturated\" | \"constant\" | \"one-minus-constant\"; dstFactor: \"zero\" | ... 10 more ... | \"one-min...",
+                "visibility": "public"
+              },
+              {
+                "name": "alpha",
+                "type": "{ operation: \"add\" | \"subtract\" | \"reverse-subtract\" | \"min\" | \"max\"; srcFactor: \"zero\" | \"one\" | \"src\" | \"one-minus-src\" | \"src-alpha\" | \"one-minus-src-alpha\" | \"dst\" | \"one-minus-dst\" | \"one-minus-dst-alpha\" | \"src-alpha-saturated\" | \"constant\" | \"one-minus-constant\"; dstFactor: \"zero\" | ... 10 more ... | \"one-min...",
+                "visibility": "public"
+              }
+            ]
+          }
+        }
+      },
+      "textures": {
+        "DepthStencilTexture": {
+          "name": "DepthStencilTexture",
+          "extends": [
+            "Texture"
+          ],
+          "properties": {
+            "public": [
+              {
+                "name": "description",
+                "type": "{ depthWriteEnabled: boolean; depthCompare: string; format: string; sampleCount?: number; }",
+                "visibility": "public",
+                "get": true
+              },
+              {
+                "name": "attachment",
+                "type": "any",
+                "visibility": "public",
+                "get": true
+              },
+              {
+                "name": "isDepthTexture",
+                "type": "boolean",
+                "visibility": "public",
+                "get": true
+              },
+              {
+                "name": "mustBeTransfered",
+                "type": "boolean",
+                "visibility": "public"
+              }
+            ],
+            "private": [
+              {
+                "name": "_description",
+                "type": "{ depthWriteEnabled: boolean; depthCompare: string; format: string; sampleCount?: number; }",
+                "visibility": "private"
+              },
+              {
+                "name": "_attachment",
+                "type": "any",
+                "visibility": "private"
+              }
+            ],
+            "protected": [
+              {
+                "name": "_isDepthTexture",
+                "type": "boolean",
+                "visibility": "protected"
+              },
+              {
+                "name": "_visibility",
+                "type": "GPUShaderStageFlags",
+                "visibility": "protected"
+              }
+            ]
+          },
+          "methods": {
+            "public": [
+              {
+                "name": "setPipelineType",
+                "returnType": "void",
+                "params": [
+                  {
+                    "name": "pipelineType",
+                    "type": "\"render\" | \"compute\" | \"compute_mixed\""
+                  }
+                ],
+                "visibility": "public"
+              },
+              {
+                "name": "createBindGroupEntry",
+                "returnType": "{ binding: number; resource: GPUTextureView; }",
+                "params": [
+                  {
+                    "name": "bindingId",
+                    "type": "number"
+                  }
+                ],
+                "visibility": "public"
+              },
+              {
+                "name": "createBindGroupLayoutEntry",
+                "returnType": "{ binding: number; visibility: number; texture: { sampleType: string; }; }",
+                "params": [
+                  {
+                    "name": "bindingId",
+                    "type": "number"
+                  }
+                ],
+                "visibility": "public"
+              },
+              {
+                "name": "createDeclaration",
+                "returnType": "string",
+                "params": [
+                  {
+                    "name": "varName",
+                    "type": "string"
+                  },
+                  {
+                    "name": "bindingId",
+                    "type": "number"
+                  },
+                  {
+                    "name": "groupId",
+                    "type": "number"
+                  }
+                ],
+                "visibility": "public"
+              },
+              {
+                "name": "createGpuResource",
+                "returnType": "void",
+                "visibility": "public"
+              },
+              {
+                "name": "destroyGpuResource",
+                "returnType": "void",
+                "visibility": "public"
+              },
+              {
+                "name": "resize",
+                "returnType": "void",
+                "params": [
+                  {
+                    "name": "width",
+                    "type": "number"
+                  },
+                  {
+                    "name": "height",
+                    "type": "number"
+                  }
+                ],
+                "visibility": "public"
+              },
+              {
+                "name": "clone",
+                "returnType": "DepthStencilTexture",
+                "visibility": "public"
+              }
+            ]
+          }
+        },
+        "DepthTextureArray": {
+          "name": "DepthTextureArray",
+          "extends": [
+            "ImageTextureArray",
+            "ImageTexture"
+          ],
+          "properties": {
+            "public": [
+              {
+                "name": "description",
+                "type": "{ depthWriteEnabled: boolean; depthCompare: string; format: string; sampleCount?: number; }",
+                "visibility": "public",
+                "get": true
+              },
+              {
+                "name": "attachment",
+                "type": "any",
+                "visibility": "public",
+                "get": true
+              },
+              {
+                "name": "isDepthTexture",
+                "type": "boolean",
+                "visibility": "public",
+                "get": true
+              }
+            ],
+            "private": [
+              {
+                "name": "_description",
+                "type": "{ depthWriteEnabled: boolean; depthCompare: string; format: string; sampleCount?: number; }",
+                "visibility": "private"
+              },
+              {
+                "name": "_attachment",
+                "type": "any",
+                "visibility": "private"
+              }
+            ],
+            "protected": [
+              {
+                "name": "_visibility",
+                "type": "GPUShaderStageFlags",
+                "visibility": "protected"
+              }
+            ]
+          },
+          "methods": {
+            "public": [
+              {
+                "name": "setPipelineType",
+                "returnType": "void",
+                "params": [
+                  {
+                    "name": "pipelineType",
+                    "type": "\"render\" | \"compute\" | \"compute_mixed\""
+                  }
+                ],
+                "visibility": "public"
+              },
+              {
+                "name": "createBindGroupLayoutEntry",
+                "returnType": "{ binding: number; visibility: number; texture: GPUTextureBindingLayout; }",
+                "params": [
+                  {
+                    "name": "bindingId",
+                    "type": "number"
+                  }
+                ],
+                "visibility": "public"
+              },
+              {
+                "name": "createDeclaration",
+                "returnType": "string",
+                "params": [
+                  {
+                    "name": "varName",
+                    "type": "string"
+                  },
+                  {
+                    "name": "bindingId",
+                    "type": "number"
+                  },
+                  {
+                    "name": "groupId",
+                    "type": "number"
+                  }
+                ],
+                "visibility": "public"
+              }
+            ]
+          }
+        },
+        "MultiSampleTexture": {
+          "name": "MultiSampleTexture",
+          "extends": [
+            "Texture"
+          ],
+          "properties": {
+            "public": [
+              {
+                "name": "description",
+                "type": "{ count: number; mask: number; alphaToCoverageEnabled: boolean; }",
+                "visibility": "public",
+                "get": true
+              },
+              {
+                "name": "resolveTarget",
+                "type": "any",
+                "visibility": "public",
+                "get": true
+              }
+            ],
+            "private": [
+              {
+                "name": "_description",
+                "type": "{ count: number; mask: number; alphaToCoverageEnabled: boolean; }",
+                "visibility": "private"
+              }
+            ]
+          },
+          "methods": {
+            "public": [
+              {
+                "name": "create",
+                "returnType": "void",
+                "visibility": "public"
+              }
+            ]
+          }
+        },
+        "RenderPassTexture": {
+          "name": "RenderPassTexture",
+          "extends": [
+            "ImageTexture"
+          ],
+          "properties": {
+            "public": [
+              {
+                "name": "width",
+                "type": "number",
+                "visibility": "public",
+                "get": true
+              },
+              {
+                "name": "height",
+                "type": "number",
+                "visibility": "public",
+                "get": true
+              },
+              {
+                "name": "source",
+                "type": "any",
+                "visibility": "public",
+                "get": true
+              },
+              {
+                "name": "source",
+                "type": "any",
+                "visibility": "public",
+                "set": true
+              }
+            ]
+          },
+          "methods": {
+            "public": [
+              {
+                "name": "createBindGroupEntry",
+                "returnType": "{ binding: number; resource: GPUTextureView; }",
+                "params": [
+                  {
+                    "name": "bindingId",
+                    "type": "number"
+                  }
+                ],
+                "visibility": "public"
+              },
+              {
+                "name": "update",
+                "returnType": "void",
+                "visibility": "public"
+              }
+            ]
+          }
+        },
+        "Texture": {
+          "name": "Texture",
+          "properties": {
+            "public": [
+              {
+                "name": "descriptor",
+                "type": "TextureDescriptor",
+                "visibility": "public"
+              },
+              {
+                "name": "gpuResource",
+                "type": "GPUTexture",
+                "visibility": "public"
+              },
+              {
+                "name": "sampleCount",
+                "type": "number",
+                "visibility": "public",
+                "get": true
+              },
+              {
+                "name": "format",
+                "type": "any",
+                "visibility": "public",
+                "get": true
+              },
+              {
+                "name": "size",
+                "type": "GPUExtent3D",
+                "visibility": "public",
+                "get": true
+              },
+              {
+                "name": "usage",
+                "type": "number",
+                "visibility": "public",
+                "get": true
+              },
+              {
+                "name": "view",
+                "type": "GPUTextureView",
+                "visibility": "public",
+                "get": true
+              },
+              {
+                "name": "time",
+                "type": "number",
+                "visibility": "public"
+              }
+            ],
+            "protected": [
+              {
+                "name": "_view",
+                "type": "GPUTextureView",
+                "visibility": "protected"
+              },
+              {
+                "name": "deviceId",
+                "type": "number",
+                "visibility": "protected"
+              }
+            ]
+          },
+          "methods": {
+            "public": [
+              {
+                "name": "destroy",
+                "returnType": "void",
+                "visibility": "public"
+              },
+              {
+                "name": "create",
+                "returnType": "void",
+                "visibility": "public"
+              },
+              {
+                "name": "createGpuResource",
+                "returnType": "void",
+                "visibility": "public"
+              },
+              {
+                "name": "update",
+                "returnType": "void",
+                "visibility": "public"
+              },
+              {
+                "name": "resize",
+                "returnType": "void",
+                "params": [
+                  {
+                    "name": "width",
+                    "type": "number"
+                  },
+                  {
+                    "name": "height",
+                    "type": "number"
+                  }
+                ],
+                "visibility": "public"
+              }
+            ],
+            "private": [
+              {
+                "name": "createView",
+                "returnType": "void",
+                "visibility": "private"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "shader": {
+    "Bindgroup": {
+      "name": "Bindgroup",
+      "properties": {
+        "public": [
+          {
+            "name": "bindgroupId",
+            "type": "number",
+            "visibility": "public"
+          },
+          {
+            "name": "parent",
+            "type": "Bindgroups",
+            "visibility": "public"
+          },
+          {
+            "name": "entries",
+            "type": "any[]",
+            "visibility": "public"
+          },
+          {
+            "name": "elements",
+            "type": "{ name: string; resource: IShaderResource; }[]",
+            "visibility": "public"
+          },
+          {
+            "name": "mustRefreshBindgroup",
+            "type": "boolean",
+            "visibility": "public"
+          },
+          {
+            "name": "applyDraw",
+            "type": "boolean",
+            "visibility": "public"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "visibility": "public"
+          },
+          {
+            "name": "vertexBufferIO",
+            "type": "VertexBufferIO",
+            "visibility": "public"
+          },
+          {
+            "name": "textureIO",
+            "type": "ImageTextureIO",
+            "visibility": "public"
+          },
+          {
+            "name": "resourcesIOs",
+            "type": "(VertexBufferIO | ImageTextureIO)[]",
+            "visibility": "public"
+          },
+          {
+            "name": "useInstances",
+            "type": "boolean",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "debug",
+            "type": "any",
+            "visibility": "public"
+          },
+          {
+            "name": "pingPongBindgroup",
+            "type": "Bindgroup",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "layout",
+            "type": "GPUBindGroupLayout",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "group",
+            "type": "GPUBindGroup",
+            "visibility": "public",
+            "get": true
+          }
+        ],
+        "private": [
+          {
+            "name": "setupApplyCompleted",
+            "type": "boolean",
+            "visibility": "private"
+          }
+        ],
+        "protected": [
+          {
+            "name": "_layout",
+            "type": "GPUBindGroupLayout",
+            "visibility": "protected"
+          },
+          {
+            "name": "_group",
+            "type": "GPUBindGroup",
+            "visibility": "protected"
+          },
+          {
+            "name": "_pingPongBindgroup",
+            "type": "Bindgroup",
+            "visibility": "protected"
+          },
+          {
+            "name": "deviceId",
+            "type": "number",
+            "visibility": "protected"
+          },
+          {
+            "name": "indexBuffer",
+            "type": "IndexBuffer",
+            "visibility": "protected"
+          },
+          {
+            "name": "vertexBuffers",
+            "type": "VertexBuffer[]",
+            "visibility": "protected"
+          },
+          {
+            "name": "vertexBufferReferenceByName",
+            "type": "any",
+            "visibility": "protected"
+          },
+          {
+            "name": "elementByName",
+            "type": "any",
+            "visibility": "protected"
+          },
+          {
+            "name": "setupDrawCompleted",
+            "type": "boolean",
+            "visibility": "protected"
+          },
+          {
+            "name": "instances",
+            "type": "any[]",
+            "visibility": "protected"
+          },
+          {
+            "name": "instanceResourcesArray",
+            "type": "any[]",
+            "visibility": "protected"
+          },
+          {
+            "name": "renderPipelineimageIO",
+            "type": "ImageTexture",
+            "visibility": "protected"
+          },
+          {
+            "name": "renderPipelineBufferIO",
+            "type": "VertexBuffer",
+            "visibility": "protected"
+          },
+          {
+            "name": "ioGroups",
+            "type": "Bindgroup[]",
+            "visibility": "protected"
+          },
+          {
+            "name": "io_index",
+            "type": "number",
+            "visibility": "protected"
+          }
+        ]
+      },
+      "methods": {
+        "public": [
+          {
+            "name": "add",
+            "returnType": "IShaderResource",
+            "params": [
+              {
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "name": "resource",
+                "type": "IShaderResource"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "set",
+            "returnType": "void",
+            "params": [
+              {
+                "name": "name",
+                "type": "string"
+              },
+              {
+                "name": "resource",
+                "type": "IShaderResource"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "remove",
+            "returnType": "void",
+            "params": [
+              {
+                "name": "name",
+                "type": "string"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "getResourceName",
+            "returnType": "string",
+            "params": [
+              {
+                "name": "resource",
+                "type": "IShaderResource"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "get",
+            "returnType": "IShaderResource",
+            "params": [
+              {
+                "name": "name",
+                "type": "string"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "initFromObject",
+            "returnType": "IShaderResource[]",
+            "params": [
+              {
+                "name": "descriptor",
+                "type": "any"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "clearAfterDeviceLost",
+            "returnType": "void",
+            "visibility": "public"
+          },
+          {
+            "name": "build",
+            "returnType": "GPUBindGroup",
+            "visibility": "public"
+          },
+          {
+            "name": "apply",
+            "returnType": "void",
+            "params": [
+              {
+                "name": "renderPass",
+                "type": "any"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "createInstance",
+            "returnType": "void",
+            "params": [
+              {
+                "name": "instanceResources",
+                "type": "any"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "handleComputePipelineResourceIOs",
+            "returnType": "void",
+            "visibility": "public"
+          },
+          {
+            "name": "createPingPongBindgroup",
+            "returnType": "Bindgroup",
+            "params": [
+              {
+                "name": "resource1",
+                "type": "IShaderResource[]"
+              },
+              {
+                "name": "resource2",
+                "type": "IShaderResource[]"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "handleRenderPipelineResourceIOs",
+            "returnType": "void",
+            "visibility": "public"
+          },
+          {
+            "name": "update",
+            "returnType": "void",
+            "visibility": "public"
+          },
+          {
+            "name": "destroy",
+            "returnType": "void",
+            "visibility": "public"
+          }
+        ],
+        "private": [
+          {
+            "name": "setupApply",
+            "returnType": "void",
+            "visibility": "private"
+          },
+          {
+            "name": "swapElements",
+            "returnType": "{ name: string; resource: IShaderResource; }[]",
+            "visibility": "private"
+          }
+        ],
+        "protected": [
+          {
+            "name": "buildLayout",
+            "returnType": "void",
+            "visibility": "protected"
+          },
+          {
+            "name": "setupDraw",
+            "returnType": "void",
+            "visibility": "protected"
+          },
+          {
+            "name": "_createInstance",
+            "returnType": "void",
+            "params": [
+              {
+                "name": "resourcePerInstance",
+                "type": "any"
+              }
+            ],
+            "visibility": "protected"
+          }
+        ]
+      }
+    },
+    "Bindgroups": {
+      "name": "Bindgroups",
+      "properties": {
+        "public": [
+          {
+            "name": "pipeline",
+            "type": "Pipeline",
+            "visibility": "public"
+          },
+          {
+            "name": "parent",
+            "type": "Bindgroups",
+            "visibility": "public"
+          },
+          {
+            "name": "groups",
+            "type": "Bindgroup[]",
+            "visibility": "public"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "resources",
+            "type": "any",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "drawConfig",
+            "type": "DrawConfig",
+            "visibility": "public",
+            "get": true
+          },
+          {
+            "name": "current",
+            "type": "Bindgroup",
+            "visibility": "public",
+            "get": true
+          }
+        ],
+        "private": [
+          {
+            "name": "_name",
+            "type": "string",
+            "visibility": "private"
+          }
+        ],
+        "protected": [
+          {
+            "name": "temp",
+            "type": "{ result: string; variables: string; }",
+            "visibility": "protected"
+          },
+          {
+            "name": "_resources",
+            "type": "any",
+            "visibility": "protected"
+          }
+        ]
+      },
+      "methods": {
+        "public": [
+          {
+            "name": "clearAfterDeviceLost",
+            "returnType": "void",
+            "visibility": "public"
+          },
+          {
+            "name": "build",
+            "returnType": "{ description: any; bindgroups: GPUBindGroup[]; buffers: VertexBuffer[]; nbVertex: number; }",
+            "params": [
+              {
+                "name": "autoLayout",
+                "type": "boolean"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "getBindgroupByResource",
+            "returnType": "Bindgroup",
+            "params": [
+              {
+                "name": "resource",
+                "type": "IShaderResource"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "apply",
+            "returnType": "void",
+            "params": [
+              {
+                "name": "passEncoder",
+                "type": "any"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "update",
+            "returnType": "void",
+            "visibility": "public"
+          },
+          {
+            "name": "getVertexShaderDeclaration",
+            "returnType": "{ result: string; variables: string; }",
+            "params": [
+              {
+                "name": "fromFragmentShader",
+                "type": "boolean"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "getFragmentShaderDeclaration",
+            "returnType": "{ result: string; variables: string; }",
+            "visibility": "public"
+          },
+          {
+            "name": "getComputeShaderDeclaration",
+            "returnType": "{ result: string; variables: string; }",
+            "visibility": "public"
+          },
+          {
+            "name": "handleRenderPipelineResourceIOs",
+            "returnType": "void",
+            "visibility": "public"
+          },
+          {
+            "name": "handleComputePipelineResourceIOs",
+            "returnType": "void",
+            "visibility": "public"
+          },
+          {
+            "name": "add",
+            "returnType": "Bindgroups | Bindgroup",
+            "params": [
+              {
+                "name": "bindgroup",
+                "type": "Bindgroups | Bindgroup"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "copy",
+            "returnType": "Bindgroups",
+            "params": [
+              {
+                "name": "options",
+                "type": "{ oldGroups: Bindgroup[]; replacedGroup: Bindgroup[]; }"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "propertyNameIsUsed",
+            "returnType": "boolean",
+            "params": [
+              {
+                "name": "propertyName",
+                "type": "string"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "get",
+            "returnType": "IShaderResource",
+            "params": [
+              {
+                "name": "propertyName",
+                "type": "string"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "getGroupByPropertyName",
+            "returnType": "Bindgroup",
+            "params": [
+              {
+                "name": "name",
+                "type": "string"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "getGroupByName",
+            "returnType": "Bindgroup",
+            "params": [
+              {
+                "name": "name",
+                "type": "string"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "getNameByResource",
+            "returnType": "string",
+            "params": [
+              {
+                "name": "resource",
+                "type": "IShaderResource | PrimitiveFloatUniform | PrimitiveIntUniform | PrimitiveUintUniform"
+              }
+            ],
+            "visibility": "public"
+          },
+          {
+            "name": "destroy",
+            "returnType": "void",
+            "visibility": "public"
+          }
+        ],
+        "protected": [
+          {
+            "name": "createVertexBufferLayout",
+            "returnType": "{ vertexLayouts: Iterable<GPUVertexBufferLayout>; buffers: VertexBuffer[]; nbVertex: number; }",
+            "visibility": "protected"
+          }
+        ]
+      }
+    },
+    "ComputeShader": {
+      "name": "ComputeShader",
+      "extends": [
+        "ShaderStage"
+      ],
+      "methods": {
+        "public": [
+          {
+            "name": "build",
+            "returnType": "{ code: string; output: ShaderStruct; }",
+            "params": [
+              {
+                "name": "shaderPipeline",
+                "type": "ComputePipeline"
+              },
+              {
+                "name": "inputs",
+                "type": "ShaderStruct"
+              }
+            ],
+            "visibility": "public"
+          }
+        ]
+      }
+    },
+    "FragmentShader": {
+      "name": "FragmentShader",
+      "extends": [
+        "ShaderStage"
+      ],
+      "methods": {
+        "public": [
+          {
+            "name": "build",
+            "returnType": "{ code: string; output: ShaderStruct; }",
+            "params": [
+              {
+                "name": "shaderPipeline",
+                "type": "any"
+              },
+              {
+                "name": "inputs",
+                "type": "ShaderStruct"
+              }
+            ],
+            "visibility": "public"
+          }
+        ]
+      }
+    },
+    "PrimitiveType": {
+      "name": "Matrix4x4Array",
+      "extends": [
+        "PrimitiveFloatUniform",
+        "Float32Array",
+        "RelativeIndexable"
+      ],
+      "properties": {
+        "public": [
+          {
+            "name": "matrixs",
+            "type": "Matrix4x4[]",
+            "visibility": "public"
+          }
+        ]
+      },
+      "methods": {
+        "public": [
+          {
+            "name": "update",
+            "returnType": "void",
+            "visibility": "public"
+          }
+        ]
+      }
+    },
+    "ShaderType": {
+      "name": "ShaderType",
+      "statics": {
+        "properties": {
+          "public": [
+            {
+              "name": "Float",
+              "type": "{ type: string; }",
+              "visibility": "public"
+            },
+            {
+              "name": "Vec2",
+              "type": "{ type: string; }",
+              "visibility": "public"
+            },
+            {
+              "name": "Vec3",
+              "type": "{ type: string; }",
+              "visibility": "public"
+            },
+            {
+              "name": "Vec4",
+              "type": "{ type: string; }",
+              "visibility": "public"
+            },
+            {
+              "name": "Int",
+              "type": "{ type: string; }",
+              "visibility": "public"
+            },
+            {
+              "name": "IVec2",
+              "type": "{ type: string; }",
+              "visibility": "public"
+            },
+            {
+              "name": "IVec3",
+              "type": "{ type: string; }",
+              "visibility": "public"
+            },
+            {
+              "name": "IVec4",
+              "type": "{ type: string; }",
+              "visibility": "public"
+            },
+            {
+              "name": "Uint",
+              "type": "{ type: string; }",
+              "visibility": "public"
+            },
+            {
+              "name": "UVec2",
+              "type": "{ type: string; }",
+              "visibility": "public"
+            },
+            {
+              "name": "UVec3",
+              "type": "{ type: string; }",
+              "visibility": "public"
+            },
+            {
+              "name": "UVec4",
+              "type": "{ type: string; }",
+              "visibility": "public"
+            }
+          ]
+        }
+      }
+    },
+    "VertexShader": {
+      "name": "VertexShader",
+      "extends": [
+        "ShaderStage"
+      ],
+      "methods": {
+        "public": [
+          {
+            "name": "build",
+            "returnType": "{ code: string; output: ShaderStruct; }",
+            "params": [
+              {
+                "name": "pipeline",
+                "type": "RenderPipeline"
+              },
+              {
+                "name": "input",
+                "type": "ShaderStruct"
+              }
+            ],
+            "visibility": "public"
+          }
+        ]
+      }
+    },
+    "resources": {
+      "CubeMapTexture": {
+        "name": "CubeMapTexture",
+        "extends": [
+          "ImageTextureArray",
+          "ImageTexture"
+        ],
+        "properties": {
+          "public": [
+            {
+              "name": "descriptor",
+              "type": "any",
+              "visibility": "public"
+            },
+            {
+              "name": "right",
+              "type": "any",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "left",
+              "type": "any",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "bottom",
+              "type": "any",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "top",
+              "type": "any",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "back",
+              "type": "any",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "front",
+              "type": "any",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "sides",
+              "type": "any[]",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "sides",
+              "type": "any[]",
+              "visibility": "public",
+              "get": true
+            }
+          ]
+        },
+        "methods": {
+          "public": [
+            {
+              "name": "clone",
+              "returnType": "CubeMapTexture",
+              "visibility": "public"
+            },
+            {
+              "name": "createGpuResource",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "createDeclaration",
+              "returnType": "string",
+              "params": [
+                {
+                  "name": "varName",
+                  "type": "string"
+                },
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                },
+                {
+                  "name": "groupId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createBindGroupLayoutEntry",
+              "returnType": "{ binding: number; visibility: number; texture: GPUTextureBindingLayout; }",
+              "params": [
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createBindGroupEntry",
+              "returnType": "{ binding: number; resource: GPUTextureView; }",
+              "params": [
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "setPipelineType",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "pipelineType",
+                  "type": "\"render\" | \"compute\" | \"compute_mixed\""
+                }
+              ],
+              "visibility": "public"
+            }
+          ]
+        }
+      },
+      "CubeMapTextureArray": {
+        "name": "CubeMapTextureArray",
+        "extends": [
+          "ImageTextureArray",
+          "ImageTexture"
+        ],
+        "properties": {
+          "public": [
+            {
+              "name": "descriptor",
+              "type": "any",
+              "visibility": "public"
+            },
+            {
+              "name": "bitmaps",
+              "type": "any[]",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "bitmaps",
+              "type": "any[]",
+              "visibility": "public",
+              "get": true
+            }
+          ]
+        },
+        "methods": {
+          "public": [
+            {
+              "name": "clone",
+              "returnType": "CubeMapTextureArray",
+              "visibility": "public"
+            },
+            {
+              "name": "setCubeSideById",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "cubeid",
+                  "type": "number"
+                },
+                {
+                  "name": "sideId",
+                  "type": "number"
+                },
+                {
+                  "name": "image",
+                  "type": "any"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createGpuResource",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "createDeclaration",
+              "returnType": "string",
+              "params": [
+                {
+                  "name": "varName",
+                  "type": "string"
+                },
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                },
+                {
+                  "name": "groupId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createBindGroupLayoutEntry",
+              "returnType": "{ binding: number; visibility: number; texture: GPUTextureBindingLayout; }",
+              "params": [
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createBindGroupEntry",
+              "returnType": "{ binding: number; resource: GPUTextureView; }",
+              "params": [
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "setPipelineType",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "pipelineType",
+                  "type": "\"render\" | \"compute\" | \"compute_mixed\""
+                }
+              ],
+              "visibility": "public"
+            }
+          ]
+        }
+      },
+      "ImageTexture": {
+        "name": "ImageTexture",
+        "properties": {
+          "public": [
+            {
+              "name": "resourceIO",
+              "type": "ImageTextureIO",
+              "visibility": "public"
+            },
+            {
+              "name": "io",
+              "type": "number",
+              "visibility": "public"
+            },
+            {
+              "name": "mustBeTransfered",
+              "type": "boolean",
+              "visibility": "public"
+            },
+            {
+              "name": "descriptor",
+              "type": "ImageTextureDescriptor",
+              "visibility": "public"
+            },
+            {
+              "name": "gpuResource",
+              "type": "GPUTexture",
+              "visibility": "public"
+            },
+            {
+              "name": "sampledType",
+              "type": "\"u32\" | \"f32\" | \"i32\"",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "sampledType",
+              "type": "\"u32\" | \"f32\" | \"i32\"",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "texture",
+              "type": "GPUTexture",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "view",
+              "type": "GPUTextureView",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "source",
+              "type": "any",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "source",
+              "type": "any",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "deviceId",
+              "type": "number",
+              "visibility": "public"
+            },
+            {
+              "name": "time",
+              "type": "number",
+              "visibility": "public"
+            }
+          ],
+          "protected": [
+            {
+              "name": "_view",
+              "type": "GPUTextureView",
+              "visibility": "protected"
+            },
+            {
+              "name": "viewDescriptor",
+              "type": "GPUTextureViewDescriptor",
+              "visibility": "protected"
+            },
+            {
+              "name": "useOutsideTexture",
+              "type": "boolean",
+              "visibility": "protected"
+            },
+            {
+              "name": "gpuTextureIOs",
+              "type": "GPUTexture[]",
+              "visibility": "protected"
+            },
+            {
+              "name": "gpuTextureIO_index",
+              "type": "number",
+              "visibility": "protected"
+            }
+          ]
+        },
+        "methods": {
+          "public": [
+            {
+              "name": "clone",
+              "returnType": "ImageTexture",
+              "visibility": "public"
+            },
+            {
+              "name": "initTextureIO",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "textures",
+                  "type": "GPUTexture[]"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "getCurrentTexture",
+              "returnType": "GPUTexture",
+              "visibility": "public"
+            },
+            {
+              "name": "createView",
+              "returnType": "GPUTextureView",
+              "params": [
+                {
+                  "name": "viewDescriptor",
+                  "type": "GPUTextureViewDescriptor"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "resize",
+              "returnType": "ImageTexture",
+              "params": [
+                {
+                  "name": "w",
+                  "type": "number"
+                },
+                {
+                  "name": "h",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "update",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "createGpuResource",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "destroyGpuResource",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "createDeclaration",
+              "returnType": "string",
+              "params": [
+                {
+                  "name": "varName",
+                  "type": "string"
+                },
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                },
+                {
+                  "name": "groupId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createBindGroupLayoutEntry",
+              "returnType": "{ binding: number; visibility: number; storageTexture?: GPUStorageTextureBindingLayout; texture?: GPUTextureBindingLayout; }",
+              "params": [
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createBindGroupEntry",
+              "returnType": "{ binding: number; resource: GPUTextureView; }",
+              "params": [
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "setPipelineType",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "pipelineType",
+                  "type": "\"render\" | \"compute\" | \"compute_mixed\""
+                }
+              ],
+              "visibility": "public"
+            }
+          ]
+        }
+      },
+      "ImageTextureArray": {
+        "name": "ImageTextureArray",
+        "extends": [
+          "ImageTexture"
+        ],
+        "properties": {
+          "public": [
+            {
+              "name": "descriptor",
+              "type": "any",
+              "visibility": "public"
+            },
+            {
+              "name": "bitmaps",
+              "type": "any[]",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "bitmaps",
+              "type": "any[]",
+              "visibility": "public",
+              "get": true
+            }
+          ],
+          "protected": [
+            {
+              "name": "_bitmaps",
+              "type": "any[]",
+              "visibility": "protected"
+            },
+            {
+              "name": "mustUpdate",
+              "type": "boolean[]",
+              "visibility": "protected"
+            }
+          ]
+        },
+        "methods": {
+          "public": [
+            {
+              "name": "clone",
+              "returnType": "ImageTextureArray",
+              "visibility": "public"
+            },
+            {
+              "name": "setImageById",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "image",
+                  "type": "any"
+                },
+                {
+                  "name": "id",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createGpuResource",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "updateInnerGpuTextures",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "commandEncoder",
+                  "type": "GPUCommandEncoder"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "update",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "createDeclaration",
+              "returnType": "string",
+              "params": [
+                {
+                  "name": "varName",
+                  "type": "string"
+                },
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                },
+                {
+                  "name": "groupId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createBindGroupLayoutEntry",
+              "returnType": "{ binding: number; visibility: number; texture: GPUTextureBindingLayout; }",
+              "params": [
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createBindGroupEntry",
+              "returnType": "{ binding: number; resource: GPUTextureView; }",
+              "params": [
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "setPipelineType",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "pipelineType",
+                  "type": "\"render\" | \"compute\" | \"compute_mixed\""
+                }
+              ],
+              "visibility": "public"
+            }
+          ]
+        }
+      },
+      "ImageTextureIO": {
+        "name": "ImageTextureIO",
+        "properties": {
+          "public": [
+            {
+              "name": "textures",
+              "type": "ImageTexture[]",
+              "visibility": "public"
+            },
+            {
+              "name": "descriptor",
+              "type": "{ size: GPUExtent3D; format: GPUTextureFormat; usage?: number; }",
+              "visibility": "public"
+            },
+            {
+              "name": "onOutputData",
+              "type": "(data: Uint32Array) => void",
+              "visibility": "public"
+            },
+            {
+              "name": "width",
+              "type": "number",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "height",
+              "type": "number",
+              "visibility": "public",
+              "get": true
+            }
+          ],
+          "protected": [
+            {
+              "name": "stagingBuffer",
+              "type": "GPUBuffer",
+              "visibility": "protected"
+            },
+            {
+              "name": "canCallMapAsync",
+              "type": "boolean",
+              "visibility": "protected"
+            },
+            {
+              "name": "outputBuffer",
+              "type": "GPUBuffer",
+              "visibility": "protected"
+            }
+          ]
+        },
+        "methods": {
+          "public": [
+            {
+              "name": "clone",
+              "returnType": "ImageTextureIO",
+              "visibility": "public"
+            },
+            {
+              "name": "createDeclaration",
+              "returnType": "string",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                },
+                {
+                  "name": "groupId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "destroy",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "getOutputData",
+              "returnType": "Promise<void>",
+              "visibility": "public"
+            },
+            {
+              "name": "textureSize",
+              "returnType": "GPUExtent3D",
+              "visibility": "public"
+            }
+          ]
+        }
+      },
+      "TextureSampler": {
+        "name": "TextureSampler",
+        "properties": {
+          "public": [
+            {
+              "name": "mustBeTransfered",
+              "type": "boolean",
+              "visibility": "public"
+            },
+            {
+              "name": "gpuResource",
+              "type": "GPUSampler",
+              "visibility": "public"
+            },
+            {
+              "name": "descriptor",
+              "type": "TextureSamplerDescriptor",
+              "visibility": "public"
+            },
+            {
+              "name": "isComparison",
+              "type": "boolean",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "isFiltering",
+              "type": "boolean",
+              "visibility": "public",
+              "get": true
+            }
+          ],
+          "protected": [
+            {
+              "name": "deviceId",
+              "type": "number",
+              "visibility": "protected"
+            }
+          ]
+        },
+        "methods": {
+          "public": [
+            {
+              "name": "clone",
+              "returnType": "TextureSampler",
+              "visibility": "public"
+            },
+            {
+              "name": "setAddressModes",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "u",
+                  "type": "GPUAddressMode"
+                },
+                {
+                  "name": "v",
+                  "type": "GPUAddressMode"
+                },
+                {
+                  "name": "w",
+                  "type": "GPUAddressMode"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "setFilterModes",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "min",
+                  "type": "GPUFilterMode"
+                },
+                {
+                  "name": "mag",
+                  "type": "GPUFilterMode"
+                },
+                {
+                  "name": "mipmap",
+                  "type": "GPUMipmapFilterMode"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "setClamp",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "min",
+                  "type": "number"
+                },
+                {
+                  "name": "max",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "setCompareFunction",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "compareType",
+                  "type": "\"never\" | \"less\" | \"equal\" | \"less-equal\" | \"greater\" | \"not-equal\" | \"greater-equal\" | \"always\""
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "setMaxAnisotropy",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "n",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createGpuResource",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "destroyGpuResource",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "update",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "createDeclaration",
+              "returnType": "string",
+              "params": [
+                {
+                  "name": "varName",
+                  "type": "string"
+                },
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                },
+                {
+                  "name": "groupId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createBindGroupLayoutEntry",
+              "returnType": "{ binding: number; visibility: number; sampler: { type: string; }; }",
+              "params": [
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createBindGroupEntry",
+              "returnType": "{ binding: number; resource: GPUSampler; }",
+              "params": [
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "setPipelineType",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "pipelineType",
+                  "type": "\"render\" | \"compute\" | \"compute_mixed\""
+                }
+              ],
+              "visibility": "public"
+            }
+          ]
+        }
+      },
+      "UniformBuffer": {
+        "name": "UniformBuffer",
+        "properties": {
+          "public": [
+            {
+              "name": "gpuResource",
+              "type": "GPUBuffer",
+              "visibility": "public"
+            },
+            {
+              "name": "descriptor",
+              "type": "UniformBufferDescriptor",
+              "visibility": "public"
+            },
+            {
+              "name": "group",
+              "type": "UniformGroup",
+              "visibility": "public"
+            },
+            {
+              "name": "mustBeTransfered",
+              "type": "boolean",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "mustBeTransfered",
+              "type": "boolean",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "cloned",
+              "type": "boolean",
+              "visibility": "public"
+            },
+            {
+              "name": "bufferType",
+              "type": "\"read-only-storage\" | \"uniform\"",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "time",
+              "type": "number",
+              "visibility": "public"
+            },
+            {
+              "name": "items",
+              "type": "any",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "itemNames",
+              "type": "string[]",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "nbComponent",
+              "type": "number",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "nbUniforms",
+              "type": "number",
+              "visibility": "public",
+              "get": true
+            }
+          ],
+          "protected": [
+            {
+              "name": "debug",
+              "type": "string",
+              "visibility": "protected"
+            },
+            {
+              "name": "shaderVisibility",
+              "type": "GPUShaderStageFlags",
+              "visibility": "protected"
+            }
+          ]
+        },
+        "methods": {
+          "public": [
+            {
+              "name": "clone",
+              "returnType": "UniformBuffer",
+              "params": [
+                {
+                  "name": "propertyNames",
+                  "type": "string[]"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "add",
+              "returnType": "Uniformable",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "name": "data",
+                  "type": "PrimitiveType"
+                },
+                {
+                  "name": "useLocalVariable",
+                  "type": "boolean"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "remove",
+              "returnType": "Uniformable",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "string"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "update",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "createStruct",
+              "returnType": "{ struct: string; localVariables: string; }",
+              "params": [
+                {
+                  "name": "uniformName",
+                  "type": "string"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createDeclaration",
+              "returnType": "string",
+              "params": [
+                {
+                  "name": "uniformName",
+                  "type": "string"
+                },
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                },
+                {
+                  "name": "groupId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "getUniformById",
+              "returnType": "Uniformable",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "getUniformByName",
+              "returnType": "Uniformable",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "string"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createGpuResource",
+              "returnType": "any",
+              "visibility": "public"
+            },
+            {
+              "name": "destroyGpuResource",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "createBindGroupLayoutEntry",
+              "returnType": "{ binding: number; visibility: number; buffer: { type: string; }; }",
+              "params": [
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createBindGroupEntry",
+              "returnType": "{ binding: number; resource: { buffer: GPUBuffer; }; }",
+              "params": [
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "setPipelineType",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "pipelineType",
+                  "type": "\"render\" | \"compute\" | \"compute_mixed\""
+                }
+              ],
+              "visibility": "public"
+            }
+          ]
+        }
+      },
+      "UniformGroup": {
+        "name": "UniformGroup",
+        "properties": {
+          "public": [
+            {
+              "name": "unstackedItems",
+              "type": "any",
+              "visibility": "public"
+            },
+            {
+              "name": "items",
+              "type": "Uniformable[]",
+              "visibility": "public"
+            },
+            {
+              "name": "itemNames",
+              "type": "string[]",
+              "visibility": "public"
+            },
+            {
+              "name": "arrayStride",
+              "type": "number",
+              "visibility": "public"
+            },
+            {
+              "name": "startId",
+              "type": "number",
+              "visibility": "public"
+            },
+            {
+              "name": "createVariableInsideMain",
+              "type": "boolean",
+              "visibility": "public"
+            },
+            {
+              "name": "mustBeTransfered",
+              "type": "boolean",
+              "visibility": "public"
+            },
+            {
+              "name": "wgsl",
+              "type": "{ struct: string; localVariables: string; }",
+              "visibility": "public"
+            },
+            {
+              "name": "wgslStructNames",
+              "type": "string[]",
+              "visibility": "public"
+            },
+            {
+              "name": "datas",
+              "type": "Float32Array",
+              "visibility": "public"
+            },
+            {
+              "name": "uniformBuffer",
+              "type": "UniformBuffer",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "uniformBuffer",
+              "type": "UniformBuffer",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "type",
+              "type": "any",
+              "visibility": "public",
+              "get": true
+            }
+          ],
+          "protected": [
+            {
+              "name": "_name",
+              "type": "string",
+              "visibility": "protected"
+            },
+            {
+              "name": "buffer",
+              "type": "UniformBuffer",
+              "visibility": "protected"
+            }
+          ]
+        },
+        "methods": {
+          "public": [
+            {
+              "name": "destroy",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "clone",
+              "returnType": "UniformGroup",
+              "params": [
+                {
+                  "name": "propertyNames",
+                  "type": "string[]"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "remove",
+              "returnType": "Uniformable",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "string"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "add",
+              "returnType": "Uniformable",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "name": "data",
+                  "type": "Uniformable"
+                },
+                {
+                  "name": "useLocalVariable",
+                  "type": "boolean"
+                },
+                {
+                  "name": "stackItems",
+                  "type": "boolean"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "getElementByName",
+              "returnType": "Uniformable",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "string"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createVariable",
+              "returnType": "string",
+              "params": [
+                {
+                  "name": "uniformBufferName",
+                  "type": "string"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "updateStack",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "forceUpdate",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "update",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "gpuResource",
+                  "type": "GPUBuffer"
+                },
+                {
+                  "name": "fromUniformBuffer",
+                  "type": "boolean"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "getStruct",
+              "returnType": "{ struct: string; localVariables: string; }",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "string"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "stackItems",
+              "returnType": "Uniformable[]",
+              "params": [
+                {
+                  "name": "items",
+                  "type": "any"
+                }
+              ],
+              "visibility": "public"
+            }
+          ],
+          "protected": [
+            {
+              "name": "getStructName",
+              "returnType": "string",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "string"
+                }
+              ],
+              "visibility": "protected"
+            },
+            {
+              "name": "getVarName",
+              "returnType": "string",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "string"
+                }
+              ],
+              "visibility": "protected"
+            }
+          ]
+        }
+      },
+      "UniformGroupArray": {
+        "name": "UniformGroupArray",
+        "properties": {
+          "public": [
+            {
+              "name": "groups",
+              "type": "UniformGroup[]",
+              "visibility": "public"
+            },
+            {
+              "name": "startId",
+              "type": "number",
+              "visibility": "public"
+            },
+            {
+              "name": "createVariableInsideMain",
+              "type": "boolean",
+              "visibility": "public"
+            },
+            {
+              "name": "mustBeTransfered",
+              "type": "boolean",
+              "visibility": "public"
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "visibility": "public"
+            },
+            {
+              "name": "uniformBuffer",
+              "type": "UniformBuffer",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "uniformBuffer",
+              "type": "UniformBuffer",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "type",
+              "type": "any",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "length",
+              "type": "number",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "arrayStride",
+              "type": "number",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "isArray",
+              "type": "boolean",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "isUniformGroup",
+              "type": "boolean",
+              "visibility": "public",
+              "get": true
+            }
+          ],
+          "protected": [
+            {
+              "name": "buffer",
+              "type": "UniformBuffer",
+              "visibility": "protected"
+            }
+          ]
+        },
+        "methods": {
+          "public": [
+            {
+              "name": "clone",
+              "returnType": "UniformGroupArray",
+              "visibility": "public"
+            },
+            {
+              "name": "createVariable",
+              "returnType": "string",
+              "params": [
+                {
+                  "name": "uniformBufferName",
+                  "type": "string"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "update",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "gpuResource",
+                  "type": "GPUBuffer"
+                },
+                {
+                  "name": "fromUniformBuffer",
+                  "type": "boolean"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "forceUpdate",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "getElementById",
+              "returnType": "UniformGroup",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            }
+          ],
+          "protected": [
+            {
+              "name": "getStructName",
+              "returnType": "string",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "string"
+                }
+              ],
+              "visibility": "protected"
+            },
+            {
+              "name": "getVarName",
+              "returnType": "string",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "string"
+                }
+              ],
+              "visibility": "protected"
+            }
+          ]
+        }
+      },
+      "VertexAttribute": {
+        "name": "VertexAttribute",
+        "properties": {
+          "public": [
+            {
+              "name": "dataOffset",
+              "type": "number",
+              "visibility": "public"
+            },
+            {
+              "name": "mustBeTransfered",
+              "type": "boolean",
+              "visibility": "public"
+            },
+            {
+              "name": "vertexBuffer",
+              "type": "VertexBuffer",
+              "visibility": "public"
+            },
+            {
+              "name": "datas",
+              "type": "number[] | number[][]",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "datas",
+              "type": "number[] | number[][]",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "useByVertexData",
+              "type": "boolean",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "format",
+              "type": "string",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "bytePerElement",
+              "type": "number",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "varType",
+              "type": "string",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "nbComponent",
+              "type": "number",
+              "visibility": "public",
+              "get": true
+            }
+          ],
+          "private": [
+            {
+              "name": "_name",
+              "type": "string",
+              "visibility": "private"
+            },
+            {
+              "name": "_dataType",
+              "type": "string",
+              "visibility": "private"
+            },
+            {
+              "name": "nbValues",
+              "type": "number",
+              "visibility": "private"
+            },
+            {
+              "name": "vertexType",
+              "type": "{ name: string; nbComponent: number; bytes: number; varType: string; }",
+              "visibility": "private"
+            },
+            {
+              "name": "_data",
+              "type": "number[] | number[][]",
+              "visibility": "private"
+            }
+          ]
+        },
+        "methods": {
+          "private": [
+            {
+              "name": "renameVertexDataType",
+              "returnType": "string",
+              "params": [
+                {
+                  "name": "type",
+                  "type": "string"
+                }
+              ],
+              "visibility": "private"
+            },
+            {
+              "name": "getVertexDataType",
+              "returnType": "{ name: string; nbComponent: number; bytes: number; varType: string; }",
+              "params": [
+                {
+                  "name": "dataType",
+                  "type": "string"
+                }
+              ],
+              "visibility": "private"
+            }
+          ]
+        },
+        "statics": {
+          "properties": {
+            "public": [
+              {
+                "name": "types",
+                "type": "any",
+                "visibility": "public",
+                "get": true
+              }
+            ]
+          },
+          "methods": {
+            "public": [
+              {
+                "name": "Float",
+                "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
+                "params": [
+                  {
+                    "name": "datas",
+                    "type": "number | number[] | number[][]"
+                  },
+                  {
+                    "name": "offset",
+                    "type": "number"
+                  }
+                ],
+                "visibility": "public"
+              },
+              {
+                "name": "Vec2",
+                "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
+                "params": [
+                  {
+                    "name": "datas",
+                    "type": "number | number[] | number[][]"
+                  },
+                  {
+                    "name": "offset",
+                    "type": "number"
+                  }
+                ],
+                "visibility": "public"
+              },
+              {
+                "name": "Vec3",
+                "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
+                "params": [
+                  {
+                    "name": "datas",
+                    "type": "number | number[] | number[][]"
+                  },
+                  {
+                    "name": "offset",
+                    "type": "number"
+                  }
+                ],
+                "visibility": "public"
+              },
+              {
+                "name": "Vec4",
+                "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
+                "params": [
+                  {
+                    "name": "datas",
+                    "type": "number | number[] | number[][]"
+                  },
+                  {
+                    "name": "offset",
+                    "type": "number"
+                  }
+                ],
+                "visibility": "public"
+              },
+              {
+                "name": "Int",
+                "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
+                "params": [
+                  {
+                    "name": "datas",
+                    "type": "number | number[] | number[][]"
+                  },
+                  {
+                    "name": "offset",
+                    "type": "number"
+                  }
+                ],
+                "visibility": "public"
+              },
+              {
+                "name": "IVec2",
+                "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
+                "params": [
+                  {
+                    "name": "datas",
+                    "type": "number | number[] | number[][]"
+                  },
+                  {
+                    "name": "offset",
+                    "type": "number"
+                  }
+                ],
+                "visibility": "public"
+              },
+              {
+                "name": "IVec3",
+                "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
+                "params": [
+                  {
+                    "name": "datas",
+                    "type": "number | number[] | number[][]"
+                  },
+                  {
+                    "name": "offset",
+                    "type": "number"
+                  }
+                ],
+                "visibility": "public"
+              },
+              {
+                "name": "IVec4",
+                "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
+                "params": [
+                  {
+                    "name": "datas",
+                    "type": "number | number[] | number[][]"
+                  },
+                  {
+                    "name": "offset",
+                    "type": "number"
+                  }
+                ],
+                "visibility": "public"
+              },
+              {
+                "name": "Uint",
+                "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
+                "params": [
+                  {
+                    "name": "datas",
+                    "type": "number | number[] | number[][]"
+                  },
+                  {
+                    "name": "offset",
+                    "type": "number"
+                  }
+                ],
+                "visibility": "public"
+              },
+              {
+                "name": "UVec2",
+                "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
+                "params": [
+                  {
+                    "name": "datas",
+                    "type": "number | number[] | number[][]"
+                  },
+                  {
+                    "name": "offset",
+                    "type": "number"
+                  }
+                ],
+                "visibility": "public"
+              },
+              {
+                "name": "UVec3",
+                "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
+                "params": [
+                  {
+                    "name": "datas",
+                    "type": "number | number[] | number[][]"
+                  },
+                  {
+                    "name": "offset",
+                    "type": "number"
+                  }
+                ],
+                "visibility": "public"
+              },
+              {
+                "name": "UVec4",
+                "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
+                "params": [
+                  {
+                    "name": "datas",
+                    "type": "number | number[] | number[][]"
+                  },
+                  {
+                    "name": "offset",
+                    "type": "number"
+                  }
+                ],
+                "visibility": "public"
+              }
+            ]
+          }
+        }
+      },
+      "VertexBuffer": {
+        "name": "VertexBuffer",
+        "properties": {
+          "public": [
+            {
+              "name": "bufferId",
+              "type": "number",
+              "visibility": "public"
+            },
+            {
+              "name": "io",
+              "type": "number",
+              "visibility": "public"
+            },
+            {
+              "name": "resourceIO",
+              "type": "VertexBufferIO",
+              "visibility": "public"
+            },
+            {
+              "name": "mustBeTransfered",
+              "type": "boolean",
+              "visibility": "public"
+            },
+            {
+              "name": "vertexArrays",
+              "type": "VertexAttribute[]",
+              "visibility": "public"
+            },
+            {
+              "name": "attributes",
+              "type": "any",
+              "visibility": "public"
+            },
+            {
+              "name": "gpuResource",
+              "type": "GPUBuffer",
+              "visibility": "public"
+            },
+            {
+              "name": "descriptor",
+              "type": "VertexBufferDescriptor",
+              "visibility": "public"
+            },
+            {
+              "name": "nbComponentData",
+              "type": "number",
+              "visibility": "public"
+            },
+            {
+              "name": "attributeChanged",
+              "type": "boolean",
+              "visibility": "public"
+            },
+            {
+              "name": "buffer",
+              "type": "GPUBuffer",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "length",
+              "type": "number",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "nbComponent",
+              "type": "number",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "nbVertex",
+              "type": "number",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "datas",
+              "type": "Float32Array | Uint32Array | Int32Array",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "datas",
+              "type": "Float32Array | Uint32Array | Int32Array",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "attributeDescriptor",
+              "type": "any",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "arrayStride",
+              "type": "number",
+              "visibility": "public"
+            },
+            {
+              "name": "bufferSize",
+              "type": "number",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "time",
+              "type": "number",
+              "visibility": "public"
+            }
+          ],
+          "private": [
+            {
+              "name": "_nbComponent",
+              "type": "number",
+              "visibility": "private"
+            },
+            {
+              "name": "_datas",
+              "type": "Float32Array | Uint32Array | Int32Array",
+              "visibility": "private"
+            },
+            {
+              "name": "_byteCount",
+              "type": "number",
+              "visibility": "private"
+            }
+          ],
+          "protected": [
+            {
+              "name": "gpuBufferIOs",
+              "type": "GPUBuffer[]",
+              "visibility": "protected"
+            },
+            {
+              "name": "gpuBufferIO_index",
+              "type": "number",
+              "visibility": "protected"
+            },
+            {
+              "name": "canRefactorData",
+              "type": "boolean",
+              "visibility": "protected"
+            },
+            {
+              "name": "pipelineType",
+              "type": "\"render\" | \"compute\" | \"compute_mixed\"",
+              "visibility": "protected"
+            },
+            {
+              "name": "layout",
+              "type": "any",
+              "visibility": "protected"
+            },
+            {
+              "name": "_bufferSize",
+              "type": "number",
+              "visibility": "protected"
+            },
+            {
+              "name": "deviceId",
+              "type": "number",
+              "visibility": "protected"
+            }
+          ]
+        },
+        "methods": {
+          "public": [
+            {
+              "name": "clone",
+              "returnType": "VertexBuffer",
+              "visibility": "public"
+            },
+            {
+              "name": "initBufferIO",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "buffers",
+                  "type": "GPUBuffer[]"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "getCurrentBuffer",
+              "returnType": "GPUBuffer",
+              "visibility": "public"
+            },
+            {
+              "name": "setComplexDatas",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "datas",
+                  "type": "Float32Array | Uint32Array | Int32Array"
+                },
+                {
+                  "name": "nbComponentTotal",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createArray",
+              "returnType": "VertexAttribute",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "name": "dataType",
+                  "type": "string"
+                },
+                {
+                  "name": "offset",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "getAttributeByName",
+              "returnType": "VertexAttribute",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "string"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createDeclaration",
+              "returnType": "string",
+              "params": [
+                {
+                  "name": "vertexBufferName",
+                  "type": "string"
+                },
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                },
+                {
+                  "name": "groupId",
+                  "type": "number"
+                },
+                {
+                  "name": "isInput",
+                  "type": "boolean"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createBindGroupLayoutEntry",
+              "returnType": "any",
+              "params": [
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createBindGroupEntry",
+              "returnType": "any",
+              "params": [
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "setPipelineType",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "pipelineType",
+                  "type": "\"render\" | \"compute\" | \"compute_mixed\""
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createStruct",
+              "returnType": "ShaderStruct",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "string"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "stackAttributes",
+              "returnType": "{ stepMode: \"vertex\" | \"instance\"; arrayStride: number; attributes: any[]; }",
+              "params": [
+                {
+                  "name": "builtinOffset",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "addVertexInstance",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "instanceId",
+                  "type": "number"
+                },
+                {
+                  "name": "o",
+                  "type": "any"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createVertexBufferLayout",
+              "returnType": "any",
+              "params": [
+                {
+                  "name": "builtinOffset",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createGpuResource",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "destroyGpuResource",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "updateBuffer",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "getVertexArrayById",
+              "returnType": "VertexAttribute",
+              "params": [
+                {
+                  "name": "id",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "update",
+              "returnType": "boolean",
+              "visibility": "public"
+            }
+          ],
+          "protected": [
+            {
+              "name": "updateAttributes",
+              "returnType": "void",
+              "visibility": "protected"
+            }
+          ]
+        }
+      },
+      "VertexBufferIO": {
+        "name": "VertexBufferIO",
+        "properties": {
+          "public": [
+            {
+              "name": "buffers",
+              "type": "VertexBuffer[]",
+              "visibility": "public"
+            },
+            {
+              "name": "descriptor",
+              "type": "any",
+              "visibility": "public"
+            },
+            {
+              "name": "onOutputData",
+              "type": "(data: ArrayBuffer) => void",
+              "visibility": "public"
+            },
+            {
+              "name": "input",
+              "type": "VertexBuffer",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "output",
+              "type": "VertexBuffer",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "currentDatas",
+              "type": "ArrayBuffer",
+              "visibility": "public"
+            },
+            {
+              "name": "datas",
+              "type": "Float32Array",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "attributeDescriptor",
+              "type": "any",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "bufferSize",
+              "type": "number",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "nbVertex",
+              "type": "number",
+              "visibility": "public",
+              "get": true
+            }
+          ],
+          "protected": [
+            {
+              "name": "stagingBuffer",
+              "type": "GPUBuffer",
+              "visibility": "protected"
+            },
+            {
+              "name": "canCallMapAsync",
+              "type": "boolean",
+              "visibility": "protected"
+            },
+            {
+              "name": "deviceId",
+              "type": "number",
+              "visibility": "protected"
+            },
+            {
+              "name": "view",
+              "type": "any",
+              "visibility": "protected"
+            },
+            {
+              "name": "attributeDesc",
+              "type": "any",
+              "visibility": "protected"
+            }
+          ]
+        },
+        "methods": {
+          "public": [
+            {
+              "name": "destroy",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "getOutputData",
+              "returnType": "Promise<any>",
+              "visibility": "public"
+            },
+            {
+              "name": "clone",
+              "returnType": "VertexBufferIO",
+              "visibility": "public"
+            },
+            {
+              "name": "createDeclaration",
+              "returnType": "string",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                },
+                {
+                  "name": "groupId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createVertexInstances",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "nbInstance",
+                  "type": "number"
+                },
+                {
+                  "name": "createInstance",
+                  "type": "(instanceId: number) => any"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "getVertexInstances",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "datas",
+                  "type": "Float32Array"
+                },
+                {
+                  "name": "onGetInstance",
+                  "type": "(o: any) => void"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "update",
+              "returnType": "void",
+              "visibility": "public"
+            }
+          ],
+          "private": [
+            {
+              "name": "rebuildAfterDeviceLost",
+              "returnType": "void",
+              "visibility": "private"
+            }
+          ]
+        }
+      },
+      "VideoTexture": {
+        "name": "VideoTexture",
+        "properties": {
+          "public": [
+            {
+              "name": "mustBeTransfered",
+              "type": "boolean",
+              "visibility": "public"
+            },
+            {
+              "name": "descriptor",
+              "type": "VideoTextureDescriptor",
+              "visibility": "public"
+            },
+            {
+              "name": "useWebcodec",
+              "type": "boolean",
+              "visibility": "public"
+            },
+            {
+              "name": "gpuResource",
+              "type": "HTMLVideoElement",
+              "visibility": "public"
+            },
+            {
+              "name": "source",
+              "type": "HTMLVideoElement",
+              "visibility": "public",
+              "set": true
+            }
+          ],
+          "private": [
+            {
+              "name": "videoFrame",
+              "type": "any",
+              "visibility": "private"
+            }
+          ],
+          "protected": [
+            {
+              "name": "bindgroups",
+              "type": "Bindgroup[]",
+              "visibility": "protected"
+            }
+          ]
+        },
+        "methods": {
+          "public": [
+            {
+              "name": "addBindgroup",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "bindgroup",
+                  "type": "Bindgroup"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "clone",
+              "returnType": "VideoTexture",
+              "visibility": "public"
+            },
+            {
+              "name": "createDeclaration",
+              "returnType": "string",
+              "params": [
+                {
+                  "name": "varName",
+                  "type": "string"
+                },
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                },
+                {
+                  "name": "groupId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createBindGroupLayoutEntry",
+              "returnType": "{ binding: number; visibility: number; externalTexture: GPUExternalTextureBindingLayout; }",
+              "params": [
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createGpuResource",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "update",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "destroyGpuResource",
+              "returnType": "void",
+              "visibility": "public"
+            },
+            {
+              "name": "createBindGroupEntry",
+              "returnType": "{ binding: number; resource: GPUExternalTexture; }",
+              "params": [
+                {
+                  "name": "bindingId",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "setPipelineType",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "pipelineType",
+                  "type": "\"render\" | \"compute\" | \"compute_mixed\""
+                }
+              ],
+              "visibility": "public"
+            }
+          ]
+        }
+      }
+    },
+    "shaderParts": {
+      "ShaderNode": {
+        "name": "ShaderNode",
+        "properties": {
+          "public": [
+            {
+              "name": "enabled",
+              "type": "boolean",
+              "visibility": "public"
+            },
+            {
+              "name": "executeSubNodeAfterCode",
+              "type": "boolean",
+              "visibility": "public"
+            },
+            {
+              "name": "text",
+              "type": "string",
+              "visibility": "public",
+              "get": true
+            },
+            {
+              "name": "text",
+              "type": "string",
+              "visibility": "public",
+              "set": true
+            },
+            {
+              "name": "value",
+              "type": "string",
+              "visibility": "public",
+              "get": true
+            }
+          ],
+          "private": [
+            {
+              "name": "_text",
+              "type": "string",
+              "visibility": "private"
+            },
+            {
+              "name": "insideMainFunction",
+              "type": "boolean",
+              "visibility": "private"
+            },
+            {
+              "name": "subNodes",
+              "type": "ShaderNode[]",
+              "visibility": "private"
+            }
+          ]
+        },
+        "methods": {
+          "public": [
+            {
+              "name": "replaceValues",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "values",
+                  "type": "{ old: string; new: string; }[]"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "createNode",
+              "returnType": "ShaderNode",
+              "params": [
+                {
+                  "name": "code",
+                  "type": "string"
+                }
+              ],
+              "visibility": "public"
+            }
+          ]
+        }
+      },
+      "ShaderStage": {
+        "name": "ShaderStage",
+        "properties": {
+          "public": [
+            {
+              "name": "inputs",
+              "type": "{ name: string; type: any; builtin?: string; }[]",
+              "visibility": "public"
+            },
+            {
+              "name": "outputs",
+              "type": "{ name: string; type: any; builtin?: string; }[]",
+              "visibility": "public"
+            },
+            {
+              "name": "export",
+              "type": "{ name: string; type: any; }[]",
+              "visibility": "public"
+            },
+            {
+              "name": "require",
+              "type": "{ name: string; type: any; }[]",
+              "visibility": "public"
+            },
+            {
+              "name": "pipelineConstants",
+              "type": "any",
+              "visibility": "public"
+            },
+            {
+              "name": "constants",
+              "type": "ShaderNode",
+              "visibility": "public"
+            },
+            {
+              "name": "main",
+              "type": "ShaderNode",
+              "visibility": "public"
+            },
+            {
+              "name": "shaderType",
+              "type": "\"compute\" | \"vertex\" | \"fragment\"",
+              "visibility": "public"
+            },
+            {
+              "name": "shaderInfos",
+              "type": "{ code: string; output: ShaderStruct; }",
+              "visibility": "public",
+              "get": true
+            }
+          ],
+          "protected": [
+            {
+              "name": "_shaderInfos",
+              "type": "{ code: string; output: ShaderStruct; }",
+              "visibility": "protected"
+            }
+          ]
+        },
+        "methods": {
+          "public": [
+            {
+              "name": "addOutputVariable",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "name": "shaderType",
+                  "type": "{ type: string; }"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "addInputVariable",
+              "returnType": "void",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "name": "shaderTypeOrBuiltIn",
+                  "type": "{ type: string; builtin?: string; }"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "build",
+              "returnType": "{ code: string; output: ShaderStruct; }",
+              "params": [
+                {
+                  "name": "shaderPipeline",
+                  "type": "any"
+                },
+                {
+                  "name": "input",
+                  "type": "ShaderStruct"
+                }
+              ],
+              "visibility": "public"
+            }
+          ],
+          "protected": [
+            {
+              "name": "formatWGSLCode",
+              "returnType": "string",
+              "params": [
+                {
+                  "name": "code",
+                  "type": "string"
+                }
+              ],
+              "visibility": "protected"
+            }
+          ]
+        }
+      },
+      "ShaderStruct": {
+        "name": "ShaderStruct",
+        "properties": {
+          "public": [
+            {
+              "name": "name",
+              "type": "string",
+              "visibility": "public"
+            },
+            {
+              "name": "struct",
+              "type": "string",
+              "visibility": "public",
+              "get": true
+            }
+          ],
+          "protected": [
+            {
+              "name": "properties",
+              "type": "{ name: string; type: string; builtin?: string; }[]",
+              "visibility": "protected"
+            },
+            {
+              "name": "isShaderIO",
+              "type": "boolean",
+              "visibility": "protected"
+            }
+          ]
+        },
+        "methods": {
+          "public": [
+            {
+              "name": "clone",
+              "returnType": "ShaderStruct",
+              "params": [
+                {
+                  "name": "name",
+                  "type": "string"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "addProperty",
+              "returnType": "ShaderStruct",
+              "params": [
+                {
+                  "name": "o",
+                  "type": "{ name: string; type: string; builtin?: string; offset?: number; size?: number; obj?: any; }"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "getComputeVariableDeclaration",
+              "returnType": "string",
+              "params": [
+                {
+                  "name": "offset",
+                  "type": "number"
+                }
+              ],
+              "visibility": "public"
+            },
+            {
+              "name": "getFunctionParams",
+              "returnType": "string",
+              "visibility": "public"
+            },
+            {
+              "name": "getComputeFunctionParams",
+              "returnType": "string",
+              "visibility": "public"
+            },
+            {
+              "name": "getInputFromOutput",
+              "returnType": "ShaderStruct",
+              "visibility": "public"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

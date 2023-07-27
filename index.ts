@@ -21,6 +21,8 @@ type PropetyInfo = {
     type: string,
     visibility: "public" | "private" | "protected",
     value?: string,
+    get?: boolean,
+    set?: boolean,
     jsDoc?: string
 }
 
@@ -196,6 +198,10 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
                 visibility,
                 jsDoc: getJsDoc(member)
             };
+
+            if (ts.isGetAccessor(member)) propertyInfo.get = true;
+            if (ts.isSetAccessor(member)) propertyInfo.set = true;
+
 
             if (ts.getCombinedModifierFlags(member) & ts.ModifierFlags.Static) {
                 classInfo.statics!.properties![visibility].push(propertyInfo);
