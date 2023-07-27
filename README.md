@@ -24,6 +24,8 @@ This will generate a `documentation.json` file in the current directory, contain
 
 The objects described by the json follow this structure :
  ```
+
+ //function defined outside of a class 
 type FunctionInfo = {
     name: string,
     returnType: string,
@@ -31,28 +33,14 @@ type FunctionInfo = {
     jsDoc?: string
 }
 
+//variable defined outside of a class
 type VariableInfo = {
     name: string,
     type: string,
     jsDoc?: string
 }
 
-type PropetyInfo = {
-    name: string,
-    type: string,
-    visibility: "public" | "private" | "protected",
-    value?: string,
-    jsDoc?: string
-}
-
-type MethodInfo = {
-    name: string,
-    returnType: string,
-    visibility: "public" | "private" | "protected",
-    params?: { name: string, type: string }[],
-    jsDoc?: string
-}
-
+//class
 type ClassInfo = {
     name: string,
     extends?: string[],
@@ -83,6 +71,25 @@ type ClassInfo = {
     functions?: FunctionInfo[],
     variables?: VariableInfo[],
 }
+
+//property of a class
+type PropetyInfo = {
+    name: string,
+    type: string,
+    visibility: "public" | "private" | "protected",
+    value?: string,
+    jsDoc?: string
+}
+
+//method of a class
+type MethodInfo = {
+    name: string,
+    returnType: string,
+    visibility: "public" | "private" | "protected",
+    params?: { name: string, type: string }[],
+    jsDoc?: string
+}
+
   ```
 
 
