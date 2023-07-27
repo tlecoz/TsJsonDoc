@@ -73,7 +73,7 @@ type ClassInfo = {
 }
 
 //property of a class
-type PropetyInfo = {
+type PropertyInfo = {
     name: string,
     type: string,
     visibility: "public" | "private" | "protected",

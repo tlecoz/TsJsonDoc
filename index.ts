@@ -16,7 +16,7 @@ type VariableInfo = {
     jsDoc?: string
 }
 
-type PropetyInfo = {
+type PropertyInfo = {
     name: string,
     type: string,
     visibility: "public" | "private" | "protected",
@@ -39,9 +39,9 @@ type ClassInfo = {
     extends?: string[],
     implements?: string[],
     properties?: {
-        public?: PropetyInfo[],
-        private?: PropetyInfo[],
-        protected?: PropetyInfo[]
+        public?: PropertyInfo[],
+        private?: PropertyInfo[],
+        protected?: PropertyInfo[]
     },
     methods?: {
         public?: MethodInfo[],
@@ -50,9 +50,9 @@ type ClassInfo = {
     },
     statics?: {
         properties?: {
-            public?: PropetyInfo[],
-            private?: PropetyInfo[],
-            protected?: PropetyInfo[]
+            public?: PropertyInfo[],
+            private?: PropertyInfo[],
+            protected?: PropertyInfo[]
         },
         methods?: {
             public?: MethodInfo[],
@@ -192,7 +192,7 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
 
         if (ts.isPropertyDeclaration(member) || ts.isGetAccessor(member) || ts.isSetAccessor(member)) {
             const type = checker.getTypeAtLocation(member);
-            const propertyInfo: PropetyInfo = {
+            const propertyInfo: PropertyInfo = {
                 name: memberSymbol.getName(),
                 type: checker.typeToString(type),
                 visibility,
