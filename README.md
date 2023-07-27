@@ -22,10 +22,74 @@ npx tsjsondoc path/to/your/typescript/source
 
 This will generate a `documentation.json` file in the current directory, containing the generated documentation.
 
+The objects described by the json follow this structure :
+ ```
+type FunctionInfo = {
+    name: string,
+    returnType: string,
+    params: string,
+    jsDoc?: string
+}
+
+type VariableInfo = {
+    name: string,
+    type: string,
+    jsDoc?: string
+}
+
+type PropetyInfo = {
+    name: string,
+    type: string,
+    visibility: "public" | "private" | "protected",
+    value?: string,
+    jsDoc?: string
+}
+
+type MethodInfo = {
+    name: string,
+    returnType: string,
+    visibility: "public" | "private" | "protected",
+    params?: { name: string, type: string }[],
+    jsDoc?: string
+}
+
+type ClassInfo = {
+    name: string,
+    extends?: string[],
+    implements?: string[],
+    properties?: {
+        public?: PropetyInfo[],
+        private?: PropetyInfo[],
+        protected?: PropetyInfo[]
+    },
+    methods?: {
+        public?: MethodInfo[],
+        private?: MethodInfo[],
+        protected?: MethodInfo[]
+    },
+    statics?: {
+        properties?: {
+            public?: PropetyInfo[],
+            private?: PropetyInfo[],
+            protected?: PropetyInfo[]
+        },
+        methods?: {
+            public?: MethodInfo[],
+            private?: MethodInfo[],
+            protected?: MethodInfo[]
+        }
+    },
+    jsDoc?: string,
+    functions?: FunctionInfo[],
+    variables?: VariableInfo[],
+}
+  ```
+
+
 ## Limitations
 
 TsJsonDoc is designed to generate documentation for classes, exported functions, and variables. It does not support modules, namespaces, global functions, and other TypeScript features. Additionally, it does not generate HTML documentation or other output formats.
 
 ## Contributing
 
-Contributions to TsJsonDoc are welcome. If you encounter any issues or have suggestions for improvements, feel free to open an issue or submit a pull request on the project's GitHub repository.
+Contributions to TsJsonDoc are welcome. If you encounter any issues or have suggestions for improvements, feel free to open an issue or submit a pull request on the project's GitHub repository. 
