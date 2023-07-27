@@ -233,51 +233,36 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
     return classInfo;
 }
 
-// Définissez le répertoire racine
 const rootDir = process.argv[2] || "./src/";
-
-// Lisez tous les fichiers TypeScript dans le répertoire et ses sous-répertoires
 const fileNames = ts.sys.readDirectory(rootDir, ["ts"]);
-
-// Créez des options de compilation. Vous pouvez spécifier toutes les options que vous utiliseriez normalement dans un fichier tsconfig.json.
 const options: ts.CompilerOptions = {
     target: ts.ScriptTarget.ESNext,
     module: ts.ModuleKind.CommonJS
 };
 
-// Créez le programme.
+
 const program = ts.createProgram(fileNames, options);
-
-// Maintenant, vous pouvez utiliser le programme pour obtenir le TypeChecker.
 const checker = program.getTypeChecker();
-
-// Créez un objet pour stocker les informations de classe
 const classInfos: any = {};
 
-// Parcourez tous les fichiers source
 for (const fileName of fileNames) {
     const sourceFile = program.getSourceFile(fileName);
     if (sourceFile) {
-        // Parcourez tous les nœuds du fichier source
+
         ts.forEachChild(sourceFile, (node) => {
             if (node) {
                 const classInfo = visit(node, checker);
                 if (classInfo) {
-                    // Obtenez le chemin relatif du fichier par rapport au répertoire racine
                     let relativePath = path.relative(rootDir, fileName);
-                    // Retirez l'extension .ts
                     relativePath = relativePath.substring(0, relativePath.length - 3);
-                    // Divisez le chemin en segments
+
                     const segments = relativePath.split(path.sep);
-                    // Accédez à l'emplacement correct dans l'objet classInfos et stockez les informations de classe
                     let currentObject = classInfos;
                     for (let i = 0; i < segments.length; i++) {
                         const segment = segments[i];
                         if (i === segments.length - 1) {
-                            // Si nous sommes au dernier segment, nous stockons les informations de classe
                             currentObject[segment] = classInfo;
                         } else {
-                            // Sinon, nous accédons à l'objet correspondant au segment actuel, ou nous en créons un nouveau si nécessaire
                             if (!currentObject[segment]) {
                                 currentObject[segment] = {};
                             }
