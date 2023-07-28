@@ -813,6 +813,67 @@
       }
     }
   },
+  "IRenderer": {
+    "name": "IRenderer",
+    "properties": {
+      "protected": [
+        {
+          "name": "firstPipeline",
+          "type": "RenderPipeline",
+          "visibility": "protected",
+          "get": true
+        },
+        {
+          "name": "nbPipeline",
+          "type": "number",
+          "visibility": "protected",
+          "get": true
+        },
+        {
+          "name": "useSinglePipeline",
+          "type": "boolean",
+          "visibility": "protected",
+          "get": true
+        },
+        {
+          "name": "dimensionChanged",
+          "type": "boolean",
+          "visibility": "protected",
+          "get": true
+        },
+        {
+          "name": "canvas",
+          "type": "{ width: number; height: number; dimensionChanged: boolean; }",
+          "visibility": "protected",
+          "get": true
+        },
+        {
+          "name": "width",
+          "type": "number",
+          "visibility": "protected",
+          "get": true
+        },
+        {
+          "name": "height",
+          "type": "number",
+          "visibility": "protected",
+          "get": true
+        },
+        {
+          "name": "texture",
+          "type": "GPUTexture",
+          "visibility": "protected",
+          "get": true
+        },
+        {
+          "name": "view",
+          "type": "GPUTextureView",
+          "visibility": "protected",
+          "get": true
+        }
+      ]
+    }
+  },
   "WgslUtils": {
     "name": "WgslUtils",
     "statics": {
@@ -3639,6 +3700,9 @@
             }
           ]
         }
+      },
+      "IShaderResource": {
+        "name": "IShaderResource"
       },
       "ImageTexture": {
         "name": "ImageTexture",

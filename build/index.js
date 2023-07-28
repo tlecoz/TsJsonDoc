@@ -49,7 +49,7 @@ function getJsDoc(node) {
     return jsDocTags.map(tag => tag.getText()).join('\n');
 }
 function visit(node, checker) {
-    if (!ts.isClassDeclaration(node)) {
+    if (!ts.isClassDeclaration(node) && !ts.isInterfaceDeclaration(node)) {
         if (ts.isFunctionDeclaration(node)) {
             const symbol = checker.getSymbolAtLocation(node.name);
             if (!symbol) {
@@ -178,7 +178,7 @@ function visit(node, checker) {
     }
     return classInfo;
 }
-const rootDir = process.argv[2] || "./src/";
+const rootDir = "../xgpu/src/xGPU"; //process.argv[2] || "./src/";
 const fileNames = ts.sys.readDirectory(rootDir, ["ts"]);
 const options = {
     target: ts.ScriptTarget.ESNext,
@@ -213,6 +213,25 @@ for (const fileName of fileNames) {
                 }
             }
         });
+        // Check if jsdoc.json exists in the directory
+        let relativePath = path.relative(rootDir, fileName);
+        relativePath = relativePath.substring(0, relativePath.length - 3);
+        const segments = relativePath.split(path.sep);
+        let currentObject = classInfos;
+        for (let i = 0; i < segments.length; i++) {
+            const segment = segments[i];
+            if (!currentObject[segment]) {
+                currentObject[segment] = {};
+            }
+            currentObject = currentObject[segment];
+        }
+        const jsdocPath = path.join(rootDir, ...segments, 'jsdoc.json');
+        if (fs.existsSync(jsdocPath)) {
+            // Read the content of jsdoc.json and parse it as JSON
+            const jsdocContent = JSON.parse(fs.readFileSync(jsdocPath, 'utf8'));
+            // Add the JSON content to the directory object
+            currentObject['jsdoc'] = jsdocContent;
+        }
     }
 }
 console.log(classInfos);
