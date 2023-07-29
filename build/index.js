@@ -49,7 +49,37 @@ function getJsDoc(node) {
     if (jsDocTags.length === 0) {
         return undefined;
     }
-    return jsDocTags.map(tag => tag.getText()).join('\n');
+    const jsDoc = {};
+    for (const tag of jsDocTags) {
+        const tagName = tag.tagName.text;
+        const tagText = tag.comment;
+        switch (tagName) {
+            case 'param':
+                if (!jsDoc.params) {
+                    jsDoc.params = {};
+                }
+                const paramName = tag.name.text;
+                jsDoc.params[paramName] = tagText;
+                break;
+            case 'returns':
+                jsDoc.returns = tagText;
+                break;
+            case 'example':
+                if (!jsDoc.examples) {
+                    jsDoc.examples = [];
+                }
+                jsDoc.examples.push(tagText);
+                break;
+            default:
+                // Treat all other tags as part of the description
+                if (!jsDoc.description) {
+                    jsDoc.description = '';
+                }
+                jsDoc.description += `@${tagName} ${tagText}\n`;
+                break;
+        }
+    }
+    return jsDoc;
 }
 function visit(node, checker) {
     if (!ts.isClassDeclaration(node) && !ts.isInterfaceDeclaration(node)) {

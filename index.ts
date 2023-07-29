@@ -8,25 +8,33 @@ type ObjectType = "type" | "function" | "variable" | "property" | "method" | "cl
 
 interface ObjectInfo {
     objectType: ObjectType;
+    jsDoc?: JsDocInfo;
 }
+
+type JsDocInfo = {
+    description?: string;
+    params?: { [key: string]: string };
+    returns?: string;
+    examples?: string[];
+};
 
 type TypeAliasInfo = ObjectInfo & {
     name: string,
     type: string,
-    jsDoc?: string
+    jsDoc?: JsDocInfo
 }
 
 type FunctionInfo = ObjectInfo & {
     name: string,
     returnType: string,
     params: string,
-    jsDoc?: string
+    jsDoc?: JsDocInfo
 }
 
 type VariableInfo = ObjectInfo & {
     name: string,
     type: string,
-    jsDoc?: string
+    jsDoc?: JsDocInfo
 }
 
 type PropertyInfo = ObjectInfo & {
@@ -36,7 +44,7 @@ type PropertyInfo = ObjectInfo & {
     value?: string,
     get?: boolean,
     set?: boolean,
-    jsDoc?: string
+    jsDoc?: JsDocInfo
 }
 
 type MethodInfo = ObjectInfo & {
@@ -44,7 +52,7 @@ type MethodInfo = ObjectInfo & {
     returnType: string,
     visibility: "public" | "private" | "protected",
     params?: { name: string, type: string }[],
-    jsDoc?: string
+    jsDoc?: JsDocInfo
 }
 
 type ClassInfo = ObjectInfo & {
@@ -73,7 +81,7 @@ type ClassInfo = ObjectInfo & {
             protected?: MethodInfo[]
         }
     },
-    jsDoc?: string,
+    jsDoc?: JsDocInfo,
     functions?: FunctionInfo[],
     variables?: VariableInfo[],
 }
@@ -102,14 +110,54 @@ function getImplementedInterfaces(node: ts.ClassDeclaration | ts.InterfaceDeclar
 
 
 
-function getJsDoc(node: ts.Node): string | undefined {
+function getJsDoc(node: ts.Node): JsDocInfo | undefined {
     const jsDocTags = ts.getJSDocTags(node);
     if (jsDocTags.length === 0) {
         return undefined;
     }
 
-    return jsDocTags.map(tag => tag.getText()).join('\n');
+    const jsDoc: JsDocInfo = {};
+
+    for (const tag of jsDocTags) {
+        const tagName = tag.tagName.text;
+        let tagText = '';
+        if (typeof tag.comment === 'string') {
+            tagText = tag.comment;
+        }
+
+        switch (tagName) {
+            case 'param':
+                if (!jsDoc.params) {
+                    jsDoc.params = {};
+                }
+                if (tag as ts.JSDocParameterTag) {
+                    const paramName = (tag as ts.JSDocParameterTag).name.getText();
+                    jsDoc.params[paramName] = tagText;
+                }
+                break;
+            case 'returns':
+                jsDoc.returns = tagText;
+                break;
+            case 'example':
+                if (!jsDoc.examples) {
+                    jsDoc.examples = [];
+                }
+                jsDoc.examples.push(tagText);
+                break;
+            default:
+                // Traitez toutes les autres balises comme faisant partie de la description
+                if (!jsDoc.description) {
+                    jsDoc.description = '';
+                }
+                jsDoc.description += `@${tagName} ${tagText}\n`;
+                break;
+        }
+    }
+
+    return jsDoc;
 }
+
+
 
 function visit(node: ts.Node, checker: ts.TypeChecker) {
     if (!ts.isClassDeclaration(node) && !ts.isInterfaceDeclaration(node)) {
