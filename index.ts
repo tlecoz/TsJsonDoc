@@ -3,50 +3,53 @@ import * as ts from "typescript";
 import * as path from "path";
 import * as fs from "fs";
 
+const rootDir = process.argv[2] || "../xgpu/src/xGPU";
+const outputDir = process.argv[3] || "./";
+const outputFileName = process.argv[4] || "documentation.json";
+const useRawText = process.argv[5] !== 'false';
+
 
 type ObjectType = "type" | "function" | "variable" | "property" | "method" | "class" | "enum";
 
 interface ObjectInfo {
     objectType: ObjectType;
     jsDoc?: JsDocInfo;
+    rawText?: string;
 }
 
 type EnumMemberInfo = {
     name: string,
     value?: string | number,
-    jsDoc?: JsDocInfo
+    jsDoc?: JsDocInfo,
+    rawText?: string
 }
 
 type EnumInfo = ObjectInfo & {
     name: string,
     members: EnumMemberInfo[],
-    jsDoc?: JsDocInfo
 }
 
 type JsDocInfo = {
-    description?: string;
-    params?: { [key: string]: string };
-    returns?: string;
-    examples?: string[];
+    description?: string,
+    params?: { [key: string]: string },
+    returns?: string,
+    examples?: string[],
 };
 
 type TypeAliasInfo = ObjectInfo & {
     name: string,
     type: string,
-    jsDoc?: JsDocInfo
 }
 
 type FunctionInfo = ObjectInfo & {
     name: string,
     returnType: string,
     params: string,
-    jsDoc?: JsDocInfo
 }
 
 type VariableInfo = ObjectInfo & {
     name: string,
     type: string,
-    jsDoc?: JsDocInfo
 }
 
 type PropertyInfo = ObjectInfo & {
@@ -56,7 +59,6 @@ type PropertyInfo = ObjectInfo & {
     value?: string,
     get?: boolean,
     set?: boolean,
-    jsDoc?: JsDocInfo
 }
 
 type MethodInfo = ObjectInfo & {
@@ -64,7 +66,6 @@ type MethodInfo = ObjectInfo & {
     returnType: string,
     visibility: "public" | "private" | "protected",
     params?: { name: string, type: string }[],
-    jsDoc?: JsDocInfo
 }
 
 type ClassInfo = ObjectInfo & {
@@ -93,7 +94,6 @@ type ClassInfo = ObjectInfo & {
             protected?: MethodInfo[]
         }
     },
-    jsDoc?: JsDocInfo,
     functions?: FunctionInfo[],
     variables?: VariableInfo[],
 }
@@ -184,7 +184,8 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
                 objectType: "enum",
                 name: symbol.getName(),
                 members: [],
-                jsDoc: getJsDoc(node)
+                jsDoc: getJsDoc(node),
+                rawText: useRawText ? node.getText() : undefined,
             };
 
             for (const member of node.members) {
@@ -212,7 +213,8 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
                 const enumMemberInfo: EnumMemberInfo = {
                     name: memberSymbol.getName(),
                     value: memberValue,
-                    jsDoc: getJsDoc(member)
+                    jsDoc: getJsDoc(member),
+                    rawText: useRawText ? member.getText() : undefined,
                 };
 
                 enumInfo.members.push(enumMemberInfo);
@@ -232,7 +234,8 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
                 objectType: "type",
                 name: symbol.getName(),
                 type: checker.typeToString(type),
-                jsDoc: getJsDoc(node)
+                jsDoc: getJsDoc(node),
+                rawText: useRawText ? node.getText() : undefined,
             };
 
             return typeAliasInfo;
@@ -254,7 +257,8 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
                 name: symbol.getName(),
                 returnType,
                 params,
-                jsDoc: getJsDoc(node)
+                jsDoc: getJsDoc(node),
+                rawText: useRawText ? node.getText() : undefined,
             };
 
             return functionInfo;
@@ -272,7 +276,8 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
                 objectType: "variable",
                 name: symbol.getName(),
                 type: checker.typeToString(type),
-                jsDoc: getJsDoc(node)
+                jsDoc: getJsDoc(node),
+                rawText: useRawText ? node.getText() : undefined,
             };
 
             return variableInfo;
@@ -315,7 +320,8 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
                 protected: []
             }
         },
-        jsDoc: getJsDoc(node)
+        jsDoc: getJsDoc(node),
+        rawText: useRawText ? node.getText() : undefined,
     };
 
     let baseType = details.getBaseTypes()[0];
@@ -346,7 +352,8 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
                 name: memberSymbol.getName(),
                 type: checker.typeToString(type),
                 visibility,
-                jsDoc: getJsDoc(member)
+                jsDoc: getJsDoc(member),
+                rawText: useRawText ? member.getText() : undefined,
             };
 
             if (ts.isGetAccessor(member)) propertyInfo.get = true;
@@ -376,7 +383,8 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
                 returnType,
                 params,
                 visibility,
-                jsDoc: getJsDoc(member)
+                jsDoc: getJsDoc(member),
+                rawText: useRawText ? member.getText() : undefined,
             };
 
             if (ts.getCombinedModifierFlags(member) & ts.ModifierFlags.Static) {
@@ -395,9 +403,7 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
 
 try {
 
-    const rootDir = process.argv[2] || "../xgpu/src/xGPU";
-    const outputDir = process.argv[3] || "./";
-    const outputFileName = process.argv[4] || "documentation.json";
+
 
     const fileNames = ts.sys.readDirectory(rootDir, ["ts"]);
     const options: ts.CompilerOptions = {

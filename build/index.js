@@ -27,6 +27,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ts = __importStar(require("typescript"));
 const path = __importStar(require("path"));
 const fs = __importStar(require("fs"));
+const rootDir = process.argv[2] || "../xgpu/src/xGPU";
+const outputDir = process.argv[3] || "./";
+const outputFileName = process.argv[4] || "documentation.json";
+const useRawText = process.argv[5] !== 'false';
 function getImplementedInterfaces(node, checker) {
     const interfaces = new Set();
     if (node.heritageClauses) {
@@ -52,14 +56,19 @@ function getJsDoc(node) {
     const jsDoc = {};
     for (const tag of jsDocTags) {
         const tagName = tag.tagName.text;
-        const tagText = tag.comment;
+        let tagText = '';
+        if (typeof tag.comment === 'string') {
+            tagText = tag.comment;
+        }
         switch (tagName) {
             case 'param':
                 if (!jsDoc.params) {
                     jsDoc.params = {};
                 }
-                const paramName = tag.name.text;
-                jsDoc.params[paramName] = tagText;
+                if (tag) {
+                    const paramName = tag.name.getText();
+                    jsDoc.params[paramName] = tagText;
+                }
                 break;
             case 'returns':
                 jsDoc.returns = tagText;
@@ -71,7 +80,7 @@ function getJsDoc(node) {
                 jsDoc.examples.push(tagText);
                 break;
             default:
-                // Treat all other tags as part of the description
+                // Traitez toutes les autres balises comme faisant partie de la description
                 if (!jsDoc.description) {
                     jsDoc.description = '';
                 }
@@ -83,6 +92,50 @@ function getJsDoc(node) {
 }
 function visit(node, checker) {
     if (!ts.isClassDeclaration(node) && !ts.isInterfaceDeclaration(node)) {
+        if (ts.isEnumDeclaration(node)) {
+            const symbol = checker.getSymbolAtLocation(node.name);
+            if (!symbol) {
+                return;
+            }
+            const enumInfo = {
+                objectType: "enum",
+                name: symbol.getName(),
+                members: [],
+                jsDoc: getJsDoc(node),
+                rawText: useRawText ? node.getText() : undefined,
+            };
+            for (const member of node.members) {
+                const memberSymbol = checker.getSymbolAtLocation(member.name);
+                if (!memberSymbol) {
+                    continue;
+                }
+                let memberValue;
+                if (member.initializer) {
+                    if (ts.isNumericLiteral(member.initializer)) {
+                        memberValue = Number(member.initializer.text);
+                    }
+                    else if (ts.isStringLiteral(member.initializer)) {
+                        memberValue = member.initializer.text;
+                    }
+                    else {
+                        // Pour les autres types d'expressions, vous pouvez utiliser le type checker pour obtenir leur valeur
+                        const type = checker.getTypeAtLocation(member.initializer);
+                        const symbol = type.getSymbol();
+                        if (symbol) {
+                            memberValue = symbol.getName();
+                        }
+                    }
+                }
+                const enumMemberInfo = {
+                    name: memberSymbol.getName(),
+                    value: memberValue,
+                    jsDoc: getJsDoc(member),
+                    rawText: useRawText ? member.getText() : undefined,
+                };
+                enumInfo.members.push(enumMemberInfo);
+            }
+            return enumInfo;
+        }
         if (ts.isTypeAliasDeclaration(node)) {
             const symbol = checker.getSymbolAtLocation(node.name);
             if (!symbol) {
@@ -93,7 +146,8 @@ function visit(node, checker) {
                 objectType: "type",
                 name: symbol.getName(),
                 type: checker.typeToString(type),
-                jsDoc: getJsDoc(node)
+                jsDoc: getJsDoc(node),
+                rawText: useRawText ? node.getText() : undefined,
             };
             return typeAliasInfo;
         }
@@ -110,7 +164,8 @@ function visit(node, checker) {
                 name: symbol.getName(),
                 returnType,
                 params,
-                jsDoc: getJsDoc(node)
+                jsDoc: getJsDoc(node),
+                rawText: useRawText ? node.getText() : undefined,
             };
             return functionInfo;
         }
@@ -124,7 +179,8 @@ function visit(node, checker) {
                 objectType: "variable",
                 name: symbol.getName(),
                 type: checker.typeToString(type),
-                jsDoc: getJsDoc(node)
+                jsDoc: getJsDoc(node),
+                rawText: useRawText ? node.getText() : undefined,
             };
             return variableInfo;
         }
@@ -162,7 +218,8 @@ function visit(node, checker) {
                 protected: []
             }
         },
-        jsDoc: getJsDoc(node)
+        jsDoc: getJsDoc(node),
+        rawText: useRawText ? node.getText() : undefined,
     };
     let baseType = details.getBaseTypes()[0];
     while (baseType) {
@@ -189,7 +246,8 @@ function visit(node, checker) {
                 name: memberSymbol.getName(),
                 type: checker.typeToString(type),
                 visibility,
-                jsDoc: getJsDoc(member)
+                jsDoc: getJsDoc(member),
+                rawText: useRawText ? member.getText() : undefined,
             };
             if (ts.isGetAccessor(member))
                 propertyInfo.get = true;
@@ -218,7 +276,8 @@ function visit(node, checker) {
                 returnType,
                 params,
                 visibility,
-                jsDoc: getJsDoc(member)
+                jsDoc: getJsDoc(member),
+                rawText: useRawText ? member.getText() : undefined,
             };
             if (ts.getCombinedModifierFlags(member) & ts.ModifierFlags.Static) {
                 classInfo.statics.methods[visibility].push(methodInfo);
@@ -231,9 +290,6 @@ function visit(node, checker) {
     return classInfo;
 }
 try {
-    const rootDir = process.argv[2] || "../xgpu/src/xGPU";
-    const outputDir = process.argv[3] || "./";
-    const outputFileName = process.argv[4] || "documentation.json";
     const fileNames = ts.sys.readDirectory(rootDir, ["ts"]);
     const options = {
         target: ts.ScriptTarget.ESNext,
