@@ -3,20 +3,33 @@ import * as ts from "typescript";
 import * as path from "path";
 import * as fs from "fs";
 
-type FunctionInfo = {
+
+type ObjectType = "type" | "function" | "variable" | "property" | "method" | "class";
+
+interface ObjectInfo {
+    objectType: ObjectType;
+}
+
+type TypeAliasInfo = ObjectInfo & {
+    name: string,
+    type: string,
+    jsDoc?: string
+}
+
+type FunctionInfo = ObjectInfo & {
     name: string,
     returnType: string,
     params: string,
     jsDoc?: string
 }
 
-type VariableInfo = {
+type VariableInfo = ObjectInfo & {
     name: string,
     type: string,
     jsDoc?: string
 }
 
-type PropertyInfo = {
+type PropertyInfo = ObjectInfo & {
     name: string,
     type: string,
     visibility: "public" | "private" | "protected",
@@ -26,7 +39,7 @@ type PropertyInfo = {
     jsDoc?: string
 }
 
-type MethodInfo = {
+type MethodInfo = ObjectInfo & {
     name: string,
     returnType: string,
     visibility: "public" | "private" | "protected",
@@ -34,7 +47,7 @@ type MethodInfo = {
     jsDoc?: string
 }
 
-type ClassInfo = {
+type ClassInfo = ObjectInfo & {
     name: string,
     extends?: string[],
     implements?: string[],
@@ -64,30 +77,6 @@ type ClassInfo = {
     functions?: FunctionInfo[],
     variables?: VariableInfo[],
 }
-/*
-function getImplementedInterfaces(type: ts.Type, checker: ts.TypeChecker): string[] {
-    const interfaces: Set<string> = new Set();
-
-    if (type.isClassOrInterface()) {
-
-        const baseTypes = checker.getBaseTypes(type as ts.InterfaceType);
-        for (const baseType of baseTypes) {
-            const symbol = baseType.getSymbol();
-            if (symbol.getName() === "HeadlessGPURenderer") console.log("getImplementedInterfaces #0 = ", symbol.flags, ts.SymbolFlags.Interface)
-            if (symbol && (symbol.flags & ts.SymbolFlags.Interface) !== 0) {
-
-                console.log("symbol.getName() = ", symbol.getName())
-
-                interfaces.add(symbol.name);
-                getImplementedInterfaces(baseType, checker).forEach(i => interfaces.add(i));
-            }
-        }
-    }
-    if (interfaces.size > 0) {
-        console.log("getImplementedInterfaces = ", interfaces)
-    }
-    return Array.from(interfaces);
-}*/
 
 function getImplementedInterfaces(node: ts.ClassDeclaration | ts.InterfaceDeclaration, checker: ts.TypeChecker): string[] {
     const interfaces: Set<string> = new Set();
@@ -125,6 +114,24 @@ function getJsDoc(node: ts.Node): string | undefined {
 function visit(node: ts.Node, checker: ts.TypeChecker) {
     if (!ts.isClassDeclaration(node) && !ts.isInterfaceDeclaration(node)) {
 
+        if (ts.isTypeAliasDeclaration(node)) {
+            const symbol = checker.getSymbolAtLocation(node.name);
+            if (!symbol) {
+                return;
+            }
+
+            const type = checker.getTypeAtLocation(node);
+            const typeAliasInfo: TypeAliasInfo = {
+                objectType: "type",
+                name: symbol.getName(),
+                type: checker.typeToString(type),
+                jsDoc: getJsDoc(node)
+            };
+
+            return typeAliasInfo;
+        }
+
+
         if (ts.isFunctionDeclaration(node)) {
             const symbol = checker.getSymbolAtLocation(node.name!);
             if (!symbol) {
@@ -136,6 +143,7 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
             const params = signature!.parameters.map(p => checker.typeToString(checker.getTypeAtLocation(p.valueDeclaration!))).join(', ');
 
             const functionInfo: FunctionInfo = {
+                objectType: "function",
                 name: symbol.getName(),
                 returnType,
                 params,
@@ -154,6 +162,7 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
 
             const type = checker.getTypeAtLocation(node);
             const variableInfo: VariableInfo = {
+                objectType: "variable",
                 name: symbol.getName(),
                 type: checker.typeToString(type),
                 jsDoc: getJsDoc(node)
@@ -173,6 +182,7 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
     const details = checker.getTypeAtLocation(node);
 
     const classInfo: ClassInfo = {
+        objectType: "class",
         name: symbol.getName(),
         extends: [],
         implements: getImplementedInterfaces(node, checker),
@@ -225,6 +235,7 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
         if (ts.isPropertyDeclaration(member) || ts.isGetAccessor(member) || ts.isSetAccessor(member)) {
             const type = checker.getTypeAtLocation(member);
             const propertyInfo: PropertyInfo = {
+                objectType: "property",
                 name: memberSymbol.getName(),
                 type: checker.typeToString(type),
                 visibility,
@@ -253,6 +264,7 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
             });
 
             const methodInfo: MethodInfo = {
+                objectType: "method",
                 name: memberSymbol.getName(),
                 returnType,
                 params,

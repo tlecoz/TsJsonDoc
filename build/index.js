@@ -27,30 +27,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ts = __importStar(require("typescript"));
 const path = __importStar(require("path"));
 const fs = __importStar(require("fs"));
-/*
-function getImplementedInterfaces(type: ts.Type, checker: ts.TypeChecker): string[] {
-    const interfaces: Set<string> = new Set();
-
-    if (type.isClassOrInterface()) {
-
-        const baseTypes = checker.getBaseTypes(type as ts.InterfaceType);
-        for (const baseType of baseTypes) {
-            const symbol = baseType.getSymbol();
-            if (symbol.getName() === "HeadlessGPURenderer") console.log("getImplementedInterfaces #0 = ", symbol.flags, ts.SymbolFlags.Interface)
-            if (symbol && (symbol.flags & ts.SymbolFlags.Interface) !== 0) {
-
-                console.log("symbol.getName() = ", symbol.getName())
-
-                interfaces.add(symbol.name);
-                getImplementedInterfaces(baseType, checker).forEach(i => interfaces.add(i));
-            }
-        }
-    }
-    if (interfaces.size > 0) {
-        console.log("getImplementedInterfaces = ", interfaces)
-    }
-    return Array.from(interfaces);
-}*/
 function getImplementedInterfaces(node, checker) {
     const interfaces = new Set();
     if (node.heritageClauses) {
@@ -77,6 +53,20 @@ function getJsDoc(node) {
 }
 function visit(node, checker) {
     if (!ts.isClassDeclaration(node) && !ts.isInterfaceDeclaration(node)) {
+        if (ts.isTypeAliasDeclaration(node)) {
+            const symbol = checker.getSymbolAtLocation(node.name);
+            if (!symbol) {
+                return;
+            }
+            const type = checker.getTypeAtLocation(node);
+            const typeAliasInfo = {
+                objectType: "type",
+                name: symbol.getName(),
+                type: checker.typeToString(type),
+                jsDoc: getJsDoc(node)
+            };
+            return typeAliasInfo;
+        }
         if (ts.isFunctionDeclaration(node)) {
             const symbol = checker.getSymbolAtLocation(node.name);
             if (!symbol) {
@@ -86,6 +76,7 @@ function visit(node, checker) {
             const returnType = checker.typeToString(signature.getReturnType());
             const params = signature.parameters.map(p => checker.typeToString(checker.getTypeAtLocation(p.valueDeclaration))).join(', ');
             const functionInfo = {
+                objectType: "function",
                 name: symbol.getName(),
                 returnType,
                 params,
@@ -100,6 +91,7 @@ function visit(node, checker) {
             }
             const type = checker.getTypeAtLocation(node);
             const variableInfo = {
+                objectType: "variable",
                 name: symbol.getName(),
                 type: checker.typeToString(type),
                 jsDoc: getJsDoc(node)
@@ -114,6 +106,7 @@ function visit(node, checker) {
     }
     const details = checker.getTypeAtLocation(node);
     const classInfo = {
+        objectType: "class",
         name: symbol.getName(),
         extends: [],
         implements: getImplementedInterfaces(node, checker),
@@ -162,6 +155,7 @@ function visit(node, checker) {
         if (ts.isPropertyDeclaration(member) || ts.isGetAccessor(member) || ts.isSetAccessor(member)) {
             const type = checker.getTypeAtLocation(member);
             const propertyInfo = {
+                objectType: "property",
                 name: memberSymbol.getName(),
                 type: checker.typeToString(type),
                 visibility,
@@ -189,6 +183,7 @@ function visit(node, checker) {
                 };
             });
             const methodInfo = {
+                objectType: "method",
                 name: memberSymbol.getName(),
                 returnType,
                 params,

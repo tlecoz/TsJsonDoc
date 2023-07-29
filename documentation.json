@@ -1,35 +1,42 @@
 {
   "BuiltIns": {
+    "objectType": "class",
     "name": "BuiltIns",
     "statics": {
       "properties": {
         "public": [
           {
+            "objectType": "property",
             "name": "vertexInputs",
             "type": "{ vertexIndex: { builtin: string; type: string; }; instanceIndex: { builtin: string; type: string; }; }",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "vertexOutputs",
             "type": "{ position: { builtin: string; type: string; }; Float: { type: string; vsOut: boolean; }; Vec2: { type: string; vsOut: boolean; }; Vec3: { type: string; vsOut: boolean; }; Vec4: { type: string; vsOut: boolean; }; }",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "fragmentInputs",
             "type": "{ frontFacing: { builtin: string; type: string; }; fragDepth: { builtin: string; type: string; }; sampleIndex: { builtin: string; type: string; }; sampleMask: { builtin: string; type: string; }; }",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "fragmentOutputs",
             "type": "{ color: { builtin: string; type: string; }; }",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "computeInputs",
             "type": "{ localInvocationId: { builtin: string; type: string; }; localInvocationIndex: { builtin: string; type: string; }; globalInvocationId: { builtin: string; type: string; }; workgroupId: { builtin: string; type: string; }; numWorkgroup: { ...; }; }",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "computeOutputs",
             "type": "{ result: { builtin: string; type: string; }; }",
             "visibility": "public"
@@ -39,6 +46,7 @@
     }
   },
   "GPURenderer": {
+    "objectType": "class",
     "name": "GPURenderer",
     "extends": [
       "HeadlessGPURenderer"
@@ -46,36 +54,42 @@
     "properties": {
       "public": [
         {
+          "objectType": "property",
           "name": "canvas",
           "type": "{ width: number; height: number; dimensionChanged: boolean; }",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "texture",
           "type": "GPUTexture",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "width",
           "type": "number",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "height",
           "type": "number",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "dimensionChanged",
           "type": "boolean",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "view",
           "type": "GPUTextureView",
           "visibility": "public",
@@ -84,26 +98,31 @@
       ],
       "protected": [
         {
+          "objectType": "property",
           "name": "domElement",
           "type": "HTMLCanvasElement",
           "visibility": "protected"
         },
         {
+          "objectType": "property",
           "name": "ctx",
           "type": "GPUCanvasContext",
           "visibility": "protected"
         },
         {
+          "objectType": "property",
           "name": "canvasW",
           "type": "number",
           "visibility": "protected"
         },
         {
+          "objectType": "property",
           "name": "canvasH",
           "type": "number",
           "visibility": "protected"
         },
         {
+          "objectType": "property",
           "name": "gpuCtxConfiguration",
           "type": "any",
           "visibility": "protected"
@@ -113,6 +132,7 @@
     "methods": {
       "public": [
         {
+          "objectType": "method",
           "name": "initCanvas",
           "returnType": "Promise<HTMLCanvasElement>",
           "params": [
@@ -128,6 +148,7 @@
           "visibility": "public"
         },
         {
+          "objectType": "method",
           "name": "configure",
           "returnType": "void",
           "params": [
@@ -143,6 +164,7 @@
           "visibility": "public"
         },
         {
+          "objectType": "method",
           "name": "update",
           "returnType": "void",
           "visibility": "public"
@@ -151,118 +173,138 @@
     }
   },
   "GPUType": {
+    "objectType": "class",
     "name": "GPUType",
     "properties": {
       "public": [
         {
+          "objectType": "property",
           "name": "isPrimitive",
           "type": "boolean",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "isVector",
           "type": "boolean",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "isMatrix",
           "type": "boolean",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "isArray",
           "type": "boolean",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "isMatrixOfVectors",
           "type": "boolean",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "isArrayOfVectors",
           "type": "boolean",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "isArrayOfMatrixs",
           "type": "boolean",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "vectorType",
           "type": "number",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "arrayLength",
           "type": "number",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "matrixColumns",
           "type": "number",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "matrixRows",
           "type": "number",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "primitive",
           "type": "\"u32\" | \"f32\" | \"i32\" | \"f16\"",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "nbValues",
           "type": "number",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "byteSize",
           "type": "number",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "byteAlign",
           "type": "number",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "byteAlign",
           "type": "number",
           "visibility": "public",
           "set": true
         },
         {
+          "objectType": "property",
           "name": "dataType",
           "type": "string",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "rawType",
           "type": "string",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "byteValue",
           "type": "number",
           "visibility": "public",
@@ -271,66 +313,79 @@
       ],
       "private": [
         {
+          "objectType": "property",
           "name": "_isVector",
           "type": "boolean",
           "visibility": "private"
         },
         {
+          "objectType": "property",
           "name": "_isMatrix",
           "type": "boolean",
           "visibility": "private"
         },
         {
+          "objectType": "property",
           "name": "_isArray",
           "type": "boolean",
           "visibility": "private"
         },
         {
+          "objectType": "property",
           "name": "_vecType",
           "type": "number",
           "visibility": "private"
         },
         {
+          "objectType": "property",
           "name": "_arrayLen",
           "type": "number",
           "visibility": "private"
         },
         {
+          "objectType": "property",
           "name": "_primitive",
           "type": "\"u32\" | \"f32\" | \"i32\" | \"f16\"",
           "visibility": "private"
         },
         {
+          "objectType": "property",
           "name": "_matrixColumns",
           "type": "number",
           "visibility": "private"
         },
         {
+          "objectType": "property",
           "name": "_matrixRows",
           "type": "number",
           "visibility": "private"
         },
         {
+          "objectType": "property",
           "name": "_alignOf",
           "type": "number",
           "visibility": "private"
         },
         {
+          "objectType": "property",
           "name": "_sizeOf",
           "type": "number",
           "visibility": "private"
         },
         {
+          "objectType": "property",
           "name": "_dataType",
           "type": "string",
           "visibility": "private"
         },
         {
+          "objectType": "property",
           "name": "_rawType",
           "type": "string",
           "visibility": "private"
         },
         {
+          "objectType": "property",
           "name": "getPrimitiveDataType",
           "type": "(dataType: string, start: number) => void",
           "visibility": "private"
@@ -340,6 +395,7 @@
     "methods": {
       "private": [
         {
+          "objectType": "method",
           "name": "renameDataType",
           "returnType": "string",
           "params": [
@@ -351,6 +407,7 @@
           "visibility": "private"
         },
         {
+          "objectType": "method",
           "name": "getMatrixBytesStructure",
           "returnType": "void",
           "params": [
@@ -373,6 +430,7 @@
     }
   },
   "HeadlessGPURenderer": {
+    "objectType": "class",
     "name": "HeadlessGPURenderer",
     "implements": [
       "IRenderer"
@@ -380,54 +438,63 @@
     "properties": {
       "public": [
         {
+          "objectType": "property",
           "name": "firstPipeline",
           "type": "RenderPipeline",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "nbPipeline",
           "type": "number",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "useSinglePipeline",
           "type": "boolean",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "dimensionChanged",
           "type": "boolean",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "canvas",
           "type": "{ width: number; height: number; dimensionChanged: boolean; }",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "width",
           "type": "number",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "height",
           "type": "number",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "texture",
           "type": "GPUTexture",
           "visibility": "public",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "view",
           "type": "GPUTextureView",
           "visibility": "public",
@@ -436,31 +503,37 @@
       ],
       "protected": [
         {
+          "objectType": "property",
           "name": "textureObj",
           "type": "Texture",
           "visibility": "protected"
         },
         {
+          "objectType": "property",
           "name": "dimension",
           "type": "{ width: number; height: number; dimensionChanged: boolean; }",
           "visibility": "protected"
         },
         {
+          "objectType": "property",
           "name": "renderPipelines",
           "type": "RenderPipeline[]",
           "visibility": "protected"
         },
         {
+          "objectType": "property",
           "name": "useTextureInComputeShader",
           "type": "any",
           "visibility": "protected"
         },
         {
+          "objectType": "property",
           "name": "deviceId",
           "type": "number",
           "visibility": "protected"
         },
         {
+          "objectType": "property",
           "name": "nbColorAttachment",
           "type": "number",
           "visibility": "protected"
@@ -470,6 +543,7 @@
     "methods": {
       "public": [
         {
+          "objectType": "method",
           "name": "init",
           "returnType": "Promise<any>",
           "params": [
@@ -493,6 +567,7 @@
           "visibility": "public"
         },
         {
+          "objectType": "method",
           "name": "addPipeline",
           "returnType": "void",
           "params": [
@@ -508,6 +583,7 @@
           "visibility": "public"
         },
         {
+          "objectType": "method",
           "name": "resize",
           "returnType": "void",
           "params": [
@@ -523,11 +599,13 @@
           "visibility": "public"
         },
         {
+          "objectType": "method",
           "name": "destroy",
           "returnType": "void",
           "visibility": "public"
         },
         {
+          "objectType": "method",
           "name": "update",
           "returnType": "void",
           "visibility": "public"
@@ -536,10 +614,12 @@
     }
   },
   "HighLevelParser": {
+    "objectType": "class",
     "name": "HighLevelParser",
     "properties": {
       "protected": [
         {
+          "objectType": "property",
           "name": "targetIsBindgroup",
           "type": "boolean",
           "visibility": "protected"
@@ -549,6 +629,7 @@
     "methods": {
       "public": [
         {
+          "objectType": "method",
           "name": "parse",
           "returnType": "any",
           "params": [
@@ -570,6 +651,7 @@
       ],
       "protected": [
         {
+          "objectType": "method",
           "name": "parseShaderBuiltins",
           "returnType": "any",
           "params": [
@@ -581,6 +663,7 @@
           "visibility": "protected"
         },
         {
+          "objectType": "method",
           "name": "parseVertexBufferIOs",
           "returnType": "any",
           "params": [
@@ -592,6 +675,7 @@
           "visibility": "protected"
         },
         {
+          "objectType": "method",
           "name": "parseImageTextureIOs",
           "returnType": "any",
           "params": [
@@ -603,6 +687,7 @@
           "visibility": "protected"
         },
         {
+          "objectType": "method",
           "name": "parseVertexBuffers",
           "returnType": "any",
           "params": [
@@ -614,6 +699,7 @@
           "visibility": "protected"
         },
         {
+          "objectType": "method",
           "name": "parseVertexAttributes",
           "returnType": "any",
           "params": [
@@ -625,6 +711,7 @@
           "visibility": "protected"
         },
         {
+          "objectType": "method",
           "name": "parseUniformBuffers",
           "returnType": "any",
           "params": [
@@ -636,6 +723,7 @@
           "visibility": "protected"
         },
         {
+          "objectType": "method",
           "name": "parseUniform",
           "returnType": "any",
           "params": [
@@ -647,6 +735,7 @@
           "visibility": "protected"
         },
         {
+          "objectType": "method",
           "name": "parseImageTextureArray",
           "returnType": "any",
           "params": [
@@ -658,6 +747,7 @@
           "visibility": "protected"
         },
         {
+          "objectType": "method",
           "name": "parseImageTexture",
           "returnType": "any",
           "params": [
@@ -669,6 +759,7 @@
           "visibility": "protected"
         },
         {
+          "objectType": "method",
           "name": "parseTextureSampler",
           "returnType": "any",
           "params": [
@@ -680,6 +771,7 @@
           "visibility": "protected"
         },
         {
+          "objectType": "method",
           "name": "parseVideoTexture",
           "returnType": "any",
           "params": [
@@ -691,6 +783,7 @@
           "visibility": "protected"
         },
         {
+          "objectType": "method",
           "name": "parseCubeMapTexture",
           "returnType": "any",
           "params": [
@@ -702,6 +795,7 @@
           "visibility": "protected"
         },
         {
+          "objectType": "method",
           "name": "parseDrawConfig",
           "returnType": "any",
           "params": [
@@ -717,6 +811,7 @@
           "visibility": "protected"
         },
         {
+          "objectType": "method",
           "name": "parseBindgroup",
           "returnType": "any",
           "params": [
@@ -728,6 +823,7 @@
           "visibility": "protected"
         },
         {
+          "objectType": "method",
           "name": "firstPass",
           "returnType": "any",
           "params": [
@@ -747,6 +843,7 @@
           "visibility": "protected"
         },
         {
+          "objectType": "method",
           "name": "parseHighLevelObj",
           "returnType": "any",
           "params": [
@@ -758,6 +855,7 @@
           "visibility": "protected"
         },
         {
+          "objectType": "method",
           "name": "findAndFixRepetitionInDataStructure",
           "returnType": "any",
           "params": [
@@ -769,6 +867,7 @@
           "visibility": "protected"
         },
         {
+          "objectType": "method",
           "name": "parseBindgroupEntries",
           "returnType": "any",
           "params": [
@@ -785,6 +884,7 @@
       "properties": {
         "private": [
           {
+            "objectType": "property",
             "name": "instance",
             "type": "HighLevelParser",
             "visibility": "private"
@@ -794,6 +894,7 @@
       "methods": {
         "public": [
           {
+            "objectType": "method",
             "name": "parse",
             "returnType": "any",
             "params": [
@@ -817,58 +918,68 @@
     }
   },
   "IRenderer": {
+    "objectType": "class",
     "name": "IRenderer",
     "properties": {
       "protected": [
         {
+          "objectType": "property",
           "name": "firstPipeline",
           "type": "RenderPipeline",
           "visibility": "protected",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "nbPipeline",
           "type": "number",
           "visibility": "protected",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "useSinglePipeline",
           "type": "boolean",
           "visibility": "protected",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "dimensionChanged",
           "type": "boolean",
           "visibility": "protected",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "canvas",
           "type": "{ width: number; height: number; dimensionChanged: boolean; }",
           "visibility": "protected",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "width",
           "type": "number",
           "visibility": "protected",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "height",
           "type": "number",
           "visibility": "protected",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "texture",
           "type": "GPUTexture",
           "visibility": "protected",
           "get": true
         },
         {
+          "objectType": "property",
           "name": "view",
           "type": "GPUTextureView",
           "visibility": "protected",
@@ -878,23 +989,27 @@
     }
   },
   "WgslUtils": {
+    "objectType": "class",
     "name": "WgslUtils",
     "statics": {
       "properties": {
         "public": [
           {
+            "objectType": "property",
             "name": "rotationX",
             "type": "string",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "rotationY",
             "type": "string",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "rotationZ",
             "type": "string",
             "visibility": "public",
@@ -905,33 +1020,39 @@
     }
   },
   "XGPU": {
+    "objectType": "class",
     "name": "XGPU",
     "statics": {
       "properties": {
         "public": [
           {
+            "objectType": "property",
             "name": "ready",
             "type": "boolean",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "deviceLost",
             "type": "boolean",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "deviceId",
             "type": "number",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "loseDeviceRecently",
             "type": "boolean",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "device",
             "type": "GPUDevice",
             "visibility": "public",
@@ -940,26 +1061,31 @@
         ],
         "private": [
           {
+            "objectType": "property",
             "name": "_ready",
             "type": "boolean",
             "visibility": "private"
           },
           {
+            "objectType": "property",
             "name": "requestAdapterOptions",
             "type": "GPURequestAdapterOptions",
             "visibility": "private"
           },
           {
+            "objectType": "property",
             "name": "losingDevice",
             "type": "boolean",
             "visibility": "private"
           },
           {
+            "objectType": "property",
             "name": "deviceLostTime",
             "type": "number",
             "visibility": "private"
           },
           {
+            "objectType": "property",
             "name": "_preferedCanvasFormat",
             "type": "GPUTextureFormat",
             "visibility": "private"
@@ -967,6 +1093,7 @@
         ],
         "protected": [
           {
+            "objectType": "property",
             "name": "gpuDevice",
             "type": "GPUDevice",
             "visibility": "protected"
@@ -976,6 +1103,7 @@
       "methods": {
         "public": [
           {
+            "objectType": "method",
             "name": "debugUsage",
             "returnType": "\"GPUBufferUsage.STORAGE\" | \"GPUBufferUsage.COPY_DST\" | \"GPUBufferUsage.VERTEX\" | \"GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST\" | \"GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST | GPUBufferUsage.VERTEX\" | ... 5 more ... | \"\"",
             "params": [
@@ -987,6 +1115,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "debugShaderStage",
             "returnType": "\"\" | \"GPUShaderStage.COMPUTE\" | \"GPUShaderStage.VERTEX\" | \"GPUShaderStage.FRAGMENT\"",
             "params": [
@@ -998,16 +1127,19 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "loseDevice",
             "returnType": "void",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "clear",
             "returnType": "void",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "init",
             "returnType": "Promise<void>",
             "params": [
@@ -1019,11 +1151,13 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "getPreferredCanvasFormat",
             "returnType": "GPUTextureFormat",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "setPreferredCanvasFormat",
             "returnType": "void",
             "params": [
@@ -1035,11 +1169,13 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "destroy",
             "returnType": "void",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "createBindgroup",
             "returnType": "GPUBindGroup",
             "params": [
@@ -1051,6 +1187,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "createBindgroupLayout",
             "returnType": "GPUBindGroupLayout",
             "params": [
@@ -1062,6 +1199,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "createPipelineLayout",
             "returnType": "GPUPipelineLayout",
             "params": [
@@ -1073,6 +1211,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "createRenderPipeline",
             "returnType": "GPURenderPipeline",
             "params": [
@@ -1084,6 +1223,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "createComputePipeline",
             "returnType": "GPUComputePipeline",
             "params": [
@@ -1095,6 +1235,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "createStagingBuffer",
             "returnType": "GPUBuffer",
             "params": [
@@ -1111,6 +1252,7 @@
   },
   "pipelines": {
     "ComputePipeline": {
+      "objectType": "class",
       "name": "ComputePipeline",
       "extends": [
         "Pipeline"
@@ -1118,21 +1260,25 @@
       "properties": {
         "public": [
           {
+            "objectType": "property",
             "name": "computeShader",
             "type": "ComputeShader",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "onReceiveData",
             "type": "(datas: Float32Array) => void",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "workgroups",
             "type": "number[]",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "useRenderPipeline",
             "type": "boolean",
             "visibility": "public",
@@ -1141,81 +1287,97 @@
         ],
         "protected": [
           {
+            "objectType": "property",
             "name": "gpuComputePipeline",
             "type": "GPUComputePipeline",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "dispatchWorkgroup",
             "type": "number[]",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "bufferSize",
             "type": "number",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "textureSize",
             "type": "number[]",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "stagingBuffer",
             "type": "GPUBuffer",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "bufferIOs",
             "type": "VertexBuffer[]",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "textureIOs",
             "type": "ImageTexture[]",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "vertexBufferIOs",
             "type": "VertexBufferIO[]",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "imageTextureIOs",
             "type": "ImageTextureIO[]",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "resourceIOs",
             "type": "(VertexBufferIO | ImageTextureIO)[]",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "nbVertexMax",
             "type": "number",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "widthMax",
             "type": "number",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "heightMax",
             "type": "number",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "deviceId",
             "type": "number",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "lastFrameTime",
             "type": "number",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "rebuildingAfterDeviceLost",
             "type": "boolean",
             "visibility": "protected"
@@ -1225,6 +1387,7 @@
       "methods": {
         "public": [
           {
+            "objectType": "method",
             "name": "initFromObject",
             "returnType": "{ [key: string]: unknown; bindgroups?: any; computeShader: string | { outputs?: any; main: string; inputs?: any; constants?: string; }; }",
             "params": [
@@ -1236,6 +1399,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "setWorkgroups",
             "returnType": "void",
             "params": [
@@ -1255,6 +1419,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "setDispatchWorkgroup",
             "returnType": "void",
             "params": [
@@ -1274,21 +1439,25 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "update",
             "returnType": "void",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "clearAfterDeviceLostAndRebuild",
             "returnType": "void",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "buildGpuPipeline",
             "returnType": "GPUComputePipeline",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "nextFrame",
             "returnType": "Promise<void>",
             "visibility": "public"
@@ -1296,11 +1465,13 @@
         ],
         "protected": [
           {
+            "objectType": "method",
             "name": "initResourceIOs",
             "returnType": "void",
             "visibility": "protected"
           },
           {
+            "objectType": "method",
             "name": "setupDefaultWorkgroups",
             "returnType": "void",
             "visibility": "protected"
@@ -1309,35 +1480,42 @@
       }
     },
     "DrawConfig": {
+      "objectType": "class",
       "name": "DrawConfig",
       "properties": {
         "public": [
           {
+            "objectType": "property",
             "name": "vertexCount",
             "type": "number",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "instanceCount",
             "type": "number",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "firstVertexId",
             "type": "number",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "firstInstanceId",
             "type": "number",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "baseVertex",
             "type": "number",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "indexBuffer",
             "type": "IndexBuffer",
             "visibility": "public"
@@ -1345,11 +1523,13 @@
         ],
         "protected": [
           {
+            "objectType": "property",
             "name": "pipeline",
             "type": "RenderPipeline",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "setupDrawCompleted",
             "type": "boolean",
             "visibility": "protected"
@@ -1359,6 +1539,7 @@
       "methods": {
         "public": [
           {
+            "objectType": "method",
             "name": "draw",
             "returnType": "void",
             "params": [
@@ -1373,6 +1554,7 @@
       }
     },
     "MixedPipeline": {
+      "objectType": "class",
       "name": "MixedPipeline",
       "extends": [
         "RenderPipeline",
@@ -1381,6 +1563,7 @@
       "properties": {
         "public": [
           {
+            "objectType": "property",
             "name": "computePipeline",
             "type": "ComputePipeline",
             "visibility": "public",
@@ -1389,6 +1572,7 @@
         ],
         "protected": [
           {
+            "objectType": "property",
             "name": "_computePipeline",
             "type": "ComputePipeline",
             "visibility": "protected"
@@ -1398,6 +1582,7 @@
       "methods": {
         "public": [
           {
+            "objectType": "method",
             "name": "buildPipelines",
             "returnType": "void",
             "visibility": "public"
@@ -1406,74 +1591,88 @@
       }
     },
     "Pipeline": {
+      "objectType": "class",
       "name": "Pipeline",
       "properties": {
         "public": [
           {
+            "objectType": "property",
             "name": "description",
             "type": "any",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "nbVertex",
             "type": "number",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "bindGroups",
             "type": "Bindgroups",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "vertexBuffers",
             "type": "VertexBuffer[]",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "vertexShader",
             "type": "VertexShader",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "fragmentShader",
             "type": "FragmentShader",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "type",
             "type": "\"render\" | \"compute\" | \"compute_mixed\"",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "isComputePipeline",
             "type": "boolean",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "isRenderPipeline",
             "type": "boolean",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "isMixedPipeline",
             "type": "boolean",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "resources",
             "type": "any",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "debug",
             "type": "string",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "pipelineCount",
             "type": "number",
             "visibility": "public"
@@ -1481,26 +1680,31 @@
         ],
         "protected": [
           {
+            "objectType": "property",
             "name": "vertexBufferLayouts",
             "type": "Iterable<GPUVertexBufferLayout>",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "gpuBindgroups",
             "type": "GPUBindGroup[]",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "gpuBindGroupLayouts",
             "type": "GPUBindGroupLayout[]",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "gpuPipelineLayout",
             "type": "GPUPipelineLayout",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "_resources",
             "type": "any",
             "visibility": "protected"
@@ -1510,11 +1714,13 @@
       "methods": {
         "public": [
           {
+            "objectType": "method",
             "name": "clearAfterDeviceLostAndRebuild",
             "returnType": "void",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "initFromObject",
             "returnType": "void",
             "params": [
@@ -1526,6 +1732,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "addBindgroup",
             "returnType": "void",
             "params": [
@@ -1537,6 +1744,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "update",
             "returnType": "void",
             "params": [
@@ -1548,6 +1756,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "getResourceName",
             "returnType": "string",
             "params": [
@@ -1559,6 +1768,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "createPipelineInstanceArray",
             "returnType": "any[]",
             "params": [
@@ -1576,11 +1786,13 @@
         ],
         "protected": [
           {
+            "objectType": "method",
             "name": "createVertexBufferLayout",
             "returnType": "any",
             "visibility": "protected"
           },
           {
+            "objectType": "method",
             "name": "createShaderInput",
             "returnType": "ShaderStruct",
             "params": [
@@ -1596,16 +1808,19 @@
             "visibility": "protected"
           },
           {
+            "objectType": "method",
             "name": "mergeBindgroupShaders",
             "returnType": "void",
             "visibility": "protected"
           },
           {
+            "objectType": "method",
             "name": "createLayouts",
             "returnType": "void",
             "visibility": "protected"
           },
           {
+            "objectType": "method",
             "name": "initPipelineResources",
             "returnType": "void",
             "params": [
@@ -1617,6 +1832,7 @@
             "visibility": "protected"
           },
           {
+            "objectType": "method",
             "name": "build",
             "returnType": "void",
             "visibility": "protected"
@@ -1627,6 +1843,7 @@
         "methods": {
           "public": [
             {
+              "objectType": "method",
               "name": "getResourceDefinition",
               "returnType": "any",
               "params": [
@@ -1642,6 +1859,7 @@
       }
     },
     "RenderPipeline": {
+      "objectType": "class",
       "name": "RenderPipeline",
       "extends": [
         "Pipeline"
@@ -1649,194 +1867,228 @@
       "properties": {
         "public": [
           {
+            "objectType": "property",
             "name": "renderer",
             "type": "IRenderer",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "drawConfig",
             "type": "DrawConfig",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "outputColor",
             "type": "any",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "renderPassDescriptor",
             "type": "any",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "debug",
             "type": "string",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "onDrawBegin",
             "type": "() => void",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "onDrawEnd",
             "type": "() => void",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "onDraw",
             "type": "(drawCallId: number) => void",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "canvas",
             "type": "any",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "depthStencilTexture",
             "type": "DepthStencilTexture",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "clearValue",
             "type": "{ r: number; g: number; b: number; a: number; }",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "vertexCount",
             "type": "number",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "vertexCount",
             "type": "number",
             "visibility": "public",
             "set": true
           },
           {
+            "objectType": "property",
             "name": "instanceCount",
             "type": "number",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "instanceCount",
             "type": "number",
             "visibility": "public",
             "set": true
           },
           {
+            "objectType": "property",
             "name": "firstVertexId",
             "type": "number",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "firstVertexId",
             "type": "number",
             "visibility": "public",
             "set": true
           },
           {
+            "objectType": "property",
             "name": "firstInstanceId",
             "type": "number",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "firstInstanceId",
             "type": "number",
             "visibility": "public",
             "set": true
           },
           {
+            "objectType": "property",
             "name": "baseVertex",
             "type": "number",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "baseVertex",
             "type": "number",
             "visibility": "public",
             "set": true
           },
           {
+            "objectType": "property",
             "name": "renderPassView",
             "type": "GPUTextureView",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "renderPass",
             "type": "RenderPassTexture",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "blendMode",
             "type": "BlendMode",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "onRebuildStartAfterDeviceLost",
             "type": "() => void",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "pipeline",
             "type": "GPURenderPipeline",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "cullMode",
             "type": "\"front\" | \"back\" | \"none\"",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "cullMode",
             "type": "\"front\" | \"back\" | \"none\"",
             "visibility": "public",
             "set": true
           },
           {
+            "objectType": "property",
             "name": "topology",
             "type": "\"point-list\" | \"line-list\" | \"line-strip\" | \"triangle-list\" | \"triangle-strip\"",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "topology",
             "type": "\"point-list\" | \"line-list\" | \"line-strip\" | \"triangle-list\" | \"triangle-strip\"",
             "visibility": "public",
             "set": true
           },
           {
+            "objectType": "property",
             "name": "frontFace",
             "type": "\"ccw\" | \"cw\"",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "frontFace",
             "type": "\"ccw\" | \"cw\"",
             "visibility": "public",
             "set": true
           },
           {
+            "objectType": "property",
             "name": "stripIndexFormat",
             "type": "\"uint16\" | \"uint32\"",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "stripIndexFormat",
             "type": "\"uint16\" | \"uint32\"",
             "visibility": "public",
@@ -1845,16 +2097,19 @@
         ],
         "private": [
           {
+            "objectType": "property",
             "name": "clearOpReady",
             "type": "boolean",
             "visibility": "private"
           },
           {
+            "objectType": "property",
             "name": "rendererUseSinglePipeline",
             "type": "boolean",
             "visibility": "private"
           },
           {
+            "objectType": "property",
             "name": "resourceDefined",
             "type": "boolean",
             "visibility": "private",
@@ -1863,26 +2118,31 @@
         ],
         "protected": [
           {
+            "objectType": "property",
             "name": "_depthStencilTexture",
             "type": "DepthStencilTexture",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "multisampleTexture",
             "type": "MultiSampleTexture",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "renderPassTexture",
             "type": "RenderPassTexture",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "gpuPipeline",
             "type": "GPURenderPipeline",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "rebuildingAfterDeviceLost",
             "type": "boolean",
             "visibility": "protected"
@@ -1892,11 +2152,13 @@
       "methods": {
         "public": [
           {
+            "objectType": "method",
             "name": "destroy",
             "returnType": "void",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "initFromObject",
             "returnType": "{ [key: string]: unknown; cullMode?: \"front\" | \"back\" | \"none\"; topology?: \"point-list\" | \"line-list\" | \"line-strip\" | \"triangle-list\" | \"triangle-strip\"; frontFace?: \"ccw\" | \"cw\"; stripIndexFormat?: \"uint16\" | \"uint32\"; ... 10 more ...; fragmentShader?: string | { ...; }; }",
             "params": [
@@ -1908,6 +2170,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "createColorAttachment",
             "returnType": "any",
             "params": [
@@ -1923,6 +2186,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "setupDraw",
             "returnType": "void",
             "params": [
@@ -1934,6 +2198,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "setupMultiSampleView",
             "returnType": "void",
             "params": [
@@ -1945,6 +2210,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "setupDepthStencilView",
             "returnType": "void",
             "params": [
@@ -1964,16 +2230,19 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "clearAfterDeviceLostAndRebuild",
             "returnType": "void",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "buildGpuPipeline",
             "returnType": "GPURenderPipeline",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "beginRenderPass",
             "returnType": "GPURenderPassEncoder",
             "params": [
@@ -1993,11 +2262,13 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "update",
             "returnType": "void",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "draw",
             "returnType": "void",
             "params": [
@@ -2009,6 +2280,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "end",
             "returnType": "void",
             "params": [
@@ -2026,11 +2298,13 @@
         ],
         "private": [
           {
+            "objectType": "method",
             "name": "getFragmentShaderColorOptions",
             "returnType": "any",
             "visibility": "private"
           },
           {
+            "objectType": "method",
             "name": "handleOutputColor",
             "returnType": "void",
             "params": [
@@ -2044,6 +2318,7 @@
         ],
         "protected": [
           {
+            "objectType": "method",
             "name": "cleanInputs",
             "returnType": "any[]",
             "visibility": "protected"
@@ -2053,20 +2328,24 @@
     },
     "plugins": {
       "PipelinePlugin": {
+        "objectType": "class",
         "name": "PipelinePlugin",
         "properties": {
           "public": [
             {
+              "objectType": "property",
               "name": "bindgroupResources",
               "type": "any",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "vertexShader",
               "type": "{ outputs?: any; inputs?: any; constants?: string; main?: string | string[]; }",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "fragmentShader",
               "type": "{ outputs?: any; inputs?: any; constants?: string; main?: string | string[]; }",
               "visibility": "public"
@@ -2074,11 +2353,13 @@
           ],
           "protected": [
             {
+              "objectType": "property",
               "name": "target",
               "type": "Pipeline",
               "visibility": "protected"
             },
             {
+              "objectType": "property",
               "name": "requiredNames",
               "type": "any",
               "visibility": "protected"
@@ -2088,6 +2369,7 @@
         "methods": {
           "public": [
             {
+              "objectType": "method",
               "name": "apply",
               "returnType": "PipelinePlugin",
               "params": [
@@ -2108,61 +2390,72 @@
     },
     "resources": {
       "IndexBuffer": {
+        "objectType": "class",
         "name": "IndexBuffer",
         "properties": {
           "public": [
             {
+              "objectType": "property",
               "name": "gpuResource",
               "type": "GPUBuffer",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "descriptor",
               "type": "IndexBufferDescriptor",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "mustUpdateData",
               "type": "boolean",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "dataType",
               "type": "GPUIndexFormat",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "nbPoint",
               "type": "number",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "nbPoint",
               "type": "number",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "offset",
               "type": "number",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "offset",
               "type": "number",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "datas",
               "type": "Uint32Array | Uint16Array",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "datas",
               "type": "Uint32Array | Uint16Array",
               "visibility": "public",
@@ -2171,6 +2464,7 @@
           ],
           "private": [
             {
+              "objectType": "property",
               "name": "_datas",
               "type": "Uint32Array | Uint16Array",
               "visibility": "private"
@@ -2180,21 +2474,25 @@
         "methods": {
           "public": [
             {
+              "objectType": "method",
               "name": "destroyGpuResource",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createGpuResource",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "getBufferSize",
               "returnType": "number",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "updateDatas",
               "returnType": "void",
               "params": [
@@ -2218,11 +2516,13 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "update",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "apply",
               "returnType": "void",
               "params": [
@@ -2242,21 +2542,25 @@
       },
       "blendmodes": {
         "AlphaBlendMode": {
+          "objectType": "class",
           "name": "AlphaBlendMode",
           "extends": [
             "BlendMode"
           ]
         },
         "BlendMode": {
+          "objectType": "class",
           "name": "BlendMode",
           "properties": {
             "public": [
               {
+                "objectType": "property",
                 "name": "color",
                 "type": "{ operation: \"add\" | \"subtract\" | \"reverse-subtract\" | \"min\" | \"max\"; srcFactor: \"zero\" | \"one\" | \"src\" | \"one-minus-src\" | \"src-alpha\" | \"one-minus-src-alpha\" | \"dst\" | \"one-minus-dst\" | \"one-minus-dst-alpha\" | \"src-alpha-saturated\" | \"constant\" | \"one-minus-constant\"; dstFactor: \"zero\" | ... 10 more ... | \"one-min...",
                 "visibility": "public"
               },
               {
+                "objectType": "property",
                 "name": "alpha",
                 "type": "{ operation: \"add\" | \"subtract\" | \"reverse-subtract\" | \"min\" | \"max\"; srcFactor: \"zero\" | \"one\" | \"src\" | \"one-minus-src\" | \"src-alpha\" | \"one-minus-src-alpha\" | \"dst\" | \"one-minus-dst\" | \"one-minus-dst-alpha\" | \"src-alpha-saturated\" | \"constant\" | \"one-minus-constant\"; dstFactor: \"zero\" | ... 10 more ... | \"one-min...",
                 "visibility": "public"
@@ -2267,6 +2571,7 @@
       },
       "textures": {
         "DepthStencilTexture": {
+          "objectType": "class",
           "name": "DepthStencilTexture",
           "extends": [
             "Texture"
@@ -2277,24 +2582,28 @@
           "properties": {
             "public": [
               {
+                "objectType": "property",
                 "name": "description",
                 "type": "{ depthWriteEnabled: boolean; depthCompare: string; format: string; sampleCount?: number; }",
                 "visibility": "public",
                 "get": true
               },
               {
+                "objectType": "property",
                 "name": "attachment",
                 "type": "any",
                 "visibility": "public",
                 "get": true
               },
               {
+                "objectType": "property",
                 "name": "isDepthTexture",
                 "type": "boolean",
                 "visibility": "public",
                 "get": true
               },
               {
+                "objectType": "property",
                 "name": "mustBeTransfered",
                 "type": "boolean",
                 "visibility": "public"
@@ -2302,11 +2611,13 @@
             ],
             "private": [
               {
+                "objectType": "property",
                 "name": "_description",
                 "type": "{ depthWriteEnabled: boolean; depthCompare: string; format: string; sampleCount?: number; }",
                 "visibility": "private"
               },
               {
+                "objectType": "property",
                 "name": "_attachment",
                 "type": "any",
                 "visibility": "private"
@@ -2314,11 +2625,13 @@
             ],
             "protected": [
               {
+                "objectType": "property",
                 "name": "_isDepthTexture",
                 "type": "boolean",
                 "visibility": "protected"
               },
               {
+                "objectType": "property",
                 "name": "_visibility",
                 "type": "GPUShaderStageFlags",
                 "visibility": "protected"
@@ -2328,6 +2641,7 @@
           "methods": {
             "public": [
               {
+                "objectType": "method",
                 "name": "setPipelineType",
                 "returnType": "void",
                 "params": [
@@ -2339,6 +2653,7 @@
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "createBindGroupEntry",
                 "returnType": "{ binding: number; resource: GPUTextureView; }",
                 "params": [
@@ -2350,6 +2665,7 @@
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "createBindGroupLayoutEntry",
                 "returnType": "{ binding: number; visibility: number; texture: { sampleType: string; }; }",
                 "params": [
@@ -2361,6 +2677,7 @@
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "createDeclaration",
                 "returnType": "string",
                 "params": [
@@ -2380,16 +2697,19 @@
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "createGpuResource",
                 "returnType": "void",
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "destroyGpuResource",
                 "returnType": "void",
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "resize",
                 "returnType": "void",
                 "params": [
@@ -2405,6 +2725,7 @@
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "clone",
                 "returnType": "DepthStencilTexture",
                 "visibility": "public"
@@ -2413,6 +2734,7 @@
           }
         },
         "DepthTextureArray": {
+          "objectType": "class",
           "name": "DepthTextureArray",
           "extends": [
             "ImageTextureArray",
@@ -2421,18 +2743,21 @@
           "properties": {
             "public": [
               {
+                "objectType": "property",
                 "name": "description",
                 "type": "{ depthWriteEnabled: boolean; depthCompare: string; format: string; sampleCount?: number; }",
                 "visibility": "public",
                 "get": true
               },
               {
+                "objectType": "property",
                 "name": "attachment",
                 "type": "any",
                 "visibility": "public",
                 "get": true
               },
               {
+                "objectType": "property",
                 "name": "isDepthTexture",
                 "type": "boolean",
                 "visibility": "public",
@@ -2441,11 +2766,13 @@
             ],
             "private": [
               {
+                "objectType": "property",
                 "name": "_description",
                 "type": "{ depthWriteEnabled: boolean; depthCompare: string; format: string; sampleCount?: number; }",
                 "visibility": "private"
               },
               {
+                "objectType": "property",
                 "name": "_attachment",
                 "type": "any",
                 "visibility": "private"
@@ -2453,6 +2780,7 @@
             ],
             "protected": [
               {
+                "objectType": "property",
                 "name": "_visibility",
                 "type": "GPUShaderStageFlags",
                 "visibility": "protected"
@@ -2462,6 +2790,7 @@
           "methods": {
             "public": [
               {
+                "objectType": "method",
                 "name": "setPipelineType",
                 "returnType": "void",
                 "params": [
@@ -2473,6 +2802,7 @@
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "createBindGroupLayoutEntry",
                 "returnType": "{ binding: number; visibility: number; texture: GPUTextureBindingLayout; }",
                 "params": [
@@ -2484,6 +2814,7 @@
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "createDeclaration",
                 "returnType": "string",
                 "params": [
@@ -2506,6 +2837,7 @@
           }
         },
         "MultiSampleTexture": {
+          "objectType": "class",
           "name": "MultiSampleTexture",
           "extends": [
             "Texture"
@@ -2513,12 +2845,14 @@
           "properties": {
             "public": [
               {
+                "objectType": "property",
                 "name": "description",
                 "type": "{ count: number; mask: number; alphaToCoverageEnabled: boolean; }",
                 "visibility": "public",
                 "get": true
               },
               {
+                "objectType": "property",
                 "name": "resolveTarget",
                 "type": "any",
                 "visibility": "public",
@@ -2527,6 +2861,7 @@
             ],
             "private": [
               {
+                "objectType": "property",
                 "name": "_description",
                 "type": "{ count: number; mask: number; alphaToCoverageEnabled: boolean; }",
                 "visibility": "private"
@@ -2536,6 +2871,7 @@
           "methods": {
             "public": [
               {
+                "objectType": "method",
                 "name": "create",
                 "returnType": "void",
                 "visibility": "public"
@@ -2544,6 +2880,7 @@
           }
         },
         "RenderPassTexture": {
+          "objectType": "class",
           "name": "RenderPassTexture",
           "extends": [
             "ImageTexture"
@@ -2551,24 +2888,28 @@
           "properties": {
             "public": [
               {
+                "objectType": "property",
                 "name": "width",
                 "type": "number",
                 "visibility": "public",
                 "get": true
               },
               {
+                "objectType": "property",
                 "name": "height",
                 "type": "number",
                 "visibility": "public",
                 "get": true
               },
               {
+                "objectType": "property",
                 "name": "source",
                 "type": "any",
                 "visibility": "public",
                 "get": true
               },
               {
+                "objectType": "property",
                 "name": "source",
                 "type": "any",
                 "visibility": "public",
@@ -2579,6 +2920,7 @@
           "methods": {
             "public": [
               {
+                "objectType": "method",
                 "name": "createBindGroupEntry",
                 "returnType": "{ binding: number; resource: GPUTextureView; }",
                 "params": [
@@ -2590,6 +2932,7 @@
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "update",
                 "returnType": "void",
                 "visibility": "public"
@@ -2598,50 +2941,59 @@
           }
         },
         "Texture": {
+          "objectType": "class",
           "name": "Texture",
           "properties": {
             "public": [
               {
+                "objectType": "property",
                 "name": "descriptor",
                 "type": "TextureDescriptor",
                 "visibility": "public"
               },
               {
+                "objectType": "property",
                 "name": "gpuResource",
                 "type": "GPUTexture",
                 "visibility": "public"
               },
               {
+                "objectType": "property",
                 "name": "sampleCount",
                 "type": "number",
                 "visibility": "public",
                 "get": true
               },
               {
+                "objectType": "property",
                 "name": "format",
                 "type": "any",
                 "visibility": "public",
                 "get": true
               },
               {
+                "objectType": "property",
                 "name": "size",
                 "type": "GPUExtent3D",
                 "visibility": "public",
                 "get": true
               },
               {
+                "objectType": "property",
                 "name": "usage",
                 "type": "number",
                 "visibility": "public",
                 "get": true
               },
               {
+                "objectType": "property",
                 "name": "view",
                 "type": "GPUTextureView",
                 "visibility": "public",
                 "get": true
               },
               {
+                "objectType": "property",
                 "name": "time",
                 "type": "number",
                 "visibility": "public"
@@ -2649,11 +3001,13 @@
             ],
             "protected": [
               {
+                "objectType": "property",
                 "name": "_view",
                 "type": "GPUTextureView",
                 "visibility": "protected"
               },
               {
+                "objectType": "property",
                 "name": "deviceId",
                 "type": "number",
                 "visibility": "protected"
@@ -2663,26 +3017,31 @@
           "methods": {
             "public": [
               {
+                "objectType": "method",
                 "name": "destroy",
                 "returnType": "void",
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "create",
                 "returnType": "void",
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "createGpuResource",
                 "returnType": "void",
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "update",
                 "returnType": "void",
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "resize",
                 "returnType": "void",
                 "params": [
@@ -2700,6 +3059,7 @@
             ],
             "private": [
               {
+                "objectType": "method",
                 "name": "createView",
                 "returnType": "void",
                 "visibility": "private"
@@ -2712,83 +3072,99 @@
   },
   "shader": {
     "Bindgroup": {
+      "objectType": "class",
       "name": "Bindgroup",
       "properties": {
         "public": [
           {
+            "objectType": "property",
             "name": "bindgroupId",
             "type": "number",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "parent",
             "type": "Bindgroups",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "entries",
             "type": "any[]",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "elements",
             "type": "{ name: string; resource: IShaderResource; }[]",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "mustRefreshBindgroup",
             "type": "boolean",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "applyDraw",
             "type": "boolean",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "name",
             "type": "string",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "vertexBufferIO",
             "type": "VertexBufferIO",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "textureIO",
             "type": "ImageTextureIO",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "resourcesIOs",
             "type": "(VertexBufferIO | ImageTextureIO)[]",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "useInstances",
             "type": "boolean",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "debug",
             "type": "any",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "pingPongBindgroup",
             "type": "Bindgroup",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "layout",
             "type": "GPUBindGroupLayout",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "group",
             "type": "GPUBindGroup",
             "visibility": "public",
@@ -2797,6 +3173,7 @@
         ],
         "private": [
           {
+            "objectType": "property",
             "name": "setupApplyCompleted",
             "type": "boolean",
             "visibility": "private"
@@ -2804,76 +3181,91 @@
         ],
         "protected": [
           {
+            "objectType": "property",
             "name": "_layout",
             "type": "GPUBindGroupLayout",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "_group",
             "type": "GPUBindGroup",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "_pingPongBindgroup",
             "type": "Bindgroup",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "deviceId",
             "type": "number",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "indexBuffer",
             "type": "IndexBuffer",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "vertexBuffers",
             "type": "VertexBuffer[]",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "vertexBufferReferenceByName",
             "type": "any",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "elementByName",
             "type": "any",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "setupDrawCompleted",
             "type": "boolean",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "instances",
             "type": "any[]",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "instanceResourcesArray",
             "type": "any[]",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "renderPipelineimageIO",
             "type": "ImageTexture",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "renderPipelineBufferIO",
             "type": "VertexBuffer",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "ioGroups",
             "type": "Bindgroup[]",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "io_index",
             "type": "number",
             "visibility": "protected"
@@ -2883,6 +3275,7 @@
       "methods": {
         "public": [
           {
+            "objectType": "method",
             "name": "add",
             "returnType": "IShaderResource",
             "params": [
@@ -2898,6 +3291,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "set",
             "returnType": "void",
             "params": [
@@ -2913,6 +3307,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "remove",
             "returnType": "void",
             "params": [
@@ -2924,6 +3319,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "getResourceName",
             "returnType": "string",
             "params": [
@@ -2935,6 +3331,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "get",
             "returnType": "IShaderResource",
             "params": [
@@ -2946,6 +3343,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "initFromObject",
             "returnType": "IShaderResource[]",
             "params": [
@@ -2957,16 +3355,19 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "clearAfterDeviceLost",
             "returnType": "void",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "build",
             "returnType": "GPUBindGroup",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "apply",
             "returnType": "void",
             "params": [
@@ -2978,6 +3379,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "createInstance",
             "returnType": "void",
             "params": [
@@ -2989,11 +3391,13 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "handleComputePipelineResourceIOs",
             "returnType": "void",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "createPingPongBindgroup",
             "returnType": "Bindgroup",
             "params": [
@@ -3009,16 +3413,19 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "handleRenderPipelineResourceIOs",
             "returnType": "void",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "update",
             "returnType": "void",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "destroy",
             "returnType": "void",
             "visibility": "public"
@@ -3026,11 +3433,13 @@
         ],
         "private": [
           {
+            "objectType": "method",
             "name": "setupApply",
             "returnType": "void",
             "visibility": "private"
           },
           {
+            "objectType": "method",
             "name": "swapElements",
             "returnType": "{ name: string; resource: IShaderResource; }[]",
             "visibility": "private"
@@ -3038,16 +3447,19 @@
         ],
         "protected": [
           {
+            "objectType": "method",
             "name": "buildLayout",
             "returnType": "void",
             "visibility": "protected"
           },
           {
+            "objectType": "method",
             "name": "setupDraw",
             "returnType": "void",
             "visibility": "protected"
           },
           {
+            "objectType": "method",
             "name": "_createInstance",
             "returnType": "void",
             "params": [
@@ -3062,43 +3474,51 @@
       }
     },
     "Bindgroups": {
+      "objectType": "class",
       "name": "Bindgroups",
       "properties": {
         "public": [
           {
+            "objectType": "property",
             "name": "pipeline",
             "type": "Pipeline",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "parent",
             "type": "Bindgroups",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "groups",
             "type": "Bindgroup[]",
             "visibility": "public"
           },
           {
+            "objectType": "property",
             "name": "name",
             "type": "string",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "resources",
             "type": "any",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "drawConfig",
             "type": "DrawConfig",
             "visibility": "public",
             "get": true
           },
           {
+            "objectType": "property",
             "name": "current",
             "type": "Bindgroup",
             "visibility": "public",
@@ -3107,6 +3527,7 @@
         ],
         "private": [
           {
+            "objectType": "property",
             "name": "_name",
             "type": "string",
             "visibility": "private"
@@ -3114,11 +3535,13 @@
         ],
         "protected": [
           {
+            "objectType": "property",
             "name": "temp",
             "type": "{ result: string; variables: string; }",
             "visibility": "protected"
           },
           {
+            "objectType": "property",
             "name": "_resources",
             "type": "any",
             "visibility": "protected"
@@ -3128,11 +3551,13 @@
       "methods": {
         "public": [
           {
+            "objectType": "method",
             "name": "clearAfterDeviceLost",
             "returnType": "void",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "build",
             "returnType": "{ description: any; bindgroups: GPUBindGroup[]; buffers: VertexBuffer[]; nbVertex: number; }",
             "params": [
@@ -3144,6 +3569,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "getBindgroupByResource",
             "returnType": "Bindgroup",
             "params": [
@@ -3155,6 +3581,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "apply",
             "returnType": "void",
             "params": [
@@ -3166,11 +3593,13 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "update",
             "returnType": "void",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "getVertexShaderDeclaration",
             "returnType": "{ result: string; variables: string; }",
             "params": [
@@ -3182,26 +3611,31 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "getFragmentShaderDeclaration",
             "returnType": "{ result: string; variables: string; }",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "getComputeShaderDeclaration",
             "returnType": "{ result: string; variables: string; }",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "handleRenderPipelineResourceIOs",
             "returnType": "void",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "handleComputePipelineResourceIOs",
             "returnType": "void",
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "add",
             "returnType": "Bindgroups | Bindgroup",
             "params": [
@@ -3213,6 +3647,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "copy",
             "returnType": "Bindgroups",
             "params": [
@@ -3224,6 +3659,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "propertyNameIsUsed",
             "returnType": "boolean",
             "params": [
@@ -3235,6 +3671,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "get",
             "returnType": "IShaderResource",
             "params": [
@@ -3246,6 +3683,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "getGroupByPropertyName",
             "returnType": "Bindgroup",
             "params": [
@@ -3257,6 +3695,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "getGroupByName",
             "returnType": "Bindgroup",
             "params": [
@@ -3268,6 +3707,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "getNameByResource",
             "returnType": "string",
             "params": [
@@ -3279,6 +3719,7 @@
             "visibility": "public"
           },
           {
+            "objectType": "method",
             "name": "destroy",
             "returnType": "void",
             "visibility": "public"
@@ -3286,6 +3727,7 @@
         ],
         "protected": [
           {
+            "objectType": "method",
             "name": "createVertexBufferLayout",
             "returnType": "{ vertexLayouts: Iterable<GPUVertexBufferLayout>; buffers: VertexBuffer[]; nbVertex: number; }",
             "visibility": "protected"
@@ -3294,6 +3736,7 @@
       }
     },
     "ComputeShader": {
+      "objectType": "class",
       "name": "ComputeShader",
       "extends": [
         "ShaderStage"
@@ -3301,6 +3744,7 @@
       "methods": {
         "public": [
           {
+            "objectType": "method",
             "name": "build",
             "returnType": "{ code: string; output: ShaderStruct; }",
             "params": [
@@ -3319,6 +3763,7 @@
       }
     },
     "FragmentShader": {
+      "objectType": "class",
       "name": "FragmentShader",
       "extends": [
         "ShaderStage"
@@ -3326,6 +3771,7 @@
       "methods": {
         "public": [
           {
+            "objectType": "method",
             "name": "build",
             "returnType": "{ code: string; output: ShaderStruct; }",
             "params": [
@@ -3344,6 +3790,7 @@
       }
     },
     "PrimitiveType": {
+      "objectType": "class",
       "name": "Matrix4x4Array",
       "extends": [
         "PrimitiveFloatUniform",
@@ -3353,6 +3800,7 @@
       "properties": {
         "public": [
           {
+            "objectType": "property",
             "name": "matrixs",
             "type": "Matrix4x4[]",
             "visibility": "public"
@@ -3362,6 +3810,7 @@
       "methods": {
         "public": [
           {
+            "objectType": "method",
             "name": "update",
             "returnType": "void",
             "visibility": "public"
@@ -3370,66 +3819,79 @@
       }
     },
     "ShaderType": {
+      "objectType": "class",
       "name": "ShaderType",
       "statics": {
         "properties": {
           "public": [
             {
+              "objectType": "property",
               "name": "Float",
               "type": "{ type: string; }",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "Vec2",
               "type": "{ type: string; }",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "Vec3",
               "type": "{ type: string; }",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "Vec4",
               "type": "{ type: string; }",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "Int",
               "type": "{ type: string; }",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "IVec2",
               "type": "{ type: string; }",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "IVec3",
               "type": "{ type: string; }",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "IVec4",
               "type": "{ type: string; }",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "Uint",
               "type": "{ type: string; }",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "UVec2",
               "type": "{ type: string; }",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "UVec3",
               "type": "{ type: string; }",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "UVec4",
               "type": "{ type: string; }",
               "visibility": "public"
@@ -3439,6 +3901,7 @@
       }
     },
     "VertexShader": {
+      "objectType": "class",
       "name": "VertexShader",
       "extends": [
         "ShaderStage"
@@ -3446,6 +3909,7 @@
       "methods": {
         "public": [
           {
+            "objectType": "method",
             "name": "build",
             "returnType": "{ code: string; output: ShaderStruct; }",
             "params": [
@@ -3465,6 +3929,7 @@
     },
     "resources": {
       "CubeMapTexture": {
+        "objectType": "class",
         "name": "CubeMapTexture",
         "extends": [
           "ImageTextureArray",
@@ -3476,53 +3941,62 @@
         "properties": {
           "public": [
             {
+              "objectType": "property",
               "name": "descriptor",
               "type": "any",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "right",
               "type": "any",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "left",
               "type": "any",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "bottom",
               "type": "any",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "top",
               "type": "any",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "back",
               "type": "any",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "front",
               "type": "any",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "sides",
               "type": "any[]",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "sides",
               "type": "any[]",
               "visibility": "public",
@@ -3533,16 +4007,19 @@
         "methods": {
           "public": [
             {
+              "objectType": "method",
               "name": "clone",
               "returnType": "CubeMapTexture",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createGpuResource",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createDeclaration",
               "returnType": "string",
               "params": [
@@ -3562,6 +4039,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createBindGroupLayoutEntry",
               "returnType": "{ binding: number; visibility: number; texture: GPUTextureBindingLayout; }",
               "params": [
@@ -3573,6 +4051,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createBindGroupEntry",
               "returnType": "{ binding: number; resource: GPUTextureView; }",
               "params": [
@@ -3584,6 +4063,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "setPipelineType",
               "returnType": "void",
               "params": [
@@ -3598,6 +4078,7 @@
         }
       },
       "CubeMapTextureArray": {
+        "objectType": "class",
         "name": "CubeMapTextureArray",
         "extends": [
           "ImageTextureArray",
@@ -3609,17 +4090,20 @@
         "properties": {
           "public": [
             {
+              "objectType": "property",
               "name": "descriptor",
               "type": "any",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "bitmaps",
               "type": "any[]",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "bitmaps",
               "type": "any[]",
               "visibility": "public",
@@ -3630,11 +4114,13 @@
         "methods": {
           "public": [
             {
+              "objectType": "method",
               "name": "clone",
               "returnType": "CubeMapTextureArray",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "setCubeSideById",
               "returnType": "void",
               "params": [
@@ -3654,11 +4140,13 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createGpuResource",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createDeclaration",
               "returnType": "string",
               "params": [
@@ -3678,6 +4166,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createBindGroupLayoutEntry",
               "returnType": "{ binding: number; visibility: number; texture: GPUTextureBindingLayout; }",
               "params": [
@@ -3689,6 +4178,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createBindGroupEntry",
               "returnType": "{ binding: number; resource: GPUTextureView; }",
               "params": [
@@ -3700,6 +4190,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "setPipelineType",
               "returnType": "void",
               "params": [
@@ -3714,9 +4205,11 @@
         }
       },
       "IShaderResource": {
+        "objectType": "class",
         "name": "IShaderResource"
       },
       "ImageTexture": {
+        "objectType": "class",
         "name": "ImageTexture",
         "implements": [
           "IShaderResource"
@@ -3724,72 +4217,85 @@
         "properties": {
           "public": [
             {
+              "objectType": "property",
               "name": "resourceIO",
               "type": "ImageTextureIO",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "io",
               "type": "number",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "mustBeTransfered",
               "type": "boolean",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "descriptor",
               "type": "ImageTextureDescriptor",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "gpuResource",
               "type": "GPUTexture",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "sampledType",
               "type": "\"u32\" | \"f32\" | \"i32\"",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "sampledType",
               "type": "\"u32\" | \"f32\" | \"i32\"",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "texture",
               "type": "GPUTexture",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "view",
               "type": "GPUTextureView",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "source",
               "type": "any",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "source",
               "type": "any",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "deviceId",
               "type": "number",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "time",
               "type": "number",
               "visibility": "public"
@@ -3797,26 +4303,31 @@
           ],
           "protected": [
             {
+              "objectType": "property",
               "name": "_view",
               "type": "GPUTextureView",
               "visibility": "protected"
             },
             {
+              "objectType": "property",
               "name": "viewDescriptor",
               "type": "GPUTextureViewDescriptor",
               "visibility": "protected"
             },
             {
+              "objectType": "property",
               "name": "useOutsideTexture",
               "type": "boolean",
               "visibility": "protected"
             },
             {
+              "objectType": "property",
               "name": "gpuTextureIOs",
               "type": "GPUTexture[]",
               "visibility": "protected"
             },
             {
+              "objectType": "property",
               "name": "gpuTextureIO_index",
               "type": "number",
               "visibility": "protected"
@@ -3826,11 +4337,13 @@
         "methods": {
           "public": [
             {
+              "objectType": "method",
               "name": "clone",
               "returnType": "ImageTexture",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "initTextureIO",
               "returnType": "void",
               "params": [
@@ -3842,11 +4355,13 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "getCurrentTexture",
               "returnType": "GPUTexture",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createView",
               "returnType": "GPUTextureView",
               "params": [
@@ -3858,6 +4373,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "resize",
               "returnType": "ImageTexture",
               "params": [
@@ -3873,21 +4389,25 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "update",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createGpuResource",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "destroyGpuResource",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createDeclaration",
               "returnType": "string",
               "params": [
@@ -3907,6 +4427,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createBindGroupLayoutEntry",
               "returnType": "{ binding: number; visibility: number; storageTexture?: GPUStorageTextureBindingLayout; texture?: GPUTextureBindingLayout; }",
               "params": [
@@ -3918,6 +4439,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createBindGroupEntry",
               "returnType": "{ binding: number; resource: GPUTextureView; }",
               "params": [
@@ -3929,6 +4451,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "setPipelineType",
               "returnType": "void",
               "params": [
@@ -3943,6 +4466,7 @@
         }
       },
       "ImageTextureArray": {
+        "objectType": "class",
         "name": "ImageTextureArray",
         "extends": [
           "ImageTexture"
@@ -3953,17 +4477,20 @@
         "properties": {
           "public": [
             {
+              "objectType": "property",
               "name": "descriptor",
               "type": "any",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "bitmaps",
               "type": "any[]",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "bitmaps",
               "type": "any[]",
               "visibility": "public",
@@ -3972,11 +4499,13 @@
           ],
           "protected": [
             {
+              "objectType": "property",
               "name": "_bitmaps",
               "type": "any[]",
               "visibility": "protected"
             },
             {
+              "objectType": "property",
               "name": "mustUpdate",
               "type": "boolean[]",
               "visibility": "protected"
@@ -3986,11 +4515,13 @@
         "methods": {
           "public": [
             {
+              "objectType": "method",
               "name": "clone",
               "returnType": "ImageTextureArray",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "setImageById",
               "returnType": "void",
               "params": [
@@ -4006,11 +4537,13 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createGpuResource",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "updateInnerGpuTextures",
               "returnType": "void",
               "params": [
@@ -4022,11 +4555,13 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "update",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createDeclaration",
               "returnType": "string",
               "params": [
@@ -4046,6 +4581,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createBindGroupLayoutEntry",
               "returnType": "{ binding: number; visibility: number; texture: GPUTextureBindingLayout; }",
               "params": [
@@ -4057,6 +4593,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createBindGroupEntry",
               "returnType": "{ binding: number; resource: GPUTextureView; }",
               "params": [
@@ -4068,6 +4605,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "setPipelineType",
               "returnType": "void",
               "params": [
@@ -4082,31 +4620,37 @@
         }
       },
       "ImageTextureIO": {
+        "objectType": "class",
         "name": "ImageTextureIO",
         "properties": {
           "public": [
             {
+              "objectType": "property",
               "name": "textures",
               "type": "ImageTexture[]",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "descriptor",
               "type": "{ size: GPUExtent3D; format: GPUTextureFormat; usage?: number; }",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "onOutputData",
               "type": "(data: Uint32Array) => void",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "width",
               "type": "number",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "height",
               "type": "number",
               "visibility": "public",
@@ -4115,16 +4659,19 @@
           ],
           "protected": [
             {
+              "objectType": "property",
               "name": "stagingBuffer",
               "type": "GPUBuffer",
               "visibility": "protected"
             },
             {
+              "objectType": "property",
               "name": "canCallMapAsync",
               "type": "boolean",
               "visibility": "protected"
             },
             {
+              "objectType": "property",
               "name": "outputBuffer",
               "type": "GPUBuffer",
               "visibility": "protected"
@@ -4134,11 +4681,13 @@
         "methods": {
           "public": [
             {
+              "objectType": "method",
               "name": "clone",
               "returnType": "ImageTextureIO",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createDeclaration",
               "returnType": "string",
               "params": [
@@ -4158,16 +4707,19 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "destroy",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "getOutputData",
               "returnType": "Promise<void>",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "textureSize",
               "returnType": "GPUExtent3D",
               "visibility": "public"
@@ -4176,6 +4728,7 @@
         }
       },
       "TextureSampler": {
+        "objectType": "class",
         "name": "TextureSampler",
         "implements": [
           "IShaderResource"
@@ -4183,27 +4736,32 @@
         "properties": {
           "public": [
             {
+              "objectType": "property",
               "name": "mustBeTransfered",
               "type": "boolean",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "gpuResource",
               "type": "GPUSampler",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "descriptor",
               "type": "TextureSamplerDescriptor",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "isComparison",
               "type": "boolean",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "isFiltering",
               "type": "boolean",
               "visibility": "public",
@@ -4212,6 +4770,7 @@
           ],
           "protected": [
             {
+              "objectType": "property",
               "name": "deviceId",
               "type": "number",
               "visibility": "protected"
@@ -4221,11 +4780,13 @@
         "methods": {
           "public": [
             {
+              "objectType": "method",
               "name": "clone",
               "returnType": "TextureSampler",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "setAddressModes",
               "returnType": "void",
               "params": [
@@ -4245,6 +4806,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "setFilterModes",
               "returnType": "void",
               "params": [
@@ -4264,6 +4826,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "setClamp",
               "returnType": "void",
               "params": [
@@ -4279,6 +4842,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "setCompareFunction",
               "returnType": "void",
               "params": [
@@ -4290,6 +4854,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "setMaxAnisotropy",
               "returnType": "void",
               "params": [
@@ -4301,21 +4866,25 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createGpuResource",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "destroyGpuResource",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "update",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createDeclaration",
               "returnType": "string",
               "params": [
@@ -4335,6 +4904,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createBindGroupLayoutEntry",
               "returnType": "{ binding: number; visibility: number; sampler: { type: string; }; }",
               "params": [
@@ -4346,6 +4916,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createBindGroupEntry",
               "returnType": "{ binding: number; resource: GPUSampler; }",
               "params": [
@@ -4357,6 +4928,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "setPipelineType",
               "returnType": "void",
               "params": [
@@ -4371,6 +4943,7 @@
         }
       },
       "UniformBuffer": {
+        "objectType": "class",
         "name": "UniformBuffer",
         "implements": [
           "IShaderResource"
@@ -4378,67 +4951,79 @@
         "properties": {
           "public": [
             {
+              "objectType": "property",
               "name": "gpuResource",
               "type": "GPUBuffer",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "descriptor",
               "type": "UniformBufferDescriptor",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "group",
               "type": "UniformGroup",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "mustBeTransfered",
               "type": "boolean",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "mustBeTransfered",
               "type": "boolean",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "cloned",
               "type": "boolean",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "bufferType",
               "type": "\"read-only-storage\" | \"uniform\"",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "time",
               "type": "number",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "items",
               "type": "any",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "itemNames",
               "type": "string[]",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "nbComponent",
               "type": "number",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "nbUniforms",
               "type": "number",
               "visibility": "public",
@@ -4447,11 +5032,13 @@
           ],
           "protected": [
             {
+              "objectType": "property",
               "name": "debug",
               "type": "string",
               "visibility": "protected"
             },
             {
+              "objectType": "property",
               "name": "shaderVisibility",
               "type": "GPUShaderStageFlags",
               "visibility": "protected"
@@ -4461,6 +5048,7 @@
         "methods": {
           "public": [
             {
+              "objectType": "method",
               "name": "clone",
               "returnType": "UniformBuffer",
               "params": [
@@ -4472,6 +5060,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "add",
               "returnType": "Uniformable",
               "params": [
@@ -4491,6 +5080,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "remove",
               "returnType": "Uniformable",
               "params": [
@@ -4502,11 +5092,13 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "update",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createStruct",
               "returnType": "{ struct: string; localVariables: string; }",
               "params": [
@@ -4518,6 +5110,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createDeclaration",
               "returnType": "string",
               "params": [
@@ -4537,6 +5130,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "getUniformById",
               "returnType": "Uniformable",
               "params": [
@@ -4548,6 +5142,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "getUniformByName",
               "returnType": "Uniformable",
               "params": [
@@ -4559,16 +5154,19 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createGpuResource",
               "returnType": "any",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "destroyGpuResource",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createBindGroupLayoutEntry",
               "returnType": "{ binding: number; visibility: number; buffer: { type: string; }; }",
               "params": [
@@ -4580,6 +5178,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createBindGroupEntry",
               "returnType": "{ binding: number; resource: { buffer: GPUBuffer; }; }",
               "params": [
@@ -4591,6 +5190,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "setPipelineType",
               "returnType": "void",
               "params": [
@@ -4605,84 +5205,100 @@
         }
       },
       "UniformGroup": {
+        "objectType": "class",
         "name": "UniformGroup",
         "properties": {
           "public": [
             {
+              "objectType": "property",
               "name": "unstackedItems",
               "type": "any",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "items",
               "type": "Uniformable[]",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "itemNames",
               "type": "string[]",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "arrayStride",
               "type": "number",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "startId",
               "type": "number",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "createVariableInsideMain",
               "type": "boolean",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "mustBeTransfered",
               "type": "boolean",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "wgsl",
               "type": "{ struct: string; localVariables: string; }",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "wgslStructNames",
               "type": "string[]",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "datas",
               "type": "Float32Array",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "uniformBuffer",
               "type": "UniformBuffer",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "uniformBuffer",
               "type": "UniformBuffer",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "name",
               "type": "string",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "name",
               "type": "string",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "type",
               "type": "any",
               "visibility": "public",
@@ -4691,11 +5307,13 @@
           ],
           "protected": [
             {
+              "objectType": "property",
               "name": "_name",
               "type": "string",
               "visibility": "protected"
             },
             {
+              "objectType": "property",
               "name": "buffer",
               "type": "UniformBuffer",
               "visibility": "protected"
@@ -4705,11 +5323,13 @@
         "methods": {
           "public": [
             {
+              "objectType": "method",
               "name": "destroy",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "clone",
               "returnType": "UniformGroup",
               "params": [
@@ -4721,6 +5341,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "remove",
               "returnType": "Uniformable",
               "params": [
@@ -4732,6 +5353,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "add",
               "returnType": "Uniformable",
               "params": [
@@ -4755,6 +5377,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "getElementByName",
               "returnType": "Uniformable",
               "params": [
@@ -4766,6 +5389,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createVariable",
               "returnType": "string",
               "params": [
@@ -4777,16 +5401,19 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "updateStack",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "forceUpdate",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "update",
               "returnType": "void",
               "params": [
@@ -4802,6 +5429,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "getStruct",
               "returnType": "{ struct: string; localVariables: string; }",
               "params": [
@@ -4813,6 +5441,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "stackItems",
               "returnType": "Uniformable[]",
               "params": [
@@ -4826,6 +5455,7 @@
           ],
           "protected": [
             {
+              "objectType": "method",
               "name": "getStructName",
               "returnType": "string",
               "params": [
@@ -4837,6 +5467,7 @@
               "visibility": "protected"
             },
             {
+              "objectType": "method",
               "name": "getVarName",
               "returnType": "string",
               "params": [
@@ -4851,71 +5482,84 @@
         }
       },
       "UniformGroupArray": {
+        "objectType": "class",
         "name": "UniformGroupArray",
         "properties": {
           "public": [
             {
+              "objectType": "property",
               "name": "groups",
               "type": "UniformGroup[]",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "startId",
               "type": "number",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "createVariableInsideMain",
               "type": "boolean",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "mustBeTransfered",
               "type": "boolean",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "name",
               "type": "string",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "uniformBuffer",
               "type": "UniformBuffer",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "uniformBuffer",
               "type": "UniformBuffer",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "type",
               "type": "any",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "length",
               "type": "number",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "arrayStride",
               "type": "number",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "isArray",
               "type": "boolean",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "isUniformGroup",
               "type": "boolean",
               "visibility": "public",
@@ -4924,6 +5568,7 @@
           ],
           "protected": [
             {
+              "objectType": "property",
               "name": "buffer",
               "type": "UniformBuffer",
               "visibility": "protected"
@@ -4933,11 +5578,13 @@
         "methods": {
           "public": [
             {
+              "objectType": "method",
               "name": "clone",
               "returnType": "UniformGroupArray",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createVariable",
               "returnType": "string",
               "params": [
@@ -4949,6 +5596,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "update",
               "returnType": "void",
               "params": [
@@ -4964,11 +5612,13 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "forceUpdate",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "getElementById",
               "returnType": "UniformGroup",
               "params": [
@@ -4982,6 +5632,7 @@
           ],
           "protected": [
             {
+              "objectType": "method",
               "name": "getStructName",
               "returnType": "string",
               "params": [
@@ -4993,6 +5644,7 @@
               "visibility": "protected"
             },
             {
+              "objectType": "method",
               "name": "getVarName",
               "returnType": "string",
               "params": [
@@ -5007,67 +5659,79 @@
         }
       },
       "VertexAttribute": {
+        "objectType": "class",
         "name": "VertexAttribute",
         "properties": {
           "public": [
             {
+              "objectType": "property",
               "name": "dataOffset",
               "type": "number",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "mustBeTransfered",
               "type": "boolean",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "vertexBuffer",
               "type": "VertexBuffer",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "datas",
               "type": "number[] | number[][]",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "datas",
               "type": "number[] | number[][]",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "useByVertexData",
               "type": "boolean",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "format",
               "type": "string",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "bytePerElement",
               "type": "number",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "varType",
               "type": "string",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "name",
               "type": "string",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "nbComponent",
               "type": "number",
               "visibility": "public",
@@ -5076,26 +5740,31 @@
           ],
           "private": [
             {
+              "objectType": "property",
               "name": "_name",
               "type": "string",
               "visibility": "private"
             },
             {
+              "objectType": "property",
               "name": "_dataType",
               "type": "string",
               "visibility": "private"
             },
             {
+              "objectType": "property",
               "name": "nbValues",
               "type": "number",
               "visibility": "private"
             },
             {
+              "objectType": "property",
               "name": "vertexType",
               "type": "{ name: string; nbComponent: number; bytes: number; varType: string; }",
               "visibility": "private"
             },
             {
+              "objectType": "property",
               "name": "_data",
               "type": "number[] | number[][]",
               "visibility": "private"
@@ -5105,6 +5774,7 @@
         "methods": {
           "private": [
             {
+              "objectType": "method",
               "name": "renameVertexDataType",
               "returnType": "string",
               "params": [
@@ -5116,6 +5786,7 @@
               "visibility": "private"
             },
             {
+              "objectType": "method",
               "name": "getVertexDataType",
               "returnType": "{ name: string; nbComponent: number; bytes: number; varType: string; }",
               "params": [
@@ -5132,6 +5803,7 @@
           "properties": {
             "public": [
               {
+                "objectType": "property",
                 "name": "types",
                 "type": "any",
                 "visibility": "public",
@@ -5142,6 +5814,7 @@
           "methods": {
             "public": [
               {
+                "objectType": "method",
                 "name": "Float",
                 "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
                 "params": [
@@ -5157,6 +5830,7 @@
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "Vec2",
                 "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
                 "params": [
@@ -5172,6 +5846,7 @@
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "Vec3",
                 "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
                 "params": [
@@ -5187,6 +5862,7 @@
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "Vec4",
                 "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
                 "params": [
@@ -5202,6 +5878,7 @@
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "Int",
                 "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
                 "params": [
@@ -5217,6 +5894,7 @@
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "IVec2",
                 "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
                 "params": [
@@ -5232,6 +5910,7 @@
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "IVec3",
                 "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
                 "params": [
@@ -5247,6 +5926,7 @@
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "IVec4",
                 "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
                 "params": [
@@ -5262,6 +5942,7 @@
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "Uint",
                 "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
                 "params": [
@@ -5277,6 +5958,7 @@
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "UVec2",
                 "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
                 "params": [
@@ -5292,6 +5974,7 @@
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "UVec3",
                 "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
                 "params": [
@@ -5307,6 +5990,7 @@
                 "visibility": "public"
               },
               {
+                "objectType": "method",
                 "name": "UVec4",
                 "returnType": "{ type: string; offset: number; datas: number | number[] | number[][]; }",
                 "params": [
@@ -5326,6 +6010,7 @@
         }
       },
       "VertexBuffer": {
+        "objectType": "class",
         "name": "VertexBuffer",
         "implements": [
           "IShaderResource"
@@ -5333,109 +6018,129 @@
         "properties": {
           "public": [
             {
+              "objectType": "property",
               "name": "bufferId",
               "type": "number",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "io",
               "type": "number",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "resourceIO",
               "type": "VertexBufferIO",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "mustBeTransfered",
               "type": "boolean",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "vertexArrays",
               "type": "VertexAttribute[]",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "attributes",
               "type": "any",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "gpuResource",
               "type": "GPUBuffer",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "descriptor",
               "type": "VertexBufferDescriptor",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "nbComponentData",
               "type": "number",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "attributeChanged",
               "type": "boolean",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "buffer",
               "type": "GPUBuffer",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "length",
               "type": "number",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "nbComponent",
               "type": "number",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "nbVertex",
               "type": "number",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "datas",
               "type": "Float32Array | Uint32Array | Int32Array",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "datas",
               "type": "Float32Array | Uint32Array | Int32Array",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "attributeDescriptor",
               "type": "any",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "arrayStride",
               "type": "number",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "bufferSize",
               "type": "number",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "time",
               "type": "number",
               "visibility": "public"
@@ -5443,16 +6148,19 @@
           ],
           "private": [
             {
+              "objectType": "property",
               "name": "_nbComponent",
               "type": "number",
               "visibility": "private"
             },
             {
+              "objectType": "property",
               "name": "_datas",
               "type": "Float32Array | Uint32Array | Int32Array",
               "visibility": "private"
             },
             {
+              "objectType": "property",
               "name": "_byteCount",
               "type": "number",
               "visibility": "private"
@@ -5460,36 +6168,43 @@
           ],
           "protected": [
             {
+              "objectType": "property",
               "name": "gpuBufferIOs",
               "type": "GPUBuffer[]",
               "visibility": "protected"
             },
             {
+              "objectType": "property",
               "name": "gpuBufferIO_index",
               "type": "number",
               "visibility": "protected"
             },
             {
+              "objectType": "property",
               "name": "canRefactorData",
               "type": "boolean",
               "visibility": "protected"
             },
             {
+              "objectType": "property",
               "name": "pipelineType",
               "type": "\"render\" | \"compute\" | \"compute_mixed\"",
               "visibility": "protected"
             },
             {
+              "objectType": "property",
               "name": "layout",
               "type": "any",
               "visibility": "protected"
             },
             {
+              "objectType": "property",
               "name": "_bufferSize",
               "type": "number",
               "visibility": "protected"
             },
             {
+              "objectType": "property",
               "name": "deviceId",
               "type": "number",
               "visibility": "protected"
@@ -5499,11 +6214,13 @@
         "methods": {
           "public": [
             {
+              "objectType": "method",
               "name": "clone",
               "returnType": "VertexBuffer",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "initBufferIO",
               "returnType": "void",
               "params": [
@@ -5515,11 +6232,13 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "getCurrentBuffer",
               "returnType": "GPUBuffer",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "setComplexDatas",
               "returnType": "void",
               "params": [
@@ -5535,6 +6254,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createArray",
               "returnType": "VertexAttribute",
               "params": [
@@ -5554,6 +6274,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "getAttributeByName",
               "returnType": "VertexAttribute",
               "params": [
@@ -5565,6 +6286,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createDeclaration",
               "returnType": "string",
               "params": [
@@ -5588,6 +6310,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createBindGroupLayoutEntry",
               "returnType": "any",
               "params": [
@@ -5599,6 +6322,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createBindGroupEntry",
               "returnType": "any",
               "params": [
@@ -5610,6 +6334,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "setPipelineType",
               "returnType": "void",
               "params": [
@@ -5621,6 +6346,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createStruct",
               "returnType": "ShaderStruct",
               "params": [
@@ -5632,6 +6358,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "stackAttributes",
               "returnType": "{ stepMode: \"vertex\" | \"instance\"; arrayStride: number; attributes: any[]; }",
               "params": [
@@ -5643,6 +6370,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "addVertexInstance",
               "returnType": "void",
               "params": [
@@ -5658,6 +6386,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createVertexBufferLayout",
               "returnType": "any",
               "params": [
@@ -5669,21 +6398,25 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createGpuResource",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "destroyGpuResource",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "updateBuffer",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "getVertexArrayById",
               "returnType": "VertexAttribute",
               "params": [
@@ -5695,6 +6428,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "update",
               "returnType": "boolean",
               "visibility": "public"
@@ -5702,6 +6436,7 @@
           ],
           "protected": [
             {
+              "objectType": "method",
               "name": "updateAttributes",
               "returnType": "void",
               "visibility": "protected"
@@ -5710,60 +6445,71 @@
         }
       },
       "VertexBufferIO": {
+        "objectType": "class",
         "name": "VertexBufferIO",
         "properties": {
           "public": [
             {
+              "objectType": "property",
               "name": "buffers",
               "type": "VertexBuffer[]",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "descriptor",
               "type": "any",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "onOutputData",
               "type": "(data: ArrayBuffer) => void",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "input",
               "type": "VertexBuffer",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "output",
               "type": "VertexBuffer",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "currentDatas",
               "type": "ArrayBuffer",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "datas",
               "type": "Float32Array",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "attributeDescriptor",
               "type": "any",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "bufferSize",
               "type": "number",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "nbVertex",
               "type": "number",
               "visibility": "public",
@@ -5772,26 +6518,31 @@
           ],
           "protected": [
             {
+              "objectType": "property",
               "name": "stagingBuffer",
               "type": "GPUBuffer",
               "visibility": "protected"
             },
             {
+              "objectType": "property",
               "name": "canCallMapAsync",
               "type": "boolean",
               "visibility": "protected"
             },
             {
+              "objectType": "property",
               "name": "deviceId",
               "type": "number",
               "visibility": "protected"
             },
             {
+              "objectType": "property",
               "name": "view",
               "type": "any",
               "visibility": "protected"
             },
             {
+              "objectType": "property",
               "name": "attributeDesc",
               "type": "any",
               "visibility": "protected"
@@ -5801,21 +6552,25 @@
         "methods": {
           "public": [
             {
+              "objectType": "method",
               "name": "destroy",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "getOutputData",
               "returnType": "Promise<any>",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "clone",
               "returnType": "VertexBufferIO",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createDeclaration",
               "returnType": "string",
               "params": [
@@ -5835,6 +6590,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createVertexInstances",
               "returnType": "void",
               "params": [
@@ -5850,6 +6606,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "getVertexInstances",
               "returnType": "void",
               "params": [
@@ -5865,6 +6622,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "update",
               "returnType": "void",
               "visibility": "public"
@@ -5872,6 +6630,7 @@
           ],
           "private": [
             {
+              "objectType": "method",
               "name": "rebuildAfterDeviceLost",
               "returnType": "void",
               "visibility": "private"
@@ -5880,6 +6639,7 @@
         }
       },
       "VideoTexture": {
+        "objectType": "class",
         "name": "VideoTexture",
         "implements": [
           "IShaderResource"
@@ -5887,26 +6647,31 @@
         "properties": {
           "public": [
             {
+              "objectType": "property",
               "name": "mustBeTransfered",
               "type": "boolean",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "descriptor",
               "type": "VideoTextureDescriptor",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "useWebcodec",
               "type": "boolean",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "gpuResource",
               "type": "HTMLVideoElement",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "source",
               "type": "HTMLVideoElement",
               "visibility": "public",
@@ -5915,6 +6680,7 @@
           ],
           "private": [
             {
+              "objectType": "property",
               "name": "videoFrame",
               "type": "any",
               "visibility": "private"
@@ -5922,6 +6688,7 @@
           ],
           "protected": [
             {
+              "objectType": "property",
               "name": "bindgroups",
               "type": "Bindgroup[]",
               "visibility": "protected"
@@ -5931,6 +6698,7 @@
         "methods": {
           "public": [
             {
+              "objectType": "method",
               "name": "addBindgroup",
               "returnType": "void",
               "params": [
@@ -5942,11 +6710,13 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "clone",
               "returnType": "VideoTexture",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createDeclaration",
               "returnType": "string",
               "params": [
@@ -5966,6 +6736,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createBindGroupLayoutEntry",
               "returnType": "{ binding: number; visibility: number; externalTexture: GPUExternalTextureBindingLayout; }",
               "params": [
@@ -5977,21 +6748,25 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createGpuResource",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "update",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "destroyGpuResource",
               "returnType": "void",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createBindGroupEntry",
               "returnType": "{ binding: number; resource: GPUExternalTexture; }",
               "params": [
@@ -6003,6 +6778,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "setPipelineType",
               "returnType": "void",
               "params": [
@@ -6019,32 +6795,38 @@
     },
     "shaderParts": {
       "ShaderNode": {
+        "objectType": "class",
         "name": "ShaderNode",
         "properties": {
           "public": [
             {
+              "objectType": "property",
               "name": "enabled",
               "type": "boolean",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "executeSubNodeAfterCode",
               "type": "boolean",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "text",
               "type": "string",
               "visibility": "public",
               "get": true
             },
             {
+              "objectType": "property",
               "name": "text",
               "type": "string",
               "visibility": "public",
               "set": true
             },
             {
+              "objectType": "property",
               "name": "value",
               "type": "string",
               "visibility": "public",
@@ -6053,16 +6835,19 @@
           ],
           "private": [
             {
+              "objectType": "property",
               "name": "_text",
               "type": "string",
               "visibility": "private"
             },
             {
+              "objectType": "property",
               "name": "insideMainFunction",
               "type": "boolean",
               "visibility": "private"
             },
             {
+              "objectType": "property",
               "name": "subNodes",
               "type": "ShaderNode[]",
               "visibility": "private"
@@ -6072,6 +6857,7 @@
         "methods": {
           "public": [
             {
+              "objectType": "method",
               "name": "replaceValues",
               "returnType": "void",
               "params": [
@@ -6083,6 +6869,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "createNode",
               "returnType": "ShaderNode",
               "params": [
@@ -6097,50 +6884,60 @@
         }
       },
       "ShaderStage": {
+        "objectType": "class",
         "name": "ShaderStage",
         "properties": {
           "public": [
             {
+              "objectType": "property",
               "name": "inputs",
               "type": "{ name: string; type: any; builtin?: string; }[]",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "outputs",
               "type": "{ name: string; type: any; builtin?: string; }[]",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "export",
               "type": "{ name: string; type: any; }[]",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "require",
               "type": "{ name: string; type: any; }[]",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "pipelineConstants",
               "type": "any",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "constants",
               "type": "ShaderNode",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "main",
               "type": "ShaderNode",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "shaderType",
               "type": "\"compute\" | \"vertex\" | \"fragment\"",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "shaderInfos",
               "type": "{ code: string; output: ShaderStruct; }",
               "visibility": "public",
@@ -6149,6 +6946,7 @@
           ],
           "protected": [
             {
+              "objectType": "property",
               "name": "_shaderInfos",
               "type": "{ code: string; output: ShaderStruct; }",
               "visibility": "protected"
@@ -6158,6 +6956,7 @@
         "methods": {
           "public": [
             {
+              "objectType": "method",
               "name": "addOutputVariable",
               "returnType": "void",
               "params": [
@@ -6173,6 +6972,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "addInputVariable",
               "returnType": "void",
               "params": [
@@ -6188,6 +6988,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "build",
               "returnType": "{ code: string; output: ShaderStruct; }",
               "params": [
@@ -6205,6 +7006,7 @@
           ],
           "protected": [
             {
+              "objectType": "method",
               "name": "formatWGSLCode",
               "returnType": "string",
               "params": [
@@ -6219,15 +7021,18 @@
         }
       },
       "ShaderStruct": {
+        "objectType": "class",
         "name": "ShaderStruct",
         "properties": {
           "public": [
             {
+              "objectType": "property",
               "name": "name",
               "type": "string",
               "visibility": "public"
             },
             {
+              "objectType": "property",
               "name": "struct",
               "type": "string",
               "visibility": "public",
@@ -6236,11 +7041,13 @@
           ],
           "protected": [
             {
+              "objectType": "property",
               "name": "properties",
               "type": "{ name: string; type: string; builtin?: string; }[]",
               "visibility": "protected"
             },
             {
+              "objectType": "property",
               "name": "isShaderIO",
               "type": "boolean",
               "visibility": "protected"
@@ -6250,6 +7057,7 @@
         "methods": {
           "public": [
             {
+              "objectType": "method",
               "name": "clone",
               "returnType": "ShaderStruct",
               "params": [
@@ -6261,6 +7069,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "addProperty",
               "returnType": "ShaderStruct",
               "params": [
@@ -6272,6 +7081,7 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "getComputeVariableDeclaration",
               "returnType": "string",
               "params": [
@@ -6283,16 +7093,19 @@
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "getFunctionParams",
               "returnType": "string",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "getComputeFunctionParams",
               "returnType": "string",
               "visibility": "public"
             },
             {
+              "objectType": "method",
               "name": "getInputFromOutput",
               "returnType": "ShaderStruct",
               "visibility": "public"
