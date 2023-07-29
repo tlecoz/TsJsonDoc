@@ -27,7 +27,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ts = __importStar(require("typescript"));
 const path = __importStar(require("path"));
 const fs = __importStar(require("fs"));
-const rootDir = process.argv[2] || "../xgpu/src/xGPU";
+const rootDir = process.argv[2] || "./src";
 const outputDir = process.argv[3] || "./";
 const outputFileName = process.argv[4] || "documentation.json";
 const useRawText = process.argv[5] !== 'false';

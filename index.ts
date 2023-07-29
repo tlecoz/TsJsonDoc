@@ -3,7 +3,7 @@ import * as ts from "typescript";
 import * as path from "path";
 import * as fs from "fs";
 
-const rootDir = process.argv[2] || "../xgpu/src/xGPU";
+const rootDir = process.argv[2] || "./src";
 const outputDir = process.argv[3] || "./";
 const outputFileName = process.argv[4] || "documentation.json";
 const useRawText = process.argv[5] !== 'false';
