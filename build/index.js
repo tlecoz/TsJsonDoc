@@ -200,76 +200,84 @@ function visit(node, checker) {
     }
     return classInfo;
 }
-const rootDir = "../xgpu/src/xGPU"; //process.argv[2] || "./src/";
-const fileNames = ts.sys.readDirectory(rootDir, ["ts"]);
-const options = {
-    target: ts.ScriptTarget.ESNext,
-    module: ts.ModuleKind.CommonJS
-};
-const program = ts.createProgram(fileNames, options);
-const checker = program.getTypeChecker();
-const classInfos = {};
-for (const fileName of fileNames) {
-    const sourceFile = program.getSourceFile(fileName);
-    if (sourceFile) {
-        ts.forEachChild(sourceFile, (node) => {
-            if (node) {
-                const classInfo = visit(node, checker);
-                if (classInfo) {
-                    let relativePath = path.relative(rootDir, fileName);
-                    relativePath = relativePath.substring(0, relativePath.length - 3);
-                    const segments = relativePath.split(path.sep);
-                    let currentObject = classInfos;
-                    for (let i = 0; i < segments.length; i++) {
-                        const segment = segments[i];
-                        if (i === segments.length - 1) {
-                            currentObject[segment] = classInfo;
-                        }
-                        else {
-                            if (!currentObject[segment]) {
-                                currentObject[segment] = {};
+try {
+    const rootDir = process.argv[2] || "../xgpu/src/xGPU";
+    const outputDir = process.argv[3] || "./";
+    const outputFileName = process.argv[4] || "documentation.json";
+    const fileNames = ts.sys.readDirectory(rootDir, ["ts"]);
+    const options = {
+        target: ts.ScriptTarget.ESNext,
+        module: ts.ModuleKind.CommonJS
+    };
+    const program = ts.createProgram(fileNames, options);
+    const checker = program.getTypeChecker();
+    const classInfos = {};
+    for (const fileName of fileNames) {
+        const sourceFile = program.getSourceFile(fileName);
+        if (sourceFile) {
+            ts.forEachChild(sourceFile, (node) => {
+                if (node) {
+                    const classInfo = visit(node, checker);
+                    if (classInfo) {
+                        let relativePath = path.relative(rootDir, fileName);
+                        relativePath = relativePath.substring(0, relativePath.length - 3);
+                        const segments = relativePath.split(path.sep);
+                        let currentObject = classInfos;
+                        for (let i = 0; i < segments.length; i++) {
+                            const segment = segments[i];
+                            if (i === segments.length - 1) {
+                                currentObject[segment] = classInfo;
                             }
-                            currentObject = currentObject[segment];
+                            else {
+                                if (!currentObject[segment]) {
+                                    currentObject[segment] = {};
+                                }
+                                currentObject = currentObject[segment];
+                            }
                         }
                     }
                 }
+            });
+            // Check if jsdoc.json exists in the directory
+            let relativePath = path.relative(rootDir, fileName);
+            relativePath = relativePath.substring(0, relativePath.length - 3);
+            const segments = relativePath.split(path.sep);
+            let currentObject = classInfos;
+            for (let i = 0; i < segments.length; i++) {
+                const segment = segments[i];
+                if (!currentObject[segment]) {
+                    currentObject[segment] = {};
+                }
+                currentObject = currentObject[segment];
             }
-        });
-        // Check if jsdoc.json exists in the directory
-        let relativePath = path.relative(rootDir, fileName);
-        relativePath = relativePath.substring(0, relativePath.length - 3);
-        const segments = relativePath.split(path.sep);
-        let currentObject = classInfos;
-        for (let i = 0; i < segments.length; i++) {
-            const segment = segments[i];
-            if (!currentObject[segment]) {
-                currentObject[segment] = {};
+            const jsdocPath = path.join(rootDir, ...segments, 'jsdoc.json');
+            if (fs.existsSync(jsdocPath)) {
+                // Read the content of jsdoc.json and parse it as JSON
+                const jsdocContent = JSON.parse(fs.readFileSync(jsdocPath, 'utf8'));
+                // Add the JSON content to the directory object
+                currentObject['jsdoc'] = jsdocContent;
             }
-            currentObject = currentObject[segment];
-        }
-        const jsdocPath = path.join(rootDir, ...segments, 'jsdoc.json');
-        if (fs.existsSync(jsdocPath)) {
-            // Read the content of jsdoc.json and parse it as JSON
-            const jsdocContent = JSON.parse(fs.readFileSync(jsdocPath, 'utf8'));
-            // Add the JSON content to the directory object
-            currentObject['jsdoc'] = jsdocContent;
         }
     }
-}
-//console.log(classInfos);
-function cleanEmptyArrays(obj) {
-    for (const key in obj) {
-        if ((Array.isArray(obj[key]) && obj[key].length === 0) || (key === 'implements' && Array.isArray(obj[key]) && obj[key].length === 0)) {
-            delete obj[key];
-        }
-        else if (typeof obj[key] === 'object' && obj[key] !== null) {
-            cleanEmptyArrays(obj[key]);
-            if (Object.keys(obj[key]).length === 0) {
+    //console.log(classInfos);
+    function cleanEmptyArrays(obj) {
+        for (const key in obj) {
+            if ((Array.isArray(obj[key]) && obj[key].length === 0) || (key === 'implements' && Array.isArray(obj[key]) && obj[key].length === 0)) {
                 delete obj[key];
             }
+            else if (typeof obj[key] === 'object' && obj[key] !== null) {
+                cleanEmptyArrays(obj[key]);
+                if (Object.keys(obj[key]).length === 0) {
+                    delete obj[key];
+                }
+            }
         }
     }
+    cleanEmptyArrays(classInfos);
+    const json = JSON.stringify(classInfos, null, 2);
+    fs.writeFileSync(path.join(outputDir, outputFileName), json);
 }
-cleanEmptyArrays(classInfos);
-const json = JSON.stringify(classInfos, null, 2);
-fs.writeFileSync("documentation.json", json);
+catch (e) {
+    console.error("Error  : ", e);
+    process.exit(1);
+}
