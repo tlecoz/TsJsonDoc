@@ -13,16 +13,19 @@ By traversing TypeScript files in a given directory and its subdirectories, TsJs
 - Takes into account JSDoc comments to provide additional descriptions.
 - Generates a JSON object structure that mirrors the source code directory structure.
 - Supports class inheritance hierarchy. For each class, it provides a list of all parent classes, not just the immediate parent.
+- Captures raw TypeScript code for each documented item, providing a direct reference to the source code.
 
 ## Usage
 
 TsJsonDoc can be used as a CLI command or as a library in your own code. To use it as a CLI command, install it globally via npm and run it with the path of the root directory as an argument:
 
 ```
-npx tsjsondoc path/to/your/typescript/source [path/to/output/directory] [output_filename]
+npx tsjsondoc path/to/your/typescript/source [path/to/output/directory] [output_filename] [--raw]
 ```
 
-By default, this will generate a `documentation.json` file in the current directory, containing the generated documentation. You can specify an output directory and an output filename as the second and third arguments respectively.
+By default, this will generate a `documentation.json` file in the current directory, containing the generated documentation. You can specify an output directory and an output filename as the second and third arguments respectively. 
+
+The `--raw` option can be used to include raw TypeScript code in the generated documentation.
 
 The objects described by the json follow this structure:
 
@@ -33,7 +36,8 @@ type FunctionInfo = {
     name: string,
     returnType: string,
     params: string,
-    jsDoc?: JsDocInfo
+    jsDoc?: JsDocInfo,
+    rawText?: string
 }
 
 // Variable defined outside of a class
@@ -41,7 +45,8 @@ type VariableInfo = {
     objectType: "variable",
     name: string,
     type: string,
-    jsDoc?: JsDocInfo
+    jsDoc?: JsDocInfo,
+    rawText?: string
 }
 
 // Type alias
@@ -49,7 +54,8 @@ type TypeAliasInfo = {
     objectType: "type",
     name: string,
     type: string,
-    jsDoc?: JsDocInfo
+    jsDoc?: JsDocInfo,
+    rawText?: string
 }
 
 // Enumeration
@@ -57,7 +63,8 @@ type EnumInfo = {
     objectType: "enum",
     name: string,
     members: { [key: string]: string | number },
-    jsDoc?: JsDocInfo
+    jsDoc?: JsDocInfo,
+    rawText?: string
 }
 
 // Class
@@ -92,7 +99,8 @@ type ClassInfo = {
     functions?: FunctionInfo[],
     variables?: VariableInfo[],
     types?: TypeAliasInfo[],
-    enums?: EnumInfo[]
+    enums?: EnumInfo[],
+    rawText?: string
 }
 
 // Property of a class
@@ -104,7 +112,8 @@ type PropertyInfo = {
     value?: string,
     get?: boolean, // Indicates if the property has a getter method
     set?: boolean, // Indicates if the property has a setter method
-    jsDoc?: JsDocInfo
+    jsDoc?: JsDocInfo,
+    rawText?: string
 }
 
 // Method of a class
@@ -114,7 +123,8 @@ type MethodInfo = {
     returnType: string,
     visibility: "public" | "private" | "protected",
     params?: { name: string, type: string }[],
-    jsDoc?: JsDocInfo
+    jsDoc?: JsDocInfo,
+    rawText?: string
 }
 
 // JSDoc information
@@ -123,6 +133,7 @@ type JsDocInfo = {
     params?: { [key: string]: string };
     returns?: string;
     examples?: string[];
+    rawText?: string;
 };
   ```
 
