@@ -4,11 +4,23 @@ import * as path from "path";
 import * as fs from "fs";
 
 
-type ObjectType = "type" | "function" | "variable" | "property" | "method" | "class";
+type ObjectType = "type" | "function" | "variable" | "property" | "method" | "class" | "enum";
 
 interface ObjectInfo {
     objectType: ObjectType;
     jsDoc?: JsDocInfo;
+}
+
+type EnumMemberInfo = {
+    name: string,
+    value?: string | number,
+    jsDoc?: JsDocInfo
+}
+
+type EnumInfo = ObjectInfo & {
+    name: string,
+    members: EnumMemberInfo[],
+    jsDoc?: JsDocInfo
 }
 
 type JsDocInfo = {
@@ -161,6 +173,52 @@ function getJsDoc(node: ts.Node): JsDocInfo | undefined {
 
 function visit(node: ts.Node, checker: ts.TypeChecker) {
     if (!ts.isClassDeclaration(node) && !ts.isInterfaceDeclaration(node)) {
+
+        if (ts.isEnumDeclaration(node)) {
+            const symbol = checker.getSymbolAtLocation(node.name);
+            if (!symbol) {
+                return;
+            }
+
+            const enumInfo: EnumInfo = {
+                objectType: "enum",
+                name: symbol.getName(),
+                members: [],
+                jsDoc: getJsDoc(node)
+            };
+
+            for (const member of node.members) {
+                const memberSymbol = checker.getSymbolAtLocation(member.name);
+                if (!memberSymbol) {
+                    continue;
+                }
+
+                let memberValue: string | number | undefined;
+                if (member.initializer) {
+                    if (ts.isNumericLiteral(member.initializer)) {
+                        memberValue = Number(member.initializer.text);
+                    } else if (ts.isStringLiteral(member.initializer)) {
+                        memberValue = member.initializer.text;
+                    } else {
+                        // Pour les autres types d'expressions, vous pouvez utiliser le type checker pour obtenir leur valeur
+                        const type = checker.getTypeAtLocation(member.initializer);
+                        const symbol = type.getSymbol();
+                        if (symbol) {
+                            memberValue = symbol.getName();
+                        }
+                    }
+                }
+                const enumMemberInfo: EnumMemberInfo = {
+                    name: memberSymbol.getName(),
+                    value: memberValue,
+                    jsDoc: getJsDoc(member)
+                };
+
+                enumInfo.members.push(enumMemberInfo);
+            }
+
+            return enumInfo;
+        }
 
         if (ts.isTypeAliasDeclaration(node)) {
             const symbol = checker.getSymbolAtLocation(node.name);
