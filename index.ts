@@ -64,23 +64,54 @@ type ClassInfo = {
     functions?: FunctionInfo[],
     variables?: VariableInfo[],
 }
-
+/*
 function getImplementedInterfaces(type: ts.Type, checker: ts.TypeChecker): string[] {
     const interfaces: Set<string> = new Set();
 
     if (type.isClassOrInterface()) {
+
         const baseTypes = checker.getBaseTypes(type as ts.InterfaceType);
         for (const baseType of baseTypes) {
             const symbol = baseType.getSymbol();
+            if (symbol.getName() === "HeadlessGPURenderer") console.log("getImplementedInterfaces #0 = ", symbol.flags, ts.SymbolFlags.Interface)
             if (symbol && (symbol.flags & ts.SymbolFlags.Interface) !== 0) {
+
+                console.log("symbol.getName() = ", symbol.getName())
+
                 interfaces.add(symbol.name);
                 getImplementedInterfaces(baseType, checker).forEach(i => interfaces.add(i));
+            }
+        }
+    }
+    if (interfaces.size > 0) {
+        console.log("getImplementedInterfaces = ", interfaces)
+    }
+    return Array.from(interfaces);
+}*/
+
+function getImplementedInterfaces(node: ts.ClassDeclaration | ts.InterfaceDeclaration, checker: ts.TypeChecker): string[] {
+    const interfaces: Set<string> = new Set();
+
+    if (node.heritageClauses) {
+        for (const clause of node.heritageClauses) {
+            if (clause.token === ts.SyntaxKind.ImplementsKeyword) {
+                for (const type of clause.types) {
+                    const symbol = checker.getSymbolAtLocation(type.expression);
+                    if (symbol) {
+                        console.log(symbol.name)
+                        interfaces.add(symbol.name);
+                    }
+                }
             }
         }
     }
 
     return Array.from(interfaces);
 }
+
+
+
+
 
 function getJsDoc(node: ts.Node): string | undefined {
     const jsDocTags = ts.getJSDocTags(node);
@@ -144,7 +175,7 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
     const classInfo: ClassInfo = {
         name: symbol.getName(),
         extends: [],
-        implements: getImplementedInterfaces(details, checker),
+        implements: getImplementedInterfaces(node, checker),
         properties: {
             public: [],
             private: [],
@@ -314,7 +345,7 @@ for (const fileName of fileNames) {
 
 }
 
-console.log(classInfos);
+//console.log(classInfos);
 
 function cleanEmptyArrays(obj: any) {
     for (const key in obj) {

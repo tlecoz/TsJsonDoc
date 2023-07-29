@@ -27,15 +27,42 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ts = __importStar(require("typescript"));
 const path = __importStar(require("path"));
 const fs = __importStar(require("fs"));
-function getImplementedInterfaces(type, checker) {
-    const interfaces = new Set();
+/*
+function getImplementedInterfaces(type: ts.Type, checker: ts.TypeChecker): string[] {
+    const interfaces: Set<string> = new Set();
+
     if (type.isClassOrInterface()) {
-        const baseTypes = checker.getBaseTypes(type);
+
+        const baseTypes = checker.getBaseTypes(type as ts.InterfaceType);
         for (const baseType of baseTypes) {
             const symbol = baseType.getSymbol();
+            if (symbol.getName() === "HeadlessGPURenderer") console.log("getImplementedInterfaces #0 = ", symbol.flags, ts.SymbolFlags.Interface)
             if (symbol && (symbol.flags & ts.SymbolFlags.Interface) !== 0) {
+
+                console.log("symbol.getName() = ", symbol.getName())
+
                 interfaces.add(symbol.name);
                 getImplementedInterfaces(baseType, checker).forEach(i => interfaces.add(i));
+            }
+        }
+    }
+    if (interfaces.size > 0) {
+        console.log("getImplementedInterfaces = ", interfaces)
+    }
+    return Array.from(interfaces);
+}*/
+function getImplementedInterfaces(node, checker) {
+    const interfaces = new Set();
+    if (node.heritageClauses) {
+        for (const clause of node.heritageClauses) {
+            if (clause.token === ts.SyntaxKind.ImplementsKeyword) {
+                for (const type of clause.types) {
+                    const symbol = checker.getSymbolAtLocation(type.expression);
+                    if (symbol) {
+                        console.log(symbol.name);
+                        interfaces.add(symbol.name);
+                    }
+                }
             }
         }
     }
@@ -89,7 +116,7 @@ function visit(node, checker) {
     const classInfo = {
         name: symbol.getName(),
         extends: [],
-        implements: getImplementedInterfaces(details, checker),
+        implements: getImplementedInterfaces(node, checker),
         properties: {
             public: [],
             private: [],
@@ -234,7 +261,7 @@ for (const fileName of fileNames) {
         }
     }
 }
-console.log(classInfos);
+//console.log(classInfos);
 function cleanEmptyArrays(obj) {
     for (const key in obj) {
         if ((Array.isArray(obj[key]) && obj[key].length === 0) || (key === 'implements' && Array.isArray(obj[key]) && obj[key].length === 0)) {

@@ -374,6 +374,9 @@
   },
   "HeadlessGPURenderer": {
     "name": "HeadlessGPURenderer",
+    "implements": [
+      "IRenderer"
+    ],
     "properties": {
       "public": [
         {
@@ -2268,6 +2271,9 @@
           "extends": [
             "Texture"
           ],
+          "implements": [
+            "IShaderResource"
+          ],
           "properties": {
             "public": [
               {
@@ -3464,6 +3470,9 @@
           "ImageTextureArray",
           "ImageTexture"
         ],
+        "implements": [
+          "IShaderResource"
+        ],
         "properties": {
           "public": [
             {
@@ -3594,6 +3603,9 @@
           "ImageTextureArray",
           "ImageTexture"
         ],
+        "implements": [
+          "IShaderResource"
+        ],
         "properties": {
           "public": [
             {
@@ -3706,6 +3718,9 @@
       },
       "ImageTexture": {
         "name": "ImageTexture",
+        "implements": [
+          "IShaderResource"
+        ],
         "properties": {
           "public": [
             {
@@ -3931,6 +3946,9 @@
         "name": "ImageTextureArray",
         "extends": [
           "ImageTexture"
+        ],
+        "implements": [
+          "IShaderResource"
         ],
         "properties": {
           "public": [
@@ -4159,6 +4177,9 @@
       },
       "TextureSampler": {
         "name": "TextureSampler",
+        "implements": [
+          "IShaderResource"
+        ],
         "properties": {
           "public": [
             {
@@ -4351,6 +4372,9 @@
       },
       "UniformBuffer": {
         "name": "UniformBuffer",
+        "implements": [
+          "IShaderResource"
+        ],
         "properties": {
           "public": [
             {
@@ -5303,6 +5327,9 @@
       },
       "VertexBuffer": {
         "name": "VertexBuffer",
+        "implements": [
+          "IShaderResource"
+        ],
         "properties": {
           "public": [
             {
@@ -5854,6 +5881,9 @@
       },
       "VideoTexture": {
         "name": "VideoTexture",
+        "implements": [
+          "IShaderResource"
+        ],
         "properties": {
           "public": [
             {
