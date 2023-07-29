@@ -27,7 +27,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ts = __importStar(require("typescript"));
 const path = __importStar(require("path"));
 const fs = __importStar(require("fs"));
-const rootDir = process.argv[2] || "./src";
+const rootDir = process.argv[2] || "../xgpu/src/xGPU";
 const outputDir = process.argv[3] || "./";
 const outputFileName = process.argv[4] || "documentation.json";
 const useRawText = process.argv[5] !== 'false';
@@ -218,6 +218,7 @@ function visit(node, checker) {
                 protected: []
             }
         },
+        constructor: undefined,
         jsDoc: getJsDoc(node),
         rawText: useRawText ? node.getText() : undefined,
     };
@@ -230,6 +231,24 @@ function visit(node, checker) {
         baseType = baseType.getBaseTypes() && baseType.getBaseTypes().length > 0 ? baseType.getBaseTypes()[0] : undefined;
     }
     for (const member of node.members) {
+        if (ts.isConstructorDeclaration(member)) {
+            const signature = checker.getSignatureFromDeclaration(member);
+            const params = signature.parameters.map(paramSymbol => {
+                const paramDeclaration = paramSymbol.valueDeclaration;
+                return {
+                    name: paramSymbol.getName(),
+                    type: checker.typeToString(checker.getTypeAtLocation(paramDeclaration))
+                };
+            });
+            const constructorInfo = {
+                objectType: "constructor",
+                name: "constructor",
+                params,
+                jsDoc: getJsDoc(member),
+                rawText: useRawText ? member.getText() : undefined,
+            };
+            classInfo.constructor = constructorInfo;
+        }
         const memberSymbol = checker.getSymbolAtLocation(member.name);
         if (!memberSymbol) {
             continue;

@@ -3,19 +3,26 @@ import * as ts from "typescript";
 import * as path from "path";
 import * as fs from "fs";
 
-const rootDir = process.argv[2] || "./src";
+const rootDir = process.argv[2] || "../xgpu/src/xGPU";
 const outputDir = process.argv[3] || "./";
 const outputFileName = process.argv[4] || "documentation.json";
 const useRawText = process.argv[5] !== 'false';
 
 
-type ObjectType = "type" | "function" | "variable" | "property" | "method" | "class" | "enum";
+type ObjectType = "type" | "function" | "variable" | "property" | "method" | "class" | "enum" | "constructor";
 
 interface ObjectInfo {
     objectType: ObjectType;
     jsDoc?: JsDocInfo;
     rawText?: string;
 }
+
+type ConstructorInfo = ObjectInfo & {
+    name: string,
+    params?: { name: string, type: string }[],
+}
+
+
 
 type EnumMemberInfo = {
     name: string,
@@ -70,6 +77,7 @@ type MethodInfo = ObjectInfo & {
 
 type ClassInfo = ObjectInfo & {
     name: string,
+    constructor?: ConstructorInfo,
     extends?: string[],
     implements?: string[],
     properties?: {
@@ -218,6 +226,9 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
                 };
 
                 enumInfo.members.push(enumMemberInfo);
+
+
+
             }
 
             return enumInfo;
@@ -320,9 +331,11 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
                 protected: []
             }
         },
+        constructor: undefined,
         jsDoc: getJsDoc(node),
         rawText: useRawText ? node.getText() : undefined,
     };
+
 
     let baseType = details.getBaseTypes()[0];
     while (baseType) {
@@ -334,10 +347,35 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
     }
 
     for (const member of node.members) {
+
+        if (ts.isConstructorDeclaration(member)) {
+
+            const signature = checker.getSignatureFromDeclaration(member as ts.ConstructorDeclaration);
+            const params = signature!.parameters.map(paramSymbol => {
+                const paramDeclaration = paramSymbol.valueDeclaration as ts.ParameterDeclaration;
+                return {
+                    name: paramSymbol.getName(),
+                    type: checker.typeToString(checker.getTypeAtLocation(paramDeclaration))
+                };
+            });
+
+            const constructorInfo: ConstructorInfo = {
+                objectType: "constructor",
+                name: "constructor",
+                params,
+                jsDoc: getJsDoc(member),
+                rawText: useRawText ? (member as ts.ConstructorDeclaration).getText() : undefined,
+            };
+
+            classInfo.constructor = constructorInfo as any;
+        }
+
         const memberSymbol = checker.getSymbolAtLocation(member.name!);
         if (!memberSymbol) {
             continue;
         }
+
+
 
         const visibility = ts.getCombinedModifierFlags(member) & ts.ModifierFlags.Public
             ? 'public'
@@ -393,6 +431,9 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
                 classInfo.methods![visibility].push(methodInfo);
             }
         }
+
+
+
     }
 
 
