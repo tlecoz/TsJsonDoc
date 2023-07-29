@@ -208,6 +208,7 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
                         }
                     }
                 }
+
                 const enumMemberInfo: EnumMemberInfo = {
                     name: memberSymbol.getName(),
                     value: memberValue,
