@@ -36,8 +36,10 @@ type FunctionInfo = {
     name: string,
     returnType: string,
     params: string,
+    filePath:string,
     jsDoc?: JsDocInfo,
-    rawText?: string
+    rawText?: string,
+    
 }
 
 // Variable defined outside of a class
@@ -45,6 +47,7 @@ type VariableInfo = {
     objectType: "variable",
     name: string,
     type: string,
+    filePath:string,
     jsDoc?: JsDocInfo,
     rawText?: string
 }
@@ -54,6 +57,7 @@ type TypeAliasInfo = {
     objectType: "type",
     name: string,
     type: string,
+    filePath:string,
     jsDoc?: JsDocInfo,
     rawText?: string
 }
@@ -62,6 +66,7 @@ type TypeAliasInfo = {
 type EnumInfo = {
     objectType: "enum",
     name: string,
+    filePath:string,
     members: { [key: string]: string | number },
     jsDoc?: JsDocInfo,
     rawText?: string
@@ -71,6 +76,7 @@ type EnumInfo = {
 type ClassInfo = {
     objectType: "class",
     name: string,
+    filePath:string,
     extends?: string[],
     implements?: string[],
     properties?: {
