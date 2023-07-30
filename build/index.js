@@ -39,7 +39,7 @@ function getImplementedInterfaces(node, checker) {
                 for (const type of clause.types) {
                     const symbol = checker.getSymbolAtLocation(type.expression);
                     if (symbol) {
-                        console.log(symbol.name);
+                        //console.log(symbol.name)
                         interfaces.add(symbol.name);
                     }
                 }
@@ -335,7 +335,16 @@ try {
                         for (let i = 0; i < segments.length; i++) {
                             const segment = segments[i];
                             if (i === segments.length - 1) {
-                                currentObject[segment] = classInfo;
+                                if (!currentObject[segment]) {
+                                    currentObject[segment] = [];
+                                }
+                                currentObject[segment].push(classInfo);
+                                /*
+                                if (classInfo.name === "Vec3") {
+                                    console.log(`Added class info for ${segment} ${classInfo.name} to classInfos`);
+                                    console.log("classInfos after adding class info: ", classInfos);
+                                }
+                                */
                             }
                             else {
                                 if (!currentObject[segment]) {

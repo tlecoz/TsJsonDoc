@@ -116,7 +116,7 @@ function getImplementedInterfaces(node: ts.ClassDeclaration | ts.InterfaceDeclar
                 for (const type of clause.types) {
                     const symbol = checker.getSymbolAtLocation(type.expression);
                     if (symbol) {
-                        console.log(symbol.name)
+                        //console.log(symbol.name)
                         interfaces.add(symbol.name);
                     }
                 }
@@ -196,6 +196,9 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
                 jsDoc: getJsDoc(node),
                 rawText: useRawText ? node.getText() : undefined,
             };
+
+
+
 
             for (const member of node.members) {
                 const memberSymbol = checker.getSymbolAtLocation(member.name);
@@ -297,6 +300,8 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
 
         return;
     }
+
+
 
     const symbol = checker.getSymbolAtLocation(node.name!);
     if (!symbol) {
@@ -412,6 +417,9 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
 
             const params = signature!.getParameters().map(paramSymbol => {
                 const paramDeclaration = paramSymbol.valueDeclaration as ts.ParameterDeclaration;
+
+
+
                 return {
                     name: paramSymbol.getName(),
                     type: checker.typeToString(checker.getTypeAtLocation(paramDeclaration))
@@ -470,6 +478,7 @@ try {
                         let relativePath = path.relative(rootDir, fileName);
                         relativePath = relativePath.substring(0, relativePath.length - 3);
 
+
                         if (classInfo.objectType === "class") {
                             (classInfo as ClassInfo).filePath = relativePath.split("\\").join(".");
                         }
@@ -478,8 +487,22 @@ try {
                         let currentObject = classInfos;
                         for (let i = 0; i < segments.length; i++) {
                             const segment = segments[i];
+
+
+
                             if (i === segments.length - 1) {
-                                currentObject[segment] = classInfo;
+                                if (!currentObject[segment]) {
+                                    currentObject[segment] = [];
+                                }
+                                currentObject[segment].push(classInfo);
+
+                                /*
+                                if (classInfo.name === "Vec3") {
+                                    console.log(`Added class info for ${segment} ${classInfo.name} to classInfos`);
+                                    console.log("classInfos after adding class info: ", classInfos);
+                                }
+                                */
+
                             } else {
                                 if (!currentObject[segment]) {
                                     currentObject[segment] = {};
@@ -531,7 +554,10 @@ try {
             }
         }
     }
+
     cleanEmptyArrays(classInfos)
+
+
 
     const json = JSON.stringify(classInfos, null, 2);
     fs.writeFileSync(path.join(outputDir, outputFileName), json);
