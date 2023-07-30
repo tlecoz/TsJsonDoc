@@ -30,6 +30,9 @@ The `--raw` option can be used to include raw TypeScript code in the generated d
 The objects described by the json follow this structure:
 
  ```typescript
+
+
+
  // Function defined outside of a class 
 type FunctionInfo = {
     objectType: "function",
@@ -72,11 +75,20 @@ type EnumInfo = {
     rawText?: string
 }
 
+//Class-Constructor
+type ConstructorInfo = ObjectInfo & {
+    objectType: "constructor",
+    name: string,
+    params?: { name: string, type: string }[],
+    jsDoc?: JsDocInfo;
+    rawText?: string;
+}
 // Class
 type ClassInfo = {
     objectType: "class",
     name: string,
     filePath:string,
+    constructor:ConstructorInfo,
     extends?: string[],
     implements?: string[],
     properties?: {
