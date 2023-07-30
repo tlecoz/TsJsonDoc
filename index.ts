@@ -77,6 +77,7 @@ type MethodInfo = ObjectInfo & {
 
 type ClassInfo = ObjectInfo & {
     name: string,
+    filePath: string,
     constructor?: ConstructorInfo,
     extends?: string[],
     implements?: string[],
@@ -307,6 +308,7 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
     const classInfo: ClassInfo = {
         objectType: "class",
         name: symbol.getName(),
+        filePath: "",
         extends: [],
         implements: getImplementedInterfaces(node, checker),
         properties: {
@@ -334,6 +336,7 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
         constructor: undefined,
         jsDoc: getJsDoc(node),
         rawText: useRawText ? node.getText() : undefined,
+
     };
 
 
@@ -466,6 +469,10 @@ try {
                     if (classInfo) {
                         let relativePath = path.relative(rootDir, fileName);
                         relativePath = relativePath.substring(0, relativePath.length - 3);
+
+                        if (classInfo.objectType === "class") {
+                            (classInfo as ClassInfo).filePath = relativePath.split("\\").join(".");
+                        }
 
                         const segments = relativePath.split(path.sep);
                         let currentObject = classInfos;

@@ -2,6 +2,7 @@
   "BuiltIns": {
     "objectType": "class",
     "name": "BuiltIns",
+    "filePath": "BuiltIns",
     "statics": {
       "properties": {
         "public": [
@@ -55,6 +56,7 @@
   "GPURenderer": {
     "objectType": "class",
     "name": "GPURenderer",
+    "filePath": "GPURenderer",
     "extends": [
       "HeadlessGPURenderer"
     ],
@@ -208,6 +210,7 @@
   "GPUType": {
     "objectType": "class",
     "name": "GPUType",
+    "filePath": "GPUType",
     "properties": {
       "public": [
         {
@@ -511,6 +514,7 @@
   "HeadlessGPURenderer": {
     "objectType": "class",
     "name": "HeadlessGPURenderer",
+    "filePath": "HeadlessGPURenderer",
     "implements": [
       "IRenderer"
     ],
@@ -727,6 +731,7 @@
   "HighLevelParser": {
     "objectType": "class",
     "name": "HighLevelParser",
+    "filePath": "HighLevelParser",
     "properties": {
       "protected": [
         {
@@ -1059,6 +1064,7 @@
   "IRenderer": {
     "objectType": "class",
     "name": "IRenderer",
+    "filePath": "IRenderer",
     "properties": {
       "protected": [
         {
@@ -1140,6 +1146,7 @@
   "WgslUtils": {
     "objectType": "class",
     "name": "WgslUtils",
+    "filePath": "WgslUtils",
     "statics": {
       "properties": {
         "public": [
@@ -1175,6 +1182,7 @@
   "XGPU": {
     "objectType": "class",
     "name": "XGPU",
+    "filePath": "XGPU",
     "statics": {
       "properties": {
         "public": [
@@ -1438,6 +1446,7 @@
     "ComputePipeline": {
       "objectType": "class",
       "name": "ComputePipeline",
+      "filePath": "pipelines.ComputePipeline",
       "extends": [
         "Pipeline"
       ],
@@ -1701,6 +1710,7 @@
     "DrawConfig": {
       "objectType": "class",
       "name": "DrawConfig",
+      "filePath": "pipelines.DrawConfig",
       "properties": {
         "public": [
           {
@@ -1796,6 +1806,7 @@
     "MixedPipeline": {
       "objectType": "class",
       "name": "MixedPipeline",
+      "filePath": "pipelines.MixedPipeline",
       "extends": [
         "RenderPipeline",
         "Pipeline"
@@ -1852,6 +1863,7 @@
     "Pipeline": {
       "objectType": "class",
       "name": "Pipeline",
+      "filePath": "pipelines.Pipeline",
       "properties": {
         "public": [
           {
@@ -2157,6 +2169,7 @@
     "RenderPipeline": {
       "objectType": "class",
       "name": "RenderPipeline",
+      "filePath": "pipelines.RenderPipeline",
       "extends": [
         "Pipeline"
       ],
@@ -2699,6 +2712,7 @@
       "PipelinePlugin": {
         "objectType": "class",
         "name": "PipelinePlugin",
+        "filePath": "pipelines.plugins.PipelinePlugin",
         "properties": {
           "public": [
             {
@@ -2783,6 +2797,7 @@
       "IndexBuffer": {
         "objectType": "class",
         "name": "IndexBuffer",
+        "filePath": "pipelines.resources.IndexBuffer",
         "properties": {
           "public": [
             {
@@ -2964,6 +2979,7 @@
         "AlphaBlendMode": {
           "objectType": "class",
           "name": "AlphaBlendMode",
+          "filePath": "pipelines.resources.blendmodes.AlphaBlendMode",
           "extends": [
             "BlendMode"
           ],
@@ -2977,6 +2993,7 @@
         "BlendMode": {
           "objectType": "class",
           "name": "BlendMode",
+          "filePath": "pipelines.resources.blendmodes.BlendMode",
           "properties": {
             "public": [
               {
@@ -3007,6 +3024,7 @@
         "DepthStencilTexture": {
           "objectType": "class",
           "name": "DepthStencilTexture",
+          "filePath": "pipelines.resources.textures.DepthStencilTexture",
           "extends": [
             "Texture"
           ],
@@ -3206,6 +3224,7 @@
         "DepthTextureArray": {
           "objectType": "class",
           "name": "DepthTextureArray",
+          "filePath": "pipelines.resources.textures.DepthTextureArray",
           "extends": [
             "ImageTextureArray",
             "ImageTexture"
@@ -3334,6 +3353,7 @@
         "MultiSampleTexture": {
           "objectType": "class",
           "name": "MultiSampleTexture",
+          "filePath": "pipelines.resources.textures.MultiSampleTexture",
           "extends": [
             "Texture"
           ],
@@ -3393,6 +3413,7 @@
         "RenderPassTexture": {
           "objectType": "class",
           "name": "RenderPassTexture",
+          "filePath": "pipelines.resources.textures.RenderPassTexture",
           "extends": [
             "ImageTexture"
           ],
@@ -3472,6 +3493,7 @@
         "Texture": {
           "objectType": "class",
           "name": "Texture",
+          "filePath": "pipelines.resources.textures.Texture",
           "properties": {
             "public": [
               {
@@ -3631,6 +3653,7 @@
     "Bindgroup": {
       "objectType": "class",
       "name": "Bindgroup",
+      "filePath": "shader.Bindgroup",
       "properties": {
         "public": [
           {
@@ -4096,6 +4119,7 @@
     "Bindgroups": {
       "objectType": "class",
       "name": "Bindgroups",
+      "filePath": "shader.Bindgroups",
       "properties": {
         "public": [
           {
@@ -4403,6 +4427,7 @@
     "ComputeShader": {
       "objectType": "class",
       "name": "ComputeShader",
+      "filePath": "shader.ComputeShader",
       "extends": [
         "ShaderStage"
       ],
@@ -4437,6 +4462,7 @@
     "FragmentShader": {
       "objectType": "class",
       "name": "FragmentShader",
+      "filePath": "shader.FragmentShader",
       "extends": [
         "ShaderStage"
       ],
@@ -4471,6 +4497,7 @@
     "PrimitiveType": {
       "objectType": "class",
       "name": "Matrix4x4Array",
+      "filePath": "shader.PrimitiveType",
       "extends": [
         "PrimitiveFloatUniform",
         "Float32Array",
@@ -4514,6 +4541,7 @@
     "ShaderType": {
       "objectType": "class",
       "name": "ShaderType",
+      "filePath": "shader.ShaderType",
       "statics": {
         "properties": {
           "public": [
@@ -4609,6 +4637,7 @@
     "VertexShader": {
       "objectType": "class",
       "name": "VertexShader",
+      "filePath": "shader.VertexShader",
       "extends": [
         "ShaderStage"
       ],
@@ -4644,6 +4673,7 @@
       "CubeMapTexture": {
         "objectType": "class",
         "name": "CubeMapTexture",
+        "filePath": "shader.resources.CubeMapTexture",
         "extends": [
           "ImageTextureArray",
           "ImageTexture"
@@ -4820,6 +4850,7 @@
       "CubeMapTextureArray": {
         "objectType": "class",
         "name": "CubeMapTextureArray",
+        "filePath": "shader.resources.CubeMapTextureArray",
         "extends": [
           "ImageTextureArray",
           "ImageTexture"
@@ -4969,11 +5000,13 @@
       "IShaderResource": {
         "objectType": "class",
         "name": "IShaderResource",
+        "filePath": "shader.resources.IShaderResource",
         "rawText": "export interface IShaderResource {\r\n\r\n    mustBeTransfered: boolean;\r\n    gpuResource: any;\r\n    descriptor: any;\r\n\r\n    setPipelineType(pipelineType: \"compute\" | \"render\" | \"compute_mixed\"); //used to handle particular cases in descriptor relative to the nature of pipeline\r\n\r\n    createDeclaration(varName: string, bindingId: number, groupId: number): string;\r\n    createBindGroupLayoutEntry(bindingId: number): any;\r\n    createBindGroupEntry(bindingId: number): any;\r\n\r\n    createGpuResource();\r\n    destroyGpuResource();\r\n    update();\r\n\r\n    clone(): IShaderResource;\r\n\r\n}"
       },
       "ImageTexture": {
         "objectType": "class",
         "name": "ImageTexture",
+        "filePath": "shader.resources.ImageTexture",
         "implements": [
           "IShaderResource"
         ],
@@ -5273,6 +5306,7 @@
       "ImageTextureArray": {
         "objectType": "class",
         "name": "ImageTextureArray",
+        "filePath": "shader.resources.ImageTextureArray",
         "extends": [
           "ImageTexture"
         ],
@@ -5453,6 +5487,7 @@
       "ImageTextureIO": {
         "objectType": "class",
         "name": "ImageTextureIO",
+        "filePath": "shader.resources.ImageTextureIO",
         "properties": {
           "public": [
             {
@@ -5586,6 +5621,7 @@
       "TextureSampler": {
         "objectType": "class",
         "name": "TextureSampler",
+        "filePath": "shader.resources.TextureSampler",
         "implements": [
           "IShaderResource"
         ],
@@ -5832,6 +5868,7 @@
       "UniformBuffer": {
         "objectType": "class",
         "name": "UniformBuffer",
+        "filePath": "shader.resources.UniformBuffer",
         "implements": [
           "IShaderResource"
         ],
@@ -6137,6 +6174,7 @@
       "UniformGroup": {
         "objectType": "class",
         "name": "UniformGroup",
+        "filePath": "shader.resources.UniformGroup",
         "properties": {
           "public": [
             {
@@ -6460,6 +6498,7 @@
       "UniformGroupArray": {
         "objectType": "class",
         "name": "UniformGroupArray",
+        "filePath": "shader.resources.UniformGroupArray",
         "properties": {
           "public": [
             {
@@ -6673,6 +6712,7 @@
       "VertexAttribute": {
         "objectType": "class",
         "name": "VertexAttribute",
+        "filePath": "shader.resources.VertexAttribute",
         "properties": {
           "public": [
             {
@@ -7075,6 +7115,7 @@
       "VertexBuffer": {
         "objectType": "class",
         "name": "VertexBuffer",
+        "filePath": "shader.resources.VertexBuffer",
         "implements": [
           "IShaderResource"
         ],
@@ -7576,6 +7617,7 @@
       "VertexBufferIO": {
         "objectType": "class",
         "name": "VertexBufferIO",
+        "filePath": "shader.resources.VertexBufferIO",
         "properties": {
           "public": [
             {
@@ -7809,6 +7851,7 @@
       "VideoTexture": {
         "objectType": "class",
         "name": "VideoTexture",
+        "filePath": "shader.resources.VideoTexture",
         "implements": [
           "IShaderResource"
         ],
@@ -7993,6 +8036,7 @@
       "ShaderNode": {
         "objectType": "class",
         "name": "ShaderNode",
+        "filePath": "shader.shaderParts.ShaderNode",
         "properties": {
           "public": [
             {
@@ -8108,6 +8152,7 @@
       "ShaderStage": {
         "objectType": "class",
         "name": "ShaderStage",
+        "filePath": "shader.shaderParts.ShaderStage",
         "properties": {
           "public": [
             {
@@ -8271,6 +8316,7 @@
       "ShaderStruct": {
         "objectType": "class",
         "name": "ShaderStruct",
+        "filePath": "shader.shaderParts.ShaderStruct",
         "properties": {
           "public": [
             {

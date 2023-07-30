@@ -194,6 +194,7 @@ function visit(node, checker) {
     const classInfo = {
         objectType: "class",
         name: symbol.getName(),
+        filePath: "",
         extends: [],
         implements: getImplementedInterfaces(node, checker),
         properties: {
@@ -326,6 +327,9 @@ try {
                     if (classInfo) {
                         let relativePath = path.relative(rootDir, fileName);
                         relativePath = relativePath.substring(0, relativePath.length - 3);
+                        if (classInfo.objectType === "class") {
+                            classInfo.filePath = relativePath.split("\\").join(".");
+                        }
                         const segments = relativePath.split(path.sep);
                         let currentObject = classInfos;
                         for (let i = 0; i < segments.length; i++) {
