@@ -336,14 +336,7 @@
             "type": "number",
             "visibility": "public",
             "rawText": "public get byteAlign(): number { return this._alignOf; }",
-            "get": true
-          },
-          {
-            "objectType": "property",
-            "name": "byteAlign",
-            "type": "number",
-            "visibility": "public",
-            "rawText": "public set byteAlign(n: number) { this._alignOf = n; }",
+            "get": true,
             "set": true
           },
           {
@@ -2286,14 +2279,7 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public get vertexCount(): number { return this.drawConfig.vertexCount }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "vertexCount",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public set vertexCount(n: number) { this.drawConfig.vertexCount = n; }",
+              "get": true,
               "set": true
             },
             {
@@ -2302,14 +2288,7 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public get instanceCount(): number { return this.drawConfig.instanceCount }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "instanceCount",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public set instanceCount(n: number) { this.drawConfig.instanceCount = n; }",
+              "get": true,
               "set": true
             },
             {
@@ -2318,14 +2297,7 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public get firstVertexId(): number { return this.drawConfig.firstVertexId }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "firstVertexId",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public set firstVertexId(n: number) { this.drawConfig.firstVertexId = n; }",
+              "get": true,
               "set": true
             },
             {
@@ -2334,14 +2306,7 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public get firstInstanceId(): number { return this.drawConfig.firstInstanceId }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "firstInstanceId",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public set firstInstanceId(n: number) { this.drawConfig.firstInstanceId = n; }",
+              "get": true,
               "set": true
             },
             {
@@ -2350,14 +2315,7 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public get baseVertex(): number { return this.drawConfig.baseVertex }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "baseVertex",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public set baseVertex(n: number) { this.drawConfig.baseVertex = n; }",
+              "get": true,
               "set": true
             },
             {
@@ -2404,14 +2362,7 @@
               "type": "\"front\" | \"back\" | \"none\"",
               "visibility": "public",
               "rawText": "public get cullMode(): \"front\" | \"back\" | \"none\" { return this.description.primitive.cullMode }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "cullMode",
-              "type": "\"front\" | \"back\" | \"none\"",
-              "visibility": "public",
-              "rawText": "public set cullMode(s: \"front\" | \"back\" | \"none\") { this.description.primitive.cullMode = s }",
+              "get": true,
               "set": true
             },
             {
@@ -2420,14 +2371,7 @@
               "type": "\"point-list\" | \"line-list\" | \"line-strip\" | \"triangle-list\" | \"triangle-strip\"",
               "visibility": "public",
               "rawText": "public get topology(): \"point-list\" | \"line-list\" | \"line-strip\" | \"triangle-list\" | \"triangle-strip\" { return this.description.primitive.topology }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "topology",
-              "type": "\"point-list\" | \"line-list\" | \"line-strip\" | \"triangle-list\" | \"triangle-strip\"",
-              "visibility": "public",
-              "rawText": "public set topology(s: \"point-list\" | \"line-list\" | \"line-strip\" | \"triangle-list\" | \"triangle-strip\") { this.description.primitive.topology = s }",
+              "get": true,
               "set": true
             },
             {
@@ -2436,14 +2380,7 @@
               "type": "\"ccw\" | \"cw\"",
               "visibility": "public",
               "rawText": "public get frontFace(): \"ccw\" | \"cw\" { return this.description.primitive.frontFace }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "frontFace",
-              "type": "\"ccw\" | \"cw\"",
-              "visibility": "public",
-              "rawText": "public set frontFace(s: \"ccw\" | \"cw\") { this.description.primitive.frontFace = s }",
+              "get": true,
               "set": true
             },
             {
@@ -2452,14 +2389,7 @@
               "type": "\"uint16\" | \"uint32\"",
               "visibility": "public",
               "rawText": "public get stripIndexFormat(): \"uint16\" | \"uint32\" { return this.description.primitive.stripIndexFormat }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "stripIndexFormat",
-              "type": "\"uint16\" | \"uint32\"",
-              "visibility": "public",
-              "rawText": "public set stripIndexFormat(s: \"uint16\" | \"uint32\") { this.description.primitive.stripIndexFormat = s }",
+              "get": true,
               "set": true
             }
           ],
@@ -2870,14 +2800,7 @@
                 "type": "number",
                 "visibility": "public",
                 "rawText": "public get nbPoint(): number { return this.descriptor.nbPoint; }",
-                "get": true
-              },
-              {
-                "objectType": "property",
-                "name": "nbPoint",
-                "type": "number",
-                "visibility": "public",
-                "rawText": "public set nbPoint(n: number) { this.descriptor.nbPoint = n; }",
+                "get": true,
                 "set": true
               },
               {
@@ -2886,14 +2809,7 @@
                 "type": "number",
                 "visibility": "public",
                 "rawText": "public get offset(): number { return this.descriptor.offset; }",
-                "get": true
-              },
-              {
-                "objectType": "property",
-                "name": "offset",
-                "type": "number",
-                "visibility": "public",
-                "rawText": "public set offset(n: number) { this.descriptor.offset = n; }",
+                "get": true,
                 "set": true
               },
               {
@@ -2902,14 +2818,7 @@
                 "type": "Uint16Array | Uint32Array",
                 "visibility": "public",
                 "rawText": "public set datas(indices: Uint32Array | Uint16Array) {\r\n        this.mustUpdateData = true;\r\n\r\n        if (indices instanceof Uint16Array) this.descriptor.dataType = \"uint16\";\r\n        else this.descriptor.dataType = \"uint32\";\r\n\r\n        if (!this._datas || indices.length > this._datas.length || indices != this._datas) {\r\n            this._datas = indices;\r\n            this.createGpuResource();\r\n        }\r\n        this.update();\r\n\r\n    }",
-                "set": true
-              },
-              {
-                "objectType": "property",
-                "name": "datas",
-                "type": "Uint16Array | Uint32Array",
-                "visibility": "public",
-                "rawText": "public get datas(): Uint32Array | Uint16Array { return this._datas }",
+                "set": true,
                 "get": true
               }
             ],
@@ -3506,14 +3415,7 @@
                   "type": "any",
                   "visibility": "public",
                   "rawText": "public get source(): ImageBitmap | HTMLCanvasElement | HTMLVideoElement | OffscreenCanvas | GPUTexture { return null }",
-                  "get": true
-                },
-                {
-                  "objectType": "property",
-                  "name": "source",
-                  "type": "any",
-                  "visibility": "public",
-                  "rawText": "public set source(bmp: ImageBitmap | HTMLCanvasElement | HTMLVideoElement | OffscreenCanvas | GPUTexture) { if (bmp) return }",
+                  "get": true,
                   "set": true
                 }
               ]
@@ -4627,14 +4529,7 @@
               "type": "boolean",
               "visibility": "public",
               "rawText": "public get mustBeTransfered(): boolean { return this._mustBeTransfered; }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "mustBeTransfered",
-              "type": "boolean",
-              "visibility": "public",
-              "rawText": "public set mustBeTransfered(b: boolean) {\r\n        if (b != this._mustBeTransfered) {\r\n            if (!b && this.onChange) this.onChange();\r\n            this._mustBeTransfered = b;\r\n        }\r\n    }",
+              "get": true,
               "set": true
             },
             {
@@ -4817,14 +4712,7 @@
               "type": "boolean",
               "visibility": "public",
               "rawText": "public get mustBeTransfered(): boolean { return this._mustBeTransfered; }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "mustBeTransfered",
-              "type": "boolean",
-              "visibility": "public",
-              "rawText": "public set mustBeTransfered(b: boolean) {\r\n        if (b != this._mustBeTransfered) {\r\n            if (!b && this.onChange) this.onChange();\r\n            this._mustBeTransfered = b;\r\n        }\r\n    }",
+              "get": true,
               "set": true
             },
             {
@@ -4993,14 +4881,7 @@
               "type": "boolean",
               "visibility": "public",
               "rawText": "public get mustBeTransfered(): boolean { return this._mustBeTransfered; }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "mustBeTransfered",
-              "type": "boolean",
-              "visibility": "public",
-              "rawText": "public set mustBeTransfered(b: boolean) {\r\n        if (b != this._mustBeTransfered) {\r\n            if (!b && this.onChange) this.onChange();\r\n            this._mustBeTransfered = b;\r\n        }\r\n    }",
+              "get": true,
               "set": true
             },
             {
@@ -5128,14 +5009,7 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set x(n: number) {\r\n        this[0] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "x",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get x(): number {\r\n        return this[0];\r\n    }",
+              "set": true,
               "get": true
             }
           ]
@@ -5174,22 +5048,7 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set x(n: number) {\r\n        this[0] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "y",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public set y(n: number) {\r\n        this[1] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "x",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get x(): number { return this[0]; }",
+              "set": true,
               "get": true
             },
             {
@@ -5197,7 +5056,8 @@
               "name": "y",
               "type": "number",
               "visibility": "public",
-              "rawText": "public get y(): number { return this[1]; }",
+              "rawText": "public set y(n: number) {\r\n        this[1] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
+              "set": true,
               "get": true
             }
           ]
@@ -5240,7 +5100,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set x(n: number) {\r\n        this[0] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
+              "set": true,
+              "get": true
             },
             {
               "objectType": "property",
@@ -5248,7 +5109,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set y(n: number) {\r\n        this[1] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
+              "set": true,
+              "get": true
             },
             {
               "objectType": "property",
@@ -5256,30 +5118,7 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set z(n: number) {\r\n        this[2] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "x",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get x(): number { return this[0]; }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "y",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get y(): number { return this[1]; }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "z",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get z(): number { return this[2]; }",
+              "set": true,
               "get": true
             }
           ]
@@ -5326,7 +5165,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set x(n: number) {\r\n        this[0] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
+              "set": true,
+              "get": true
             },
             {
               "objectType": "property",
@@ -5334,7 +5174,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set y(n: number) {\r\n        this[1] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
+              "set": true,
+              "get": true
             },
             {
               "objectType": "property",
@@ -5342,7 +5183,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set z(n: number) {\r\n        this[2] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
+              "set": true,
+              "get": true
             },
             {
               "objectType": "property",
@@ -5350,38 +5192,7 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set w(n: number) {\r\n        this[3] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "x",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get x(): number { return this[0]; }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "y",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get y(): number { return this[1]; }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "z",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get z(): number { return this[2]; }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "w",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get w(): number { return this[3]; }",
+              "set": true,
               "get": true
             }
           ]
@@ -5432,14 +5243,7 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set x(n: number) {\r\n        this[0] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "x",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get x(): number { return this[0]; }",
+              "set": true,
               "get": true
             }
           ]
@@ -5478,22 +5282,7 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set x(n: number) {\r\n        this[0] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "y",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public set y(n: number) {\r\n        this[1] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "x",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get x(): number { return this[0]; }",
+              "set": true,
               "get": true
             },
             {
@@ -5501,7 +5290,8 @@
               "name": "y",
               "type": "number",
               "visibility": "public",
-              "rawText": "public get y(): number { return this[1]; }",
+              "rawText": "public set y(n: number) {\r\n        this[1] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
+              "set": true,
               "get": true
             }
           ]
@@ -5544,7 +5334,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set x(n: number) {\r\n        this[0] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
+              "set": true,
+              "get": true
             },
             {
               "objectType": "property",
@@ -5552,7 +5343,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set y(n: number) {\r\n        this[1] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
+              "set": true,
+              "get": true
             },
             {
               "objectType": "property",
@@ -5560,30 +5352,7 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set z(n: number) {\r\n        this[2] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "x",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get x(): number { return this[0]; }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "y",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get y(): number { return this[1]; }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "z",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get z(): number { return this[2]; }",
+              "set": true,
               "get": true
             }
           ]
@@ -5630,7 +5399,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set x(n: number) {\r\n        this[0] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
+              "set": true,
+              "get": true
             },
             {
               "objectType": "property",
@@ -5638,7 +5408,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set y(n: number) {\r\n        this[1] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
+              "set": true,
+              "get": true
             },
             {
               "objectType": "property",
@@ -5646,7 +5417,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set z(n: number) {\r\n        this[2] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
+              "set": true,
+              "get": true
             },
             {
               "objectType": "property",
@@ -5654,38 +5426,7 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set w(n: number) {\r\n        this[3] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "x",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get x(): number { return this[0]; }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "y",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get y(): number { return this[1]; }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "z",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get z(): number { return this[2]; }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "w",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get w(): number { return this[3]; }",
+              "set": true,
               "get": true
             }
           ]
@@ -5736,14 +5477,7 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set x(n: number) {\r\n        this[0] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "x",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get x(): number { return this[0]; }",
+              "set": true,
               "get": true
             }
           ]
@@ -5782,22 +5516,7 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set x(n: number) {\r\n        this[0] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "y",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public set y(n: number) {\r\n        this[1] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "x",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get x(): number { return this[0]; }",
+              "set": true,
               "get": true
             },
             {
@@ -5805,7 +5524,8 @@
               "name": "y",
               "type": "number",
               "visibility": "public",
-              "rawText": "public get y(): number { return this[1]; }",
+              "rawText": "public set y(n: number) {\r\n        this[1] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
+              "set": true,
               "get": true
             }
           ]
@@ -5848,7 +5568,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set x(n: number) {\r\n        this[0] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
+              "set": true,
+              "get": true
             },
             {
               "objectType": "property",
@@ -5856,7 +5577,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set y(n: number) {\r\n        this[1] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
+              "set": true,
+              "get": true
             },
             {
               "objectType": "property",
@@ -5864,30 +5586,7 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set z(n: number) {\r\n        this[2] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "x",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get x(): number { return this[0]; }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "y",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get y(): number { return this[1]; }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "z",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get z(): number { return this[2]; }",
+              "set": true,
               "get": true
             }
           ]
@@ -5934,7 +5633,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set x(n: number) {\r\n        this[0] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
+              "set": true,
+              "get": true
             },
             {
               "objectType": "property",
@@ -5942,7 +5642,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set y(n: number) {\r\n        this[1] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
+              "set": true,
+              "get": true
             },
             {
               "objectType": "property",
@@ -5950,7 +5651,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set z(n: number) {\r\n        this[2] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
+              "set": true,
+              "get": true
             },
             {
               "objectType": "property",
@@ -5958,38 +5660,7 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public set w(n: number) {\r\n        this[3] = n;\r\n        this.mustBeTransfered = true;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "x",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get x(): number { return this[0]; }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "y",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get y(): number { return this[1]; }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "z",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get z(): number { return this[2]; }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "w",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public get w(): number { return this[3]; }",
+              "set": true,
               "get": true
             }
           ]
@@ -6154,7 +5825,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public get x(): number { return this._x; }",
-              "get": true
+              "get": true,
+              "set": true
             },
             {
               "objectType": "property",
@@ -6162,7 +5834,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public get y(): number { return this._y; }",
-              "get": true
+              "get": true,
+              "set": true
             },
             {
               "objectType": "property",
@@ -6170,7 +5843,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public get z(): number { return this._z; }",
-              "get": true
+              "get": true,
+              "set": true
             },
             {
               "objectType": "property",
@@ -6178,7 +5852,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public get rotationX(): number { return this._rx; }",
-              "get": true
+              "get": true,
+              "set": true
             },
             {
               "objectType": "property",
@@ -6186,7 +5861,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public get rotationY(): number { return this._ry; }",
-              "get": true
+              "get": true,
+              "set": true
             },
             {
               "objectType": "property",
@@ -6194,7 +5870,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public get rotationZ(): number { return this._rz; }",
-              "get": true
+              "get": true,
+              "set": true
             },
             {
               "objectType": "property",
@@ -6202,7 +5879,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public get scaleX(): number { return this._sx; }",
-              "get": true
+              "get": true,
+              "set": true
             },
             {
               "objectType": "property",
@@ -6210,7 +5888,8 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public get scaleY(): number { return this._sy; }",
-              "get": true
+              "get": true,
+              "set": true
             },
             {
               "objectType": "property",
@@ -6218,78 +5897,7 @@
               "type": "number",
               "visibility": "public",
               "rawText": "public get scaleZ(): number { return this._sz; }",
-              "get": true
-            },
-            {
-              "objectType": "property",
-              "name": "x",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public set x(n: number) {\r\n\r\n        if (n === this._x) return;\r\n        this.mustBeTransfered = true;\r\n        this._x = n;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "y",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public set y(n: number) {\r\n        if (n === this._y) return;\r\n        this.mustBeTransfered = true;\r\n        this._y = n;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "z",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public set z(n: number) {\r\n        if (n === this._z) return;\r\n        this.mustBeTransfered = true;\r\n        this._z = n;\r\n\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "rotationX",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public set rotationX(n: number) {\r\n        if (n === this._rx) return;\r\n        this.mustBeTransfered = true;\r\n        this._rx = n;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "rotationY",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public set rotationY(n: number) {\r\n        if (n === this._ry) return;\r\n        this.mustBeTransfered = true;\r\n        this._ry = n;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "rotationZ",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public set rotationZ(n: number) {\r\n        if (n === this._rz) return;\r\n        this.mustBeTransfered = true;\r\n        this._rz = n;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "scaleX",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public set scaleX(n: number) {\r\n        if (n === this._sx) return;\r\n        this.mustBeTransfered = true;\r\n        this._sx = n;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "scaleY",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public set scaleY(n: number) {\r\n        if (n === this._sy) return;\r\n        this.mustBeTransfered = true;\r\n        this._sy = n;\r\n    }",
-              "set": true
-            },
-            {
-              "objectType": "property",
-              "name": "scaleZ",
-              "type": "number",
-              "visibility": "public",
-              "rawText": "public set scaleZ(n: number) {\r\n        if (n === this._sz) return;\r\n        this.mustBeTransfered = true;\r\n        this._sz = n;\r\n    }",
+              "get": true,
               "set": true
             },
             {
@@ -6680,14 +6288,7 @@
                 "type": "any[]",
                 "visibility": "public",
                 "rawText": "public set sides(images: (ImageBitmap | HTMLVideoElement | HTMLCanvasElement | OffscreenCanvas | GPUTexture)[]) {\r\n        for (let i = 0; i < 6; i++) this._bitmaps[i] = images[i];\r\n        this.mustBeTransfered = true;\r\n        this.update();\r\n    }",
-                "set": true
-              },
-              {
-                "objectType": "property",
-                "name": "sides",
-                "type": "any[]",
-                "visibility": "public",
-                "rawText": "public get sides(): (ImageBitmap | HTMLVideoElement | HTMLCanvasElement | OffscreenCanvas | GPUTexture)[] { return this._bitmaps; }",
+                "set": true,
                 "get": true
               }
             ]
@@ -6817,14 +6418,7 @@
                 "type": "any[]",
                 "visibility": "public",
                 "rawText": "public set bitmaps(images: (ImageBitmap | HTMLVideoElement | HTMLCanvasElement | OffscreenCanvas | GPUTexture)[]) {\r\n\r\n        if (images.length === 0 || images.length % 6 !== 0) {\r\n            throw new Error(\"CubeMapTextureArray error : descriptor.source must contains an array of (ImageBitmap | HTMLVideoElement | HTMLCanvasElement | OffscreenCanvas) with a length greater than 0 and multiple of 6.\")\r\n        }\r\n\r\n        for (let i = 0; i < images.length; i++) {\r\n            this._bitmaps[i] = images[i];\r\n            this.mustUpdate[i] = true;\r\n        }\r\n        this.mustBeTransfered = true;\r\n        this.update();\r\n    }",
-                "set": true
-              },
-              {
-                "objectType": "property",
-                "name": "bitmaps",
-                "type": "any[]",
-                "visibility": "public",
-                "rawText": "public get bitmaps(): (ImageBitmap | HTMLVideoElement | HTMLCanvasElement | OffscreenCanvas | GPUTexture)[] { return this._bitmaps; }",
+                "set": true,
                 "get": true
               }
             ]
@@ -7007,14 +6601,7 @@
                 "type": "\"u32\" | \"f32\" | \"i32\"",
                 "visibility": "public",
                 "rawText": "public get sampledType(): \"f32\" | \"i32\" | \"u32\" { return this.descriptor.sampledType }",
-                "get": true
-              },
-              {
-                "objectType": "property",
-                "name": "sampledType",
-                "type": "\"u32\" | \"f32\" | \"i32\"",
-                "visibility": "public",
-                "rawText": "public set sampledType(type: \"f32\" | \"i32\" | \"u32\") { this.descriptor.sampledType = type; }",
+                "get": true,
                 "set": true
               },
               {
@@ -7039,14 +6626,7 @@
                 "type": "any",
                 "visibility": "public",
                 "rawText": "public get source(): ImageBitmap | HTMLCanvasElement | HTMLVideoElement | OffscreenCanvas | GPUTexture { return this.descriptor.source }",
-                "get": true
-              },
-              {
-                "objectType": "property",
-                "name": "source",
-                "type": "any",
-                "visibility": "public",
-                "rawText": "public set source(bmp: ImageBitmap | HTMLCanvasElement | HTMLVideoElement | OffscreenCanvas | GPUTexture) {\r\n        this.useOutsideTexture = bmp instanceof GPUTexture;\r\n\r\n        //console.warn(\"SOURCE ==============================================   source = \", bmp)\r\n\r\n        if (this.useOutsideTexture) {\r\n            this.gpuResource = bmp as GPUTexture;\r\n            this._view = (bmp as GPUTexture).createView();\r\n\r\n        } else this.mustBeTransfered = true;\r\n        this.descriptor.source = bmp;\r\n\r\n\r\n    }",
+                "get": true,
                 "set": true
               },
               {
@@ -7290,14 +6870,7 @@
                 "type": "any[]",
                 "visibility": "public",
                 "rawText": "public set bitmaps(images: (ImageBitmap | HTMLVideoElement | HTMLCanvasElement | OffscreenCanvas | GPUTexture)[]) {\r\n        for (let i = 0; i < images.length; i++) {\r\n            this._bitmaps[i] = images[i];\r\n            this.mustUpdate[i] = true;\r\n        }\r\n        this.mustBeTransfered = true;\r\n        this.update();\r\n    }",
-                "set": true
-              },
-              {
-                "objectType": "property",
-                "name": "bitmaps",
-                "type": "any[]",
-                "visibility": "public",
-                "rawText": "public get bitmaps(): (ImageBitmap | HTMLVideoElement | HTMLCanvasElement | OffscreenCanvas | GPUTexture)[] { return this._bitmaps; }",
+                "set": true,
                 "get": true
               }
             ],
@@ -7881,14 +7454,7 @@
                 "type": "boolean",
                 "visibility": "public",
                 "rawText": "public get mustBeTransfered(): boolean { return this.group.mustBeTransfered; }",
-                "get": true
-              },
-              {
-                "objectType": "property",
-                "name": "mustBeTransfered",
-                "type": "boolean",
-                "visibility": "public",
-                "rawText": "public set mustBeTransfered(b: boolean) {\r\n        this.group.mustBeTransfered = b;\r\n    }",
+                "get": true,
                 "set": true
               },
               {
@@ -8241,14 +7807,7 @@
                 "type": "UniformBuffer",
                 "visibility": "public",
                 "rawText": "public get uniformBuffer(): UniformBuffer { return this.buffer }",
-                "get": true
-              },
-              {
-                "objectType": "property",
-                "name": "uniformBuffer",
-                "type": "UniformBuffer",
-                "visibility": "public",
-                "rawText": "public set uniformBuffer(buffer: UniformBuffer) {\r\n        this.buffer = buffer;\r\n        if (buffer) {\r\n            //console.log(\"buffer ==== \", buffer)\r\n            buffer.mustBeTransfered = true;\r\n        }\r\n        for (let i = 0; i < this.items.length; i++) {\r\n            (this.items[i] as any).uniformBuffer = buffer;\r\n        }\r\n    }",
+                "get": true,
                 "set": true
               },
               {
@@ -8257,14 +7816,7 @@
                 "type": "string",
                 "visibility": "public",
                 "rawText": "public get name(): string { return this._name; }",
-                "get": true
-              },
-              {
-                "objectType": "property",
-                "name": "name",
-                "type": "string",
-                "visibility": "public",
-                "rawText": "public set name(s: string) {\r\n        this._name = this.getStructName(s);\r\n    }",
+                "get": true,
                 "set": true
               },
               {
@@ -8532,14 +8084,7 @@
                 "type": "UniformBuffer",
                 "visibility": "public",
                 "rawText": "public get uniformBuffer(): UniformBuffer { return this.buffer }",
-                "get": true
-              },
-              {
-                "objectType": "property",
-                "name": "uniformBuffer",
-                "type": "UniformBuffer",
-                "visibility": "public",
-                "rawText": "public set uniformBuffer(buffer: UniformBuffer) {\r\n        this.buffer = buffer;\r\n        if (buffer) buffer.mustBeTransfered = true;\r\n        for (let i = 0; i < this.groups.length; i++) {\r\n            this.groups[i].uniformBuffer = buffer;\r\n        }\r\n    }",
+                "get": true,
                 "set": true
               },
               {
@@ -8734,14 +8279,7 @@
                 "type": "number[] | number[][]",
                 "visibility": "public",
                 "rawText": "public get datas(): number[][] | number[] { return this._data }",
-                "get": true
-              },
-              {
-                "objectType": "property",
-                "name": "datas",
-                "type": "number[] | number[][]",
-                "visibility": "public",
-                "rawText": "public set datas(n: number[][] | number[]) {\r\n        if (this._data != n) {\r\n            this._data = n;\r\n            this.vertexBuffer.attributeChanged = true;\r\n            this.mustBeTransfered = true;\r\n        }\r\n    }",
+                "get": true,
                 "set": true
               },
               {
@@ -9229,14 +8767,7 @@
                 "type": "Float32Array | Uint32Array | Int32Array",
                 "visibility": "public",
                 "rawText": "public get datas(): Float32Array | Int32Array | Uint32Array { return this._datas; }",
-                "get": true
-              },
-              {
-                "objectType": "property",
-                "name": "datas",
-                "type": "Float32Array | Uint32Array | Int32Array",
-                "visibility": "public",
-                "rawText": "public set datas(f: Float32Array | Int32Array | Uint32Array) {\r\n        this._datas = f;\r\n        this.mustBeTransfered = true;\r\n        //console.warn(\"VB set datas = \", f);\r\n    }",
+                "get": true,
                 "set": true
               },
               {
@@ -10071,14 +9602,7 @@
                 "type": "string",
                 "visibility": "public",
                 "rawText": "public get text(): string { return this._text }",
-                "get": true
-              },
-              {
-                "objectType": "property",
-                "name": "text",
-                "type": "string",
-                "visibility": "public",
-                "rawText": "public set text(s: string) {\r\n\r\n\r\n        //--------- remove useless tabulations while keeping tabs structure -------\r\n\r\n        const lines = s.split(\"\\n\");\r\n        let line;\r\n        let nbTabMin = 99999999;\r\n\r\n        if (lines.length > 1) {\r\n            for (let i = 0; i < lines.length; i++) {\r\n                line = lines[i];\r\n                for (let j = 0; j < line.length; j++) {\r\n                    if (line[j] === \"\\n\") continue;\r\n                    if (line[j] !== \" \") {\r\n                        if (nbTabMin > j) nbTabMin = j;\r\n                        break;\r\n                    }\r\n                }\r\n            }\r\n\r\n            if (this.insideMainFunction && nbTabMin >= 3) nbTabMin -= 3;\r\n            for (let i = 0; i < lines.length; i++) {\r\n                lines[i] = lines[i].slice(nbTabMin);\r\n            }\r\n\r\n            s = lines.join(\"\\n\");\r\n        }\r\n        //-----------------------------------------------------------------------\r\n\r\n        this._text = s;\r\n    }",
+                "get": true,
                 "set": true
               },
               {

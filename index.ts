@@ -310,6 +310,8 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
 
     const details = checker.getTypeAtLocation(node);
 
+    const properties: any = {};
+
     const classInfo: ClassInfo = {
         objectType: "class",
         name: symbol.getName(),
@@ -393,7 +395,10 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
 
         if (ts.isPropertyDeclaration(member) || ts.isGetAccessor(member) || ts.isSetAccessor(member)) {
             const type = checker.getTypeAtLocation(member);
-            const propertyInfo: PropertyInfo = {
+            const prop: PropertyInfo = properties[memberSymbol.getName()];
+
+            let mustPush: boolean = true;
+            const propertyInfo: PropertyInfo = prop ? prop : {
                 objectType: "property",
                 name: memberSymbol.getName(),
                 type: checker.typeToString(type),
@@ -402,14 +407,18 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
                 rawText: useRawText ? member.getText() : undefined,
             };
 
+            if (!prop) properties[memberSymbol.getName()] = propertyInfo;
+            else mustPush = false;
+
             if (ts.isGetAccessor(member)) propertyInfo.get = true;
             if (ts.isSetAccessor(member)) propertyInfo.set = true;
 
+            if (symbol.getName() === "Vec2") console.log("prop = ", prop)
 
             if (ts.getCombinedModifierFlags(member) & ts.ModifierFlags.Static) {
-                classInfo.statics!.properties![visibility].push(propertyInfo);
+                if (mustPush) classInfo.statics!.properties![visibility].push(propertyInfo);
             } else {
-                classInfo.properties![visibility].push(propertyInfo);
+                if (mustPush) classInfo.properties![visibility].push(propertyInfo);
             }
         } else if (ts.isMethodDeclaration(member)) {
             const signature = checker.getSignatureFromDeclaration(member);
