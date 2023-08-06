@@ -121,6 +121,15 @@ type ClassInfo = {
     rawText?: string
 }
 
+//Interface
+type InterfaceInfo = ObjectInfo & {
+    name: string,
+    methods: MethodInfo[],
+    properties: PropertyInfo[]
+    filePath: string,
+}
+
+
 // Property of a class
 type PropertyInfo = {
     objectType: "property",

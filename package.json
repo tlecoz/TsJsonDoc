@@ -1,6 +1,6 @@
 {
   "name": "tsjsondoc",
-  "version": "1.2.4",
+  "version": "1.2.9",
   "main": "build/index.js",
   "bin": "build/index.js",
   "scripts": {
@@ -25,5 +25,8 @@
     "@types/node": "^20.4.5",
     "nodemon": "^3.0.1",
     "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
   }
 }

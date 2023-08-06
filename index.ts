@@ -3,13 +3,15 @@ import * as ts from "typescript";
 import * as path from "path";
 import * as fs from "fs";
 
-const rootDir = process.argv[2] || "../xgpu/src/xGPU";
+require("dotenv").config();
+
+const rootDir = process.argv[2] || (process.env.TSJSONDOC_ROOTDIR ? process.env.TSJSONDOC_ROOTDIR : "./src");
 const outputDir = process.argv[3] || "./";
 const outputFileName = process.argv[4] || "documentation.json";
 const useRawText = process.argv[5] !== 'false';
 
 
-type ObjectType = "type" | "function" | "variable" | "property" | "method" | "class" | "enum" | "constructor";
+type ObjectType = "type" | "function" | "variable" | "property" | "method" | "class" | "enum" | "constructor" | "interface";
 
 interface ObjectInfo {
     objectType: ObjectType;
@@ -73,6 +75,13 @@ type MethodInfo = ObjectInfo & {
     returnType: string,
     visibility: "public" | "private" | "protected",
     params?: { name: string, type: string }[],
+}
+
+type InterfaceInfo = ObjectInfo & {
+    name: string,
+    methods: MethodInfo[],
+    properties: PropertyInfo[]
+    filePath: string,
 }
 
 type ClassInfo = ObjectInfo & {
@@ -301,6 +310,73 @@ function visit(node: ts.Node, checker: ts.TypeChecker) {
         return;
     }
 
+    if (ts.isInterfaceDeclaration(node)) {
+        const symbol = checker.getSymbolAtLocation(node.name!);
+        if (!symbol) {
+            return;
+        }
+
+        const interfaceInfo: InterfaceInfo = {
+            objectType: "interface",
+            name: symbol.getName(),
+            methods: [],
+            properties: [],
+            jsDoc: getJsDoc(node),
+            filePath: "",
+            rawText: useRawText ? node.getText() : undefined,
+        };
+
+        for (const member of node.members) {
+            const memberSymbol = checker.getSymbolAtLocation(member.name!);
+            if (!memberSymbol) {
+                continue;
+            }
+            if (ts.isMethodSignature(member)) {
+                const signature = checker.getSignatureFromDeclaration(member);
+                const returnType = checker.typeToString(signature!.getReturnType());
+
+                const params = signature!.parameters.map(paramSymbol => {
+                    const paramDeclaration = paramSymbol.valueDeclaration as ts.ParameterDeclaration;
+                    return {
+                        name: paramSymbol.getName(),
+                        type: checker.typeToString(checker.getTypeAtLocation(paramDeclaration))
+                    };
+                });
+
+                const methodInfo: MethodInfo = {
+                    objectType: "method",
+                    name: memberSymbol.getName(),
+                    returnType,
+                    params,
+                    visibility: "public", // Les méthodes d'interface sont toujours publiques
+                    jsDoc: getJsDoc(member),
+                    rawText: useRawText ? member.getText() : undefined,
+                };
+
+                interfaceInfo.methods.push(methodInfo);
+            } else if (ts.isPropertySignature(member) || ts.isGetAccessorDeclaration(member) || ts.isSetAccessorDeclaration(member)) { // Add this block
+                const type = checker.getTypeAtLocation(member);
+                const propertyInfo: PropertyInfo = { // Use PropertyInfo here
+                    objectType: "property",
+                    name: memberSymbol.getName(),
+                    type: checker.typeToString(type),
+                    get: ts.isGetAccessorDeclaration(member),
+                    set: ts.isSetAccessorDeclaration(member),
+                    visibility: "public", // Properties in interfaces are always public
+                    jsDoc: getJsDoc(member),
+                    rawText: useRawText ? member.getText() : undefined,
+                };
+                interfaceInfo.properties.push(propertyInfo);
+            }
+        }
+
+        return interfaceInfo;
+    }
+
+
+
+
+
 
 
     const symbol = checker.getSymbolAtLocation(node.name!);
@@ -487,6 +563,12 @@ try {
                         let relativePath = path.relative(rootDir, fileName);
                         relativePath = relativePath.substring(0, relativePath.length - 3);
 
+                        //console.log(classInfo.objectType);
+                        if (classInfo.objectType === "class") {
+                            (classInfo as ClassInfo).filePath = relativePath.split("\\").join(".");
+                        } else if (classInfo.objectType === "interface") {
+                            (classInfo as InterfaceInfo).filePath = relativePath.split("\\").join(".");
+                        }
 
                         if (classInfo.objectType === "class") {
                             (classInfo as ClassInfo).filePath = relativePath.split("\\").join(".");
